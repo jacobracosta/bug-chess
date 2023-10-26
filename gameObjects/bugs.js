@@ -21,6 +21,8 @@ export class Bug {
     }
 }
 
+export default Bug;
+
 //do we need to extend bug class for each type? possibly not
 /*
 class queenBee extends bug {
