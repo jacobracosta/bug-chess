@@ -1,4 +1,4 @@
-class board {
+export class Board {
     constructor(size) {
       this.size = size;
     }
