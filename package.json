@@ -4,9 +4,10 @@
   "description": "",
   "main": "./bin/index.js",
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
   "scripts": {
+    "testBasicMovement": "mocha test/*.test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,6 +16,7 @@
     "hello": "./bin/index.js"
   },
   "dependencies": {
+    "chai": "^4.3.10",
     "mocha": "^10.2.0"
   }
 }
