@@ -14,12 +14,12 @@ export class Bug {
     }
 
     addToAdjacent (indexOfThisBug, indexOfOtherBug, newBug) {
-      this.adjacentArray.splice(indexOfThisBug,0,newBug) //always add to the first index when moving a bug. may need to rethink that
-      newBug.adjacentArray.splice(indexOfOtherBug,0,this) 
+      this.adjacentArray[indexOfThisBug] = newBug //always add to the first index when moving a bug. may need to rethink that
+      newBug.adjacentArray[indexOfOtherBug] = this 
     }
 
     removeFromAdjacent (index) {
-      this.adjacentArray.splice(index,1)
+      this.adjacentArray[index] = null // duhhhh
       //how to handle similar to addToAdjacent?
     }
 

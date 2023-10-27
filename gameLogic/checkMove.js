@@ -31,14 +31,15 @@ function isMoveContinuous(move) { //does the move break the board continuity, ie
 
 export function checkMove(move) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
+    //check if the specified move is to the spot the moving bug is already in
     if(isHexOccupied(move)) {
-        if(isMoveContinuous(move)) { //should we switch these
+        if(isMoveContinuous(move)) {
             if(isMoveLegal(move)) {
                 bIsMoveGood = true
             } else console.log("Move Not Legal")
         } else console.log("Move Breaks Continuity")
     }
-    else console.log("Hex Occupied") //need to log this error
+    else console.log("Hex Occupied") //need to log these errors
     return bIsMoveGood
 }
 
@@ -48,17 +49,53 @@ function areBugsAdjacent(move) {
     return(move.moveBug.isAdjacentToBug(move.destBug))
 }
 
-function isMoveOneHop(move) {
-    const moveLength = Math.abs(move.destIndex - move.destBug.adjacentArray.indexOf(move.moveBug))
+function getSingleHexMoveLength(moveBug, staticBug, destIndex) {
+    //need protection here if staticBug doesn't have an entry matching movebug?
+    return(Math.abs(destIndex - staticBug.adjacentArray.indexOf(moveBug)))
+}
+
+function isMoveOneHex(move) {
+    const moveLength = getSingleHexMoveLength(move.moveBug, move.destBug, move.destIndex)
     if( moveLength == 1 || moveLength == 5) return true //equal to 5 only when moving from 0 to 5, or 5 to 0
     else return false
+}
+
+function isMoveAStraightHop(move) {
+    //trace bugs in the line using their adjacent arrays
+    var isMoveGood = false
+    var currentBug = move.moveBug
+    var nextBug = move.moveBug.adjacentArray[move.destIndex]
+    const moveLength = getSingleHexMoveLength(currentBug, nextBug, move.destIndex)
+
+    //can find a cleaner way of doing this
+    if(moveLength == 3) {
+        if(nextBug == move.destBug) {
+            isMoveGood = true
+        }
+        else {
+            isMoveGood = true
+            while (currentBug != move.destBug) {
+               
+                if(nextBug === null) {
+                    isMoveGood = false
+                    break
+                }
+                currentBug = nextBug
+                if(currentBug == move.destBug)
+                    break
+                nextBug = currentBug.adjacentArray[move.destIndex]
+                
+            }
+        }
+    }
+    return isMoveGood
 }
 
 //could maybe simplfy/consolidate to "checkSingleHexMove" and use that for the beetle as well
 function checkQueenBeeMove(move) {
     let bIsMoveGood = false
     if(areBugsAdjacent(move)) {
-        bIsMoveGood = isMoveOneHop(move)
+        bIsMoveGood = isMoveOneHex(move)
     //} else {
       //  bIsMoveGood = false
     }
@@ -75,7 +112,8 @@ function checkBeetleMove(move) {
 }
 
 function checkHopperMove(move) {
-    let bIsMoveGood = true
+    let bIsMoveGood = false
+    bIsMoveGood = isMoveAStraightHop(move)
     return bIsMoveGood
     //check that all sides in a straight line through the move have bugs attached
 }
