@@ -1,7 +1,7 @@
 
 function isHexOccupied(move) { //is the space where the player intends to move occupied already
     let bIsHexOccupied = false
-    if((move.destBug).isAdjcentSpotEmpty(move.destIndex)) bIsHexOccupied = true;
+    if((move.destBug).isAdjacentSpotEmpty(move.destIndex)) bIsHexOccupied = true;
     return bIsHexOccupied
 }
 
