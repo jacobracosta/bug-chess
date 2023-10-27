@@ -5,3 +5,5 @@ export class Move {
       this.destIndex = destIndex
     }
 }
+
+export default Move;

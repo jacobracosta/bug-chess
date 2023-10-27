@@ -21,18 +21,18 @@ export class Bug {
     }
 }
 
+export default Bug;
+
 //do we need to extend bug class for each type? possibly not
-/*
-class queenBee extends bug {
+
+export class queenBee extends Bug {
   constructor(player, location, type) {
     super(player, location, type)
+    this.type = "queenBee"
   }
-  
-  checkMove(location, endLocation, board) {
-    
-  }
-}
 
+}
+/*
 class ant extends bug {
   constructor(player, location, type) {
     super(player, location, type)
