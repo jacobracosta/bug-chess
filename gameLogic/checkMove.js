@@ -28,6 +28,7 @@ function isMoveLegal(move) { //does the move follow the movement rules for that 
 function isMoveContinuous(move) { //does the move break the board continuity, ie does it break the one hive rule
     return true
 }
+
 export function checkMove(move) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
     if(isHexOccupied(move)) {
@@ -42,8 +43,23 @@ export function checkMove(move) {  //main function for checking movement logic, 
 
 export default checkMove;
 
+function areBugsAdjacent(move) {
+    return(move.moveBug.isAdjacentToBug(move.destBug))
+}
+
+function isMoveOneHop(move) {
+    if((move.destIndex - move.destBug.adjacentArray.indexOf(move.moveBug)) == 1) return true
+    else return false
+}
+
+//could maybe simplfy/consolidate to "checkSingleHexMove" and use that for the beetle as well
 function checkQueenBeeMove(move) {
-    let bIsMoveGood = true
+    let bIsMoveGood = false
+    if(areBugsAdjacent(move)) {
+        bIsMoveGood = isMoveOneHop(move)
+    } else {
+        bIsMoveGood = false
+    }
     return bIsMoveGood
     //check if move is to another side on the same bug
     //if not then move must be on a side of the adjacent bug
@@ -63,7 +79,8 @@ function checkHopperMove(move) {
 }
 
 function checkSpiderMove(move) {
-    // ??
+    // also need to check that end state doesn't break continuity, also need to check that end state is three "hexes" away
+    // no necessarily 3 sides away
     let bIsMoveGood = true
     return bIsMoveGood
 }
