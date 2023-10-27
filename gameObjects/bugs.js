@@ -3,13 +3,19 @@ export class Bug {
       this.player = player;
       this.location = location;
       this.type = type;
+      // 0 top
+      // 1 top right diagonal
+      // 2 bottom right diagonal   
+      // 3 bottom
+      // 4 bottom left diagonal
+      // 5 top left diagonal
       this.adjacentArray = [null, null, null, null, null, null]
       this.topArray = []
     }
 
-    addToAdjacent (index, newBug) {
-      this.adjacentArray.splice(0,0,newBug) //always add to the first index when moving a bug
-      newBug.adjacentArray.splice(index,0,this) 
+    addToAdjacent (indexOfThisBug, indexOfOtherBug, newBug) {
+      this.adjacentArray.splice(indexOfThisBug,0,newBug) //always add to the first index when moving a bug. may need to rethink that
+      newBug.adjacentArray.splice(indexOfOtherBug,0,this) 
     }
 
     removeFromAdjacent (index) {

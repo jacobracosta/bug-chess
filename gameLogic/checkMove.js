@@ -35,9 +35,10 @@ export function checkMove(move) {  //main function for checking movement logic, 
         if(isMoveContinuous(move)) { //should we switch these
             if(isMoveLegal(move)) {
                 bIsMoveGood = true
-            }
-        }
+            } else console.log("Move Not Legal")
+        } else console.log("Move Breaks Continuity")
     }
+    else console.log("Hex Occupied") //need to log this error
     return bIsMoveGood
 }
 
@@ -48,7 +49,8 @@ function areBugsAdjacent(move) {
 }
 
 function isMoveOneHop(move) {
-    if((move.destIndex - move.destBug.adjacentArray.indexOf(move.moveBug)) == 1) return true
+    const moveLength = Math.abs(move.destIndex - move.destBug.adjacentArray.indexOf(move.moveBug))
+    if( moveLength == 1 || moveLength == 5) return true //equal to 5 only when moving from 0 to 5, or 5 to 0
     else return false
 }
 
@@ -57,12 +59,12 @@ function checkQueenBeeMove(move) {
     let bIsMoveGood = false
     if(areBugsAdjacent(move)) {
         bIsMoveGood = isMoveOneHop(move)
-    } else {
-        bIsMoveGood = false
+    //} else {
+      //  bIsMoveGood = false
     }
     return bIsMoveGood
     //check if move is to another side on the same bug
-    //if not then move must be on a side of the adjacent bug
+    //if not then move must be on a side of the adjacent bug, the queen will also be on the adjacence list of that bug, so all we have to do 
     //check to see if that new side is "one away"
 }
 
