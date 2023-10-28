@@ -7,3 +7,5 @@ export class Move {
 }
 
 export default Move;
+
+//calculate move length
