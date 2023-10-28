@@ -1,5 +1,10 @@
 export class Board {
-    constructor(size) {
-      this.size = size;
+    constructor() {
+      this.bugsInPlay = []
+      this.length = this.bugsInPlay.length
+    }
+
+    clearBoard() {
+      this.bugsInPlay.length = 0
     }
 }

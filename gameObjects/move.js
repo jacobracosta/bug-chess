@@ -5,6 +5,7 @@ export class Move {
       this.destIndex = destIndex
       //this.proposedAdjacentArray = destBug.adjacentArray
       //this.proposedAdjacentArray[destIndex] = moveBug
+      //should board state be passed into a move?
     }
 }
 
