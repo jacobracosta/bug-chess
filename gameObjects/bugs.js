@@ -33,6 +33,10 @@ export class Bug {
       if (this.adjacentArray.includes(bug)) return true
       else return false
     }
+
+    hasAnyAdjacents() {
+      return this.adjacentArray.some(Boolean)
+    }
 }
 
 export default Bug;

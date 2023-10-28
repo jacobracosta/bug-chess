@@ -34,6 +34,17 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         expect(check).to.be.false;
     })
 
+    it("tests hopper movement failure: discontinuity", function () {
+        const moveHopper = new hopper("white",0)
+        const staticHopper1 = new hopper("black",0)
+        const staticHopper2 = new hopper("black",0)
+        moveHopper.addToAdjacent(0,3,staticHopper1)
+        moveHopper.addToAdjacent(3,0,staticHopper2)
+        const move = new Move(moveHopper,staticHopper2,3)
+        const check = checkMove(move)
+        expect(check).to.be.false;
+    })
+
     //good opportunity to check move continuity
 
     
