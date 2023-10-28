@@ -46,7 +46,6 @@ function isMoveContinuous(move, board) { //does the move break the board continu
                 let tempBug = new Bug()
                 tempBug = adjacent[i]
                 if (!tempBug.hasAnyAdjacents(moveBug)) {
-                    console.log(tempBug.adjacentArray)
                     isMoveContinuous = false
                     break
                 }
@@ -56,17 +55,23 @@ function isMoveContinuous(move, board) { //does the move break the board continu
     return isMoveContinuous
 }
 
+function isEndStateLegal (move, board) {
+    return true
+}
+
 export function checkMove(move, board) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
     //check if the specified move is to the spot the moving bug is already in
     if(isHexOccupied(move)) {
         if(isMoveContinuous(move, board)) {
             if(isMoveLegal(move)) {
-                bIsMoveGood = true
+                if(isEndStateLegal(move, board)) {
+                    bIsMoveGood = true
+                } else console.log("End State Not Legal")
             } else console.log("Move Not Legal")
         } else console.log("Move Breaks Continuity")
-    }
-    else console.log("Hex Occupied") //need to log these errors
+    } else console.log("Hex Occupied") //need to log these errors
+
     return bIsMoveGood
 }
 
