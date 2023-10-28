@@ -13,7 +13,7 @@ function isHexOccupied(move) { //is the space where the player intends to move o
 
 function isMoveLegal(move) { //does the move follow the movement rules for that bug
     let moveBug = new Bug()
-    moveBug = move.moveBug
+    moveBug = move.moveBug //cleaner way of doing this?
     const bugType = moveBug.type
     let bIsMoveLegal = false
     if(bugType == "queenBee") {
@@ -30,21 +30,48 @@ function isMoveLegal(move) { //does the move follow the movement rules for that 
     return bIsMoveLegal
 }
 
-function isMoveContinuous(move) { //does the move break the board continuity, ie does it break the one hive rule
+function isMoveContinuous(move, board) { //does the move break the board continuity, ie does it break the one hive rule
+    //iterate through adjacent list on moving bug and make sure each bug is attached to something else
+    //need to update adjacent lists before this check? because this implementation can break down in the base case
+    //need to account for size of board to appropriately handle base case
+    let isMoveContinuous = true
+    let moveBug = new Bug()
+    moveBug = move.moveBug
+    let adjacent = moveBug.adjacentArray
+    if(board.length == 2 && moveBug.isAdjacentToBug(move.destBug)) {
+        isMoveContinuous = true //better structure to this, redundant
+    } else {
+        for (let i = 0; i < adjacent.length; i++) {
+            if(adjacent[i]) {
+                let tempBug = new Bug()
+                tempBug = adjacent[i]
+                if (!tempBug.hasAnyAdjacents(moveBug)) {
+                    isMoveContinuous = false
+                    break
+                }
+            }
+        }
+    }
+    return isMoveContinuous
+}
+
+function isEndStateLegal (move, board) {
     return true
 }
 
-export function checkMove(move) {  //main function for checking movement logic, calls all others
+export function checkMove(move, board) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
     //check if the specified move is to the spot the moving bug is already in
     if(isHexOccupied(move)) {
-        if(isMoveContinuous(move)) {
+        if(isMoveContinuous(move, board)) {
             if(isMoveLegal(move)) {
-                bIsMoveGood = true
+                if(isEndStateLegal(move, board)) {
+                    bIsMoveGood = true
+                } else console.log("End State Not Legal")
             } else console.log("Move Not Legal")
         } else console.log("Move Breaks Continuity")
-    }
-    else console.log("Hex Occupied") //need to log these errors
+    } else console.log("Hex Occupied") //need to log these errors
+
     return bIsMoveGood
 }
 
