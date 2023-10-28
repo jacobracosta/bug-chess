@@ -38,17 +38,19 @@ function isMoveContinuous(move, board) { //does the move break the board continu
     let moveBug = new Bug()
     moveBug = move.moveBug
     let adjacent = moveBug.adjacentArray
-    for (let i = 0; i < adjacent.length; i++) {
-        if(adjacent[i]) {
-            let tempBug = new Bug()
-            tempBug = adjacent[i]
-           // if(moveBug != tempBug) {
+    if(board.length == 2 && moveBug.isAdjacentToBug(move.destBug)) {
+        isMoveContinuous = true //better structure to this, redundant
+    } else {
+        for (let i = 0; i < adjacent.length; i++) {
+            if(adjacent[i]) {
+                let tempBug = new Bug()
+                tempBug = adjacent[i]
                 if (!tempBug.hasAnyAdjacents(moveBug)) {
                     console.log(tempBug.adjacentArray)
                     isMoveContinuous = false
                     break
                 }
-           // }
+            }
         }
     }
     return isMoveContinuous
