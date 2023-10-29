@@ -2,12 +2,52 @@ import { expect } from "chai"
 import { spider } from "../../gameObjects/bugs.js"
 import Move from "../../gameObjects/move.js"
 import checkMove from "../../gameLogic/checkMove.js"
+import Board from "../../gameObjects/board.js"
 
 describe("Basic Movement Logic Tests: Spider", function () {
 
-    it("tests spider movement", function () {
-        expect(2).to.equal(2);
+    let testBoard;
+    let moveSpider, staticSpider1;
+    beforeEach(function() {
+        testBoard = new Board()
+        moveSpider = new spider("white",0)
+        staticSpider1 = new spider("black",0)
+
+        testBoard.addToBoard(moveSpider)
+        testBoard.addToBoard(staticSpider1)
+    });
+
+    afterEach(function() {
+        testBoard.clear()
+    });
+
+    it("tests spider movement success: move on same bug", function () {
+        moveSpider.addToAdjacent(3,0,staticSpider1)
+        const move = new Move(moveSpider,staticSpider1,3)
+        const check = checkMove(move, testBoard)
+        expect(check).to.be.true;
     })
 
-    
+    it("tests spider movement success: move on different bug", function () {
+        const staticSpider2 = new spider("black",0)
+        testBoard.addToBoard(staticSpider2)
+
+        moveSpider.addToAdjacent(3,0,staticSpider1)
+        moveSpider.addToAdjacent(2,5,staticSpider2)
+        staticSpider2.addToAdjacent(4,1,staticSpider1)
+
+        const move = new Move(moveSpider,staticSpider2,3)
+        const check = checkMove(move, testBoard)
+        expect(check).to.be.true;
+    })
+
+    it("tests spider movement failure", function () {
+        moveSpider.addToAdjacent(3,0,staticSpider1)
+        const move = new Move(moveSpider,staticSpider1,4)
+        const check = checkMove(move, testBoard)
+        expect(check).to.be.false;
+    })
+
+    //test for continuity
+
 })

@@ -58,7 +58,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         expect(check).to.be.false;
     })
 
-    //redundant?
+    //redundant with queen?
     it.skip("tests beetle movement success: move on different bug", function () {
         const staticBeetle2 = new beetle("black",0)
         testBoard.addToBoard(staticBeetle2)
@@ -71,7 +71,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         expect(check).to.be.true;
     })
 
-    //redundant?
+    //redundant with queen?
     it.skip("tests beetle movement failure", function () {
         const move = new Move(moveBeetle,staticBeetle1,2)
         const check = checkMove(move, testBoard)

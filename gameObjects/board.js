@@ -16,6 +16,8 @@ export class Board {
     removeFromBoard(index) {
       this.bugsInPlay.splice(index,1)
     }
+
+    //method to check for number of bugs of a type on board? this would break some tests
 }
 
 export default Board
