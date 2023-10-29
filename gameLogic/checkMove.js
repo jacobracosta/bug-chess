@@ -7,7 +7,9 @@ import checkSpiderMove from "./bugLogic/spider.logic.js";
 
 function isHexOccupied(move) { //is the space where the player intends to move occupied already
     let bIsHexOccupied = false
-    if((move.destBug).isAdjacentSpotEmpty(move.destIndex)) bIsHexOccupied = true; //need to exclude the 0th element because bugs can stack forever
+    if(move.destIndex <= 5) {
+        if ((move.destBug).isAdjacentSpotEmpty(move.destIndex)) bIsHexOccupied = true; //need to exclude the 0th element because bugs can stack forever
+    } else bIsHexOccupied = true
     return bIsHexOccupied
 }
 
