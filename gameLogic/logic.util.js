@@ -9,7 +9,8 @@ export function isMoveOneHex(move) {
     const [x1,y1] = move.destCoord
     const x = x0-x1
     const y = y0-y1
-    return Math.sqrt(x * x + y * y) == 1 ? true : false ;
+    const distance =  Math.sqrt(x * x + y * y)
+    return (distance < 2 && distance >= 1) ? true : false ;
 }
 
 export function checkSingleHexMove(move) {

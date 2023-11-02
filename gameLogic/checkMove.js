@@ -6,19 +6,25 @@ import checkAntMove from "./bugLogic/ant.logic.js";
 import checkSpiderMove from "./bugLogic/spider.logic.js";
 import Board from "../gameObjects/board.js";
 
-function isHexOccupied(move,board) { //is the space where the player intends to move occupied already
-    let currentBoard = new Board()
-    currentBoard = board
-    const destCoord = move.destCoord
-    const destCellState = board.boardMatrix[destCoord[0]][destCoord[1]]
-
-    return !destCellState.isEmpty()
+function isHexOpen(move,board) { //is the space where the player intends to move occupied already
+    let bug = new Bug()
+    bug = move.moveBug
+    const bugType = bug.type
+    let isHexOpen = false
+    if(bugType != "beetle") { //beetle doesn't care if a space is occupied
+        let currentBoard = new Board()
+        currentBoard = board
+        const destCoord = move.destCoord
+        const destCellState = board.boardMatrix[destCoord[0]][destCoord[1]]
+        isHexOpen = !destCellState.isEmpty()
+    } else isHexOpen = true
+    return isHexOpen
 }
 
 function isMoveLegal(move) { //does the move follow the movement rules for that bug
-    let moveBug = new Bug()
-    moveBug = move.moveBug //cleaner way of doing this?
-    const bugType = moveBug.type
+    let bug = new Bug()
+    bug = move.moveBug
+    const bugType = bug.type
     let bIsMoveLegal = false
     if(bugType == "queenBee") {
         bIsMoveLegal = checkQueenBeeMove(move)
@@ -68,7 +74,7 @@ function isEndStateLegal (move, board) {
 export function checkMove(move, board) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
     //check if the specified move is to the spot the moving bug is already in
-    if(isHexOccupied(move, board)) {
+    if(isHexOpen(move, board)) {
         if(isMoveContinuous(move, board)) {
             if(isMoveLegal(move)) {
                 if(isEndStateLegal(move, board)) {
