@@ -5,6 +5,7 @@ import checkHopperMove from "./bugLogic/hopper.logic.js";
 import checkAntMove from "./bugLogic/ant.logic.js";
 import checkSpiderMove from "./bugLogic/spider.logic.js";
 import Board from "../gameObjects/board.js";
+import CellState from "../gameObjects/cellState.js";
 
 function isHexOpen(move,board) { //is the space where the player intends to move occupied already
     let bug = new Bug()
@@ -14,9 +15,10 @@ function isHexOpen(move,board) { //is the space where the player intends to move
     if(bugType != "beetle") { //beetle doesn't care if a space is occupied
         let currentBoard = new Board()
         currentBoard = board
-        const destCoord = move.destCoord
-        const destCellState = board.boardMatrix[destCoord[0]][destCoord[1]]
-        isHexOpen = !destCellState.isEmpty()
+        const [x,y] = move.destCoord
+        let destCellState = new CellState()
+        destCellState = board.boardMatrix[x][y]
+        isHexOpen = destCellState.isEmpty
     } else isHexOpen = true
     return isHexOpen
 }
