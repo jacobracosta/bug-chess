@@ -4,13 +4,15 @@ import checkBeetleMove from "./bugLogic/beetle.logic.js";
 import checkHopperMove from "./bugLogic/hopper.logic.js";
 import checkAntMove from "./bugLogic/ant.logic.js";
 import checkSpiderMove from "./bugLogic/spider.logic.js";
+import Board from "../gameObjects/board.js";
 
-function isHexOccupied(move) { //is the space where the player intends to move occupied already
-    let bIsHexOccupied = false
-    if(move.destIndex <= 5) {
-        if ((move.destBug).isAdjacentSpotEmpty(move.destIndex)) bIsHexOccupied = true; //need to exclude the 0th element because bugs can stack forever
-    } else bIsHexOccupied = true
-    return bIsHexOccupied
+function isHexOccupied(move,board) { //is the space where the player intends to move occupied already
+    let currentBoard = new Board()
+    currentBoard = board
+    const destCoord = move.destCoord
+    const destCellState = board.boardMatrix[destCoord[0]][destCoord[1]]
+
+    return !destCellState.isEmpty()
 }
 
 function isMoveLegal(move) { //does the move follow the movement rules for that bug
@@ -36,7 +38,9 @@ function isMoveContinuous(move, board) { //does the move break the board continu
     //iterate through adjacent list on moving bug and make sure each bug is attached to something else
     //need to update adjacent lists before this check? because this implementation can break down in the base case
     //need to account for size of board to appropriately handle base case
+
     let isMoveContinuous = true
+    /*
     let moveBug = new Bug()
     moveBug = move.moveBug
     let adjacent = moveBug.adjacentArray
@@ -53,7 +57,7 @@ function isMoveContinuous(move, board) { //does the move break the board continu
                 }
             }
         }
-    }
+    }*/
     return isMoveContinuous
 }
 
@@ -64,7 +68,7 @@ function isEndStateLegal (move, board) {
 export function checkMove(move, board) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
     //check if the specified move is to the spot the moving bug is already in
-    if(isHexOccupied(move)) {
+    if(isHexOccupied(move, board)) {
         if(isMoveContinuous(move, board)) {
             if(isMoveLegal(move)) {
                 if(isEndStateLegal(move, board)) {
