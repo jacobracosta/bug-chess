@@ -13,6 +13,7 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         moveBee = new queenBee("white",0)
         staticBee1 = new queenBee("black",0)
         moveBee.addToAdjacent(3,0,staticBee1)
+        //test change
 
         testBoard.addToBoard(moveBee)
         testBoard.addToBoard(staticBee1)
