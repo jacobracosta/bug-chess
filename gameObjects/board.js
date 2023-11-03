@@ -5,7 +5,8 @@ export class Board {
       this.bugsInPlay = []
       this.length = this.bugsInPlay.length
 
-      this.boardMatrix = this.createBoard(size)
+      this.boardMatrix = this.createBoard(size) // boards will be large square arrays and the first bug will be placed in the middle, 
+      //need function for the possibility of expanding the board? or just make it really large
     }
 
     //makes square board
@@ -26,7 +27,8 @@ export class Board {
     }
 
     clear() {
-      this.bugsInPlay.length = 0
+      this.bugsInPlay.length = 0 //get rid of
+      this.boardMatrix.length = 0
     }
 
     addToBoard(bug) {
