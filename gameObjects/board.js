@@ -1,4 +1,5 @@
 import { CellState } from "./cellState.js";
+import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
 
 export class Board {
     constructor(size) {
@@ -19,21 +20,9 @@ export class Board {
     }
 
     getCellFromRefCoord(refCoord) { //need better name
-      const [aX, aY] = this.translateRefCoordToArrayCoord(refCoord)
+      const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
       const cell = this.boardMatrix[aX][aY]
       return cell
-    }
-
-    translateRefCoordToArrayCoord(refCoord) {
-      let aX, aY;
-      const [rX, rY] = refCoord
-      aX = rX/2
-      if (aX % 2 == 0) {
-        aY = ((rY + 1)/2) - 1
-      } else {
-        aY = rY/2
-      }
-      return [aX,aY]
     }
 
     createRow(size) {
@@ -50,7 +39,7 @@ export class Board {
     }
 
     addToBoard(bug) {
-      const [aX, aY] = this.translateRefCoordToArrayCoord(bug.coord)
+      const [aX, aY] = translateRefCoordToArrayCoord(bug.coord)
 
       this.boardMatrix[aX][aY] = bug
     }

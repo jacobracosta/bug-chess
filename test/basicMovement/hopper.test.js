@@ -10,8 +10,8 @@ describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
     let moveHopper, staticHopper1;
     beforeEach(function() {
         testBoard = new Board(4)
-        moveHopper = new hopper("white",[0,0])
-        staticHopper1 = new hopper("black",[1,1])
+        moveHopper = new hopper("white",[0,1])
+        staticHopper1 = new hopper("black",[2,2])
 
         testBoard.addToBoard(moveHopper)
         testBoard.addToBoard(staticHopper1)
@@ -22,22 +22,22 @@ describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
     });
 
     it("tests hopper movement success: move on same bug", function () { //need to check reverse directions as well
-        const move = new Move(moveHopper,[2,1])
+        const move = new Move(moveHopper,[4,3])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
     it("tests hopper movement failure: move on same bug", function () {
-        const move = new Move(moveHopper,[2,2])
+        const move = new Move(moveHopper,[4,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
     it("tests hopper movement success: move on different bug", function () {
-        const staticHopper2 = new hopper("black",[2,1])
+        const staticHopper2 = new hopper("black",[4,3])
         testBoard.addToBoard(staticHopper2)
 
-        const move = new Move(moveHopper,[3,1])
+        const move = new Move(moveHopper,[6,4])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
