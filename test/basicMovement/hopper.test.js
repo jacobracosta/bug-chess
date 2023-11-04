@@ -22,13 +22,13 @@ describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
     });
 
     it("tests hopper movement success: move on same bug", function () { //need to check reverse directions as well
-        const move = new Move(moveHopper,staticHopper1,[2,1])
+        const move = new Move(moveHopper,[2,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
     it("tests hopper movement failure: move on same bug", function () {
-        const move = new Move(moveHopper,staticHopper1,[2,2])
+        const move = new Move(moveHopper,[2,2])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -37,7 +37,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
         const staticHopper2 = new hopper("black",[2,1])
         testBoard.addToBoard(staticHopper2)
 
-        const move = new Move(moveHopper,staticHopper2,[3,1])
+        const move = new Move(moveHopper,[3,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -46,9 +46,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
         const staticHopper2 = new hopper("black",0)
         testBoard.addToBoard(staticHopper2)
 
-        moveHopper.addToAdjacent(0,3,staticHopper1)
-        moveHopper.addToAdjacent(3,0,staticHopper2)
-        const move = new Move(moveHopper,staticHopper2,3)
+        const move = new Move(moveHopper,3)
         const check = checkMove(move,testBoard)
         expect(check).to.be.false;
     })

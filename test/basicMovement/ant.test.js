@@ -22,7 +22,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
     });
 
     it("tests ant movement success: move on same bug", function () {
-        const move = new Move(moveAnt,staticAnt1,[2,1])
+        const move = new Move(moveAnt,[2,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -31,7 +31,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         const staticAnt2 = new ant("black",[2,1])
         testBoard.addToBoard(staticAnt2)
 
-        const move = new Move(moveAnt,staticAnt2,[2,2])
+        const move = new Move(moveAnt,[2,2])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -40,7 +40,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         const staticAnt2 = new ant("black"[2,1])
         testBoard.addToBoard(staticAnt2)
 
-        const move = new Move(staticAnt1,staticAnt2,[3,1])
+        const move = new Move(staticAnt1,[3,1])
         const check = checkMove(move,testBoard)
         expect(check).to.be.false;
     })
@@ -55,7 +55,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         const staticAnt5 = new ant("black",0)
         testBoard.addToBoard(staticAnt5)
 
-        const move = new Move(moveAnt,staticAnt3,5)
+        const move = new Move(moveAnt,5)
 
         const check = checkMove(move,testBoard)
         expect(check).to.be.false;

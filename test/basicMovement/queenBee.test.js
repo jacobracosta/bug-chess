@@ -22,26 +22,26 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
     });
 
     it("tests queen bee movement success: move on same bug", function () {
-        const move = new Move(moveBee,staticBee1,[0,1])
+        const move = new Move(moveBee,[0,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
     it("tests queen bee movement success: move on same bug", function () {
-        const move = new Move(moveBee,staticBee1,[1,0])
+        const move = new Move(moveBee,[1,0])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
 
     it("tests queen bee movement failure: too far", function () {
-        const move = new Move(moveBee,staticBee1,[2,2])
+        const move = new Move(moveBee,[2,2])
         const check = checkMove(move, testBoard)
         expect(check).to.be.false;
     })
 
     it("tests queen bee movement failure: hex occupied", function () {
-        const move = new Move(moveBee,staticBee1,[1,1])
+        const move = new Move(moveBee,[1,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.false;
     })

@@ -22,13 +22,13 @@ describe("Basic Movement Logic Tests: Beetle", function () {
     });
 
     it("tests beetle movement success: move on same bug", function () {
-        const move = new Move(moveBeetle,staticBeetle1,[0,1])
+        const move = new Move(moveBeetle,[0,1])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
     it("tests beetle movement success: move on top of same bug", function () {
-        const move = new Move(moveBeetle,staticBeetle1,[0,0])
+        const move = new Move(moveBeetle,[0,0])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -38,7 +38,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         testBoard.addToBoard(staticBeetle2)
 
 
-        const move = new Move(moveBeetle,staticBeetle2,6)
+        const move = new Move(moveBeetle,6)
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -48,7 +48,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         const staticBeetle2 = new beetle("black",[2,1])
         testBoard.addToBoard(staticBeetle2)
 
-        const move = new Move(moveBeetle, staticBeetle2,[2,1])
+        const move = new Move(moveBeetle,[2,1])
         const check = checkMove(move,testBoard)
         expect(check).to.be.false;
     })

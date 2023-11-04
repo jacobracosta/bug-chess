@@ -22,8 +22,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
     });
 
     it("tests spider movement success: move on same bug", function () {
-        moveSpider.addToAdjacent(3,0,staticSpider1)
-        const move = new Move(moveSpider,staticSpider1,3)
+        const move = new Move(moveSpider,3)
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
@@ -32,18 +31,13 @@ describe("Basic Movement Logic Tests: Spider", function () {
         const staticSpider2 = new spider("black",0)
         testBoard.addToBoard(staticSpider2)
 
-        moveSpider.addToAdjacent(3,0,staticSpider1)
-        moveSpider.addToAdjacent(2,5,staticSpider2)
-        staticSpider2.addToAdjacent(4,1,staticSpider1)
-
-        const move = new Move(moveSpider,staticSpider2,3)
+        const move = new Move(moveSpider,3)
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
     it("tests spider movement failure", function () {
-        moveSpider.addToAdjacent(3,0,staticSpider1)
-        const move = new Move(moveSpider,staticSpider1,4)
+        const move = new Move(moveSpider,4)
         const check = checkMove(move, testBoard)
         expect(check).to.be.false;
     })
