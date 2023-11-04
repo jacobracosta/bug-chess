@@ -15,9 +15,8 @@ function isHexOpen(move,board) { //is the space where the player intends to move
     if(bugType != "beetle") { //beetle doesn't care if a space is occupied
         let currentBoard = new Board()
         currentBoard = board
-        const [x,y] = move.destCoord
         let destCellState = new CellState()
-        destCellState = board.boardMatrix[x][y]
+        destCellState = currentBoard.getCellFromRefCoord(move.destCoord)
         isHexOpen = destCellState.isEmpty
     } else isHexOpen = true
     return isHexOpen

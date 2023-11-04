@@ -12,14 +12,11 @@ function isMoveAStraightHop2(move, board){
     const x = x1 - x0
     const y = y1 - y0
     const boardMatrix = board.boardMatrix
-    console.log(boardMatrix)
     if ( x == 0 ) {
         if(Math.abs(y) > 1) {
             const underCells = boardMatrix[x1]
-            console.log(underCells)
             for (let i=y0; i < y1; i++) {
                 const checkCell = underCells[i]
-                console.log(checkCell)
                 if (checkCell.isEmpty()) {
                     isMoveGood = false
                     break

@@ -18,6 +18,24 @@ export class Board {
       return boardArray
     }
 
+    getCellFromRefCoord(refCoord) { //need better name
+      const [aX, aY] = this.translateRefCoordToArrayCoord(refCoord)
+      const cell = this.boardMatrix[aX][aY]
+      return cell
+    }
+
+    translateRefCoordToArrayCoord(refCoord) {
+      let aX, aY;
+      const [rX, rY] = refCoord
+      aX = rX/2
+      if (aX % 2 == 0) {
+        aY = ((rY + 1)/2) - 1
+      } else {
+        aY = rY/2
+      }
+      return [aX,aY]
+    }
+
     createRow(size) {
       let rowArray = new Array(size) //make dynamic later
       for(let i=0; i<size;i++){
@@ -32,12 +50,21 @@ export class Board {
     }
 
     addToBoard(bug) {
-      const [x, y] = bug.coord
-      this.boardMatrix[x][y] = bug
+      const [aX, aY] = this.translateRefCoordToArrayCoord(bug.coord)
+
+      this.boardMatrix[aX][aY] = bug
     }
 
-    removeFromBoard(index) {
-      this.bugsInPlay.splice(index,1)
+    getAllAdjacentCells(coord){
+      //get row above and below
+      //get coords next to coord
+      //return list? how [0,1] top left right
+      // [2,3] left right
+      // [4,5] bottom left right
+    }
+
+    removeFromBoard(coord) {
+      this.bugsInPlay.splice(coord,1)
     }
 
     //method to check for number of bugs of a type on board? this would break some tests

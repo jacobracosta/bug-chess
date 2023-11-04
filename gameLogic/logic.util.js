@@ -11,13 +11,8 @@ export function isMoveOneHex(move) { //need to redo this potentially?
     const y = y1 - y0
     const distance =  Math.sqrt(x * x + y * y)
     let isMoveOneHex = false
-    if(distance == 1) isMoveOneHex = true
-    else if(distance > 1 && distance < 2) {
-        if( y > 0 && x != 0) {
-            isMoveOneHex = false
-        }
-        else isMoveOneHex = true
-    }
+    if(distance == 2) isMoveOneHex = true
+    else if(distance == Math.sqrt(5)) isMoveOneHex = true
     else isMoveOneHex = false
     return isMoveOneHex
 }
