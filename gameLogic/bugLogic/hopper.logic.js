@@ -10,25 +10,38 @@ function isMoveAStraightHop2(move, board){
     const [x1,y1] = move.destIndex
     const x = x1 - x0
     const y = y1 - y0
-    if ( y > 0) {
-        if( x > 0) {
+    const boardMatrix = board.boardMatrix
+    if ( x == 0 ) {
+        if(Math.abs(y) > 1) {
+            const underCells = boardMatrix[x1]
+            for (let i=y0; i < y1; i++) {
+                const checkCell = underCells[i]
+                if (checkCell.isEmpty()) {
+                    isMoveGood = false
+                    break
+                }
+            }
+            isMoveGood = true
+        } else isMoveGood = false
 
-        } else {
-
-        }
-    } else if ( y < 0) {
-        if( x > 0) {
-
-        } else {
-            
-        }
-    } else isMoveGood = false
+    } else { //the +x,+y,-x,-y are all relative directional, not literal
+        if ( y > 0) {
+            if( x > 0) {
+                // +x +y [0,0] -> [2,1], [3,1], [4,2], ([5,3])?, [0,1]->[2,2], [3,2]
+            } else {
+                // -x +y [2,0] -> [0,1], [3,0] -> [0,2],[1,1]
+            }
+        } else if ( y < 0) {
+            if( x > 0) {
+                // +x -y [0,1] -> [2,0], [0,2] -> [3,0]
+            } else {
+                // -x -y [2,1] -> [0,0], [3,2] -> [0,1]
+            }
+        } else isMoveGood = false
+    }
     return isMoveGood
     //same row case, iterate over all cells in between
-    // +x -y [0,0] -> [2,1], [3,1]
-    // +x +y [2,0] -> [0,1]
-    // -x +y [2,1] -> [0,0]
-    // -x -y [0,1] -> [2,0]
+ 
 
 }
 
