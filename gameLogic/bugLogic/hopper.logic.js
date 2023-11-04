@@ -1,21 +1,25 @@
+import Board from "../../gameObjects/board.js"
 import getSingleHexMoveLength from "../logic.util.js"
 
-export function checkHopperMove(move) {
-    return isMoveAStraightHop2(move)
+export function checkHopperMove(move, board) {
+    return isMoveAStraightHop2(move, board)
 }
 
 function isMoveAStraightHop2(move, board){
     const isMoveGood = false
-    const [x0,y0] = move.moveBug.location
-    const [x1,y1] = move.destIndex
+    const [x0,y0] = move.moveBug.coord
+    const [x1,y1] = move.destCoord
     const x = x1 - x0
     const y = y1 - y0
     const boardMatrix = board.boardMatrix
+    console.log(boardMatrix)
     if ( x == 0 ) {
         if(Math.abs(y) > 1) {
             const underCells = boardMatrix[x1]
+            console.log(underCells)
             for (let i=y0; i < y1; i++) {
                 const checkCell = underCells[i]
+                console.log(checkCell)
                 if (checkCell.isEmpty()) {
                     isMoveGood = false
                     break

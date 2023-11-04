@@ -1,7 +1,7 @@
 export class Move {
     constructor(moveBug, destCoord) {
       this.moveBug = moveBug
-      this.startCoord = moveBug.location
+      this.startCoord = moveBug.coord
       this.destCoord = destCoord
     }
 }

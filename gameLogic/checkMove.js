@@ -23,7 +23,7 @@ function isHexOpen(move,board) { //is the space where the player intends to move
     return isHexOpen
 }
 
-function isMoveLegal(move) { //does the move follow the movement rules for that bug
+function isMoveLegal(move,board) { //does the move follow the movement rules for that bug
     let bug = new Bug()
     bug = move.moveBug
     const bugType = bug.type
@@ -33,7 +33,7 @@ function isMoveLegal(move) { //does the move follow the movement rules for that 
     } else if (bugType == "beetle") {
         bIsMoveLegal = checkBeetleMove(move)
     } else if (bugType == "hopper") {
-        bIsMoveLegal = checkHopperMove(move)
+        bIsMoveLegal = checkHopperMove(move,board)
     } else if (bugType == "spider") {
         bIsMoveLegal = checkSpiderMove(move)
     } else {
@@ -78,7 +78,7 @@ export function checkMove(move, board) {  //main function for checking movement 
     //check if the specified move is to the spot the moving bug is already in
     if(isHexOpen(move, board)) {
         if(isMoveContinuous(move, board)) {
-            if(isMoveLegal(move)) {
+            if(isMoveLegal(move, board)) {
                 if(isEndStateLegal(move, board)) {
                     bIsMoveGood = true
                 } else console.log("End State Not Legal")

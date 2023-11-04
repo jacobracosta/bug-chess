@@ -37,7 +37,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
     })
 
     it("tests ant movement failure: discontinuity", function () {
-        const staticAnt2 = new ant("black"[2,1])
+        const staticAnt2 = new ant("black",[2,1])
         testBoard.addToBoard(staticAnt2)
 
         const move = new Move(staticAnt1,[3,1])
@@ -46,6 +46,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
     })
 
     it.skip("tests ant movement failure: bad end state", function () {
+        /*
         const staticAnt2 = new ant("black",0)
         testBoard.addToBoard(staticAnt2)
         const staticAnt3 = new ant("black",0)
@@ -58,7 +59,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         const move = new Move(moveAnt,5)
 
         const check = checkMove(move,testBoard)
-        expect(check).to.be.false;
+        expect(check).to.be.false;*/
     })
 
 })

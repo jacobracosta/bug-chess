@@ -1,7 +1,7 @@
 export class Bug {
-    constructor(player, location, type) {
+    constructor(player, coord, type) {
       this.player = player;
-      this.location = location;
+      this.coord = coord;
       this.type = type;
       // 0 top
       // 1 top right diagonal
@@ -48,36 +48,36 @@ export class Bug {
 export default Bug;
 
 export class queenBee extends Bug {
-  constructor(player, location, type) {
-    super(player, location, type)
+  constructor(player, coord, type) {
+    super(player, coord, type)
     this.type = "queenBee"
   }
 }
 
 export class ant extends Bug {
-  constructor(player, location, type) {
-    super(player, location, type)
+  constructor(player, coord, type) {
+    super(player, coord, type)
     this.type = "ant"
   }
 }
 
 export class hopper extends Bug {
-  constructor(player, location, type) {
-    super(player, location, type)
+  constructor(player, coord, type) {
+    super(player, coord, type)
     this.type = "hopper"
   }
 }
 
 export class beetle extends Bug {
-  constructor(player, location, type) {
-    super(player, location, type)
+  constructor(player, coord, type) {
+    super(player, coord, type)
     this.type = "beetle"
   }
 }
 
 export class spider extends Bug {
-  constructor(player, location, type) {
-    super(player, location, type)
+  constructor(player, coord, type) {
+    super(player, coord, type)
     this.type = "spider"
   }
 }

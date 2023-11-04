@@ -32,7 +32,7 @@ export class Board {
     }
 
     addToBoard(bug) {
-      const [x, y] = bug.location
+      const [x, y] = bug.coord
       this.boardMatrix[x][y] = bug
     }
 
