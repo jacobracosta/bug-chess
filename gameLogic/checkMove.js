@@ -18,7 +18,7 @@ function isMoveLegal(move,board) { //does the move follow the movement rules for
     } else if (bugType == "hopper") {
         bIsMoveLegal = checkHopperMove(move,board)
     } else if (bugType == "spider") {
-        bIsMoveLegal = checkSpiderMove(move)
+        bIsMoveLegal = checkSpiderMove(move,board)
     } else {
         bIsMoveLegal = checkAntMove(move,board)
     }
