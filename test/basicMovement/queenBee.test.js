@@ -9,11 +9,9 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
     let testBoard;
     let moveBee, staticBee1;
     beforeEach(function() {
-        testBoard = new Board()
-        moveBee = new queenBee("white",0)
-        staticBee1 = new queenBee("black",0)
-        moveBee.addToAdjacent(3,0,staticBee1)
-        //test change
+        testBoard = new Board(4)
+        moveBee = new queenBee("white",[0,1])
+        staticBee1 = new queenBee("black",[2,2])
 
         testBoard.addToBoard(moveBee)
         testBoard.addToBoard(staticBee1)
@@ -24,25 +22,26 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
     });
 
     it("tests queen bee movement success: move on same bug", function () {
-        const move = new Move(moveBee,staticBee1,1)
+        const move = new Move(moveBee,[0,3])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
-    it("tests queen bee movement success: move on different bug", function () {
-        const staticBee2 = new queenBee("black",0)
-        testBoard.addToBoard(staticBee2)
-
-        moveBee.addToAdjacent(2,5,staticBee2)
-        staticBee2.addToAdjacent(4,1,staticBee1)
-
-        const move = new Move(moveBee,staticBee2,0)
+    it("tests queen bee movement success: move on same bug", function () {
+        const move = new Move(moveBee,[2,0])
         const check = checkMove(move, testBoard)
         expect(check).to.be.true;
     })
 
-    it("tests queen bee movement failure", function () {
-        const move = new Move(moveBee,staticBee1,2)
+
+    it("tests queen bee movement failure: too far", function () {
+        const move = new Move(moveBee,[4,3])
+        const check = checkMove(move, testBoard)
+        expect(check).to.be.false;
+    })
+
+    it("tests queen bee movement failure: hex occupied", function () {
+        const move = new Move(moveBee,[2,2])
         const check = checkMove(move, testBoard)
         expect(check).to.be.false;
     })

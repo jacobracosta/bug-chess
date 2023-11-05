@@ -1,34 +1,45 @@
-import getSingleHexMoveLength from "../logic.util.js"
+import { translateRefCoordToArrayCoord } from "../../utils/coordinateTranslate.util.js"
 
-export function checkHopperMove(move) {
-    let bIsMoveGood = false
-    bIsMoveGood = isMoveAStraightHop(move)
-    return bIsMoveGood
+export function checkHopperMove(move, board) {
+    return isMoveAStraightHop(move, board)
 }
 
-function isMoveAStraightHop(move) {
-    //trace bugs in the line using their adjacent arrays
-    var isMoveGood = false
-    var currentBug = move.moveBug
-    var nextBug = move.moveBug.adjacentArray[move.destIndex]
-    if(nextBug) {
-        const moveLength = getSingleHexMoveLength(currentBug, nextBug, move.destIndex)
+function isMoveAStraightHop(move, board){
+    let isMoveGood = false
+    const [x0,y0] = move.moveBug.coord
+    const [x1,y1] = move.destCoord
+    const x = x1 - x0
+    const y = y1 - y0
+    const boardMatrix = board.boardMatrix
 
-        //can find a cleaner way of doing this
-        if(moveLength == 3) {
-            if(nextBug == move.destBug) {
+    const [aXo,aYo] = translateRefCoordToArrayCoord(move.moveBug.coord)
+    const [aXd,aYd] = translateRefCoordToArrayCoord(move.destCoord)
+    const colDiff = Math.abs(aYd - aYo)
+    if ( y == 0) isMoveGood = false
+    else {
+        if ( x == 0 ) {
+            if(colDiff > 1) {
+                const underCells = boardMatrix[aXd]
                 isMoveGood = true
-            } else {
-                isMoveGood = true
-                while (currentBug != move.destBug) {
-                    if(nextBug === null) {
+                for (let i=aYd; i < aYd; i++) {
+                    const checkCell = underCells[i]
+                    if (checkCell.isEmpty) {
                         isMoveGood = false
                         break
                     }
-                    currentBug = nextBug
-                    if(currentBug == move.destBug)
-                        break
-                    nextBug = currentBug.adjacentArray[move.destIndex]
+                }
+            } else isMoveGood = false
+        } else { 
+            let [sX, sY] = move.destCoord
+            if(x > 0) [sX, sY] = move.moveBug.coord
+            isMoveGood = true
+            for (let i=sX; i< aXd-1; i++) {
+                if(y>0) [sX,sY] = [sX+2,sY+1] //diag down left and diag up right
+                else [sX,sY] = [sX+2,sY-1] //diag down right and diag diag up left
+                const checkCell = board.getCellFromRefCoord([sX,sY])
+                if (checkCell.isEmpty) {
+                    isMoveGood = false
+                    break
                 }
             }
         }
