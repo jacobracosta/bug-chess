@@ -33,7 +33,6 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         expect(check).to.be.true;
     })
 
-
     it("tests queen bee movement failure: too far", function () {
         const move = new Move(moveBee,[4,3])
         const check = checkMove(move, testBoard)
@@ -45,5 +44,5 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         const check = checkMove(move, testBoard)
         expect(check).to.be.false;
     })
-
+    
 })

@@ -46,7 +46,6 @@ describe("Basic Movement Logic Tests: Ant", function (){
     })
 
     it("tests ant movement failure: breaks crescent", function () {
-        
         const staticAnt2 = new ant("black",[2,4])
         testBoard.addToBoard(staticAnt2)
         const staticAnt3 = new ant("black",[4,5])
@@ -61,5 +60,5 @@ describe("Basic Movement Logic Tests: Ant", function (){
         const check = checkMove(move,testBoard)
         expect(check).to.be.false;
     })
-
+    
 })

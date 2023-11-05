@@ -4,27 +4,14 @@ A web app to play bug chess online.
 TODO
 
 -define game logic
+  -create solution for defining continuity and continuity breaks
+  -need to check continuity before, during, and after move
 
 -define bug movements
+  -spider pending
 
--come up with nomenclature for game moves,
-
-  eg beetle1 to queen-0 (on top of queen)
+-document coordinate system
   
-  ant2 to hopper-4 (ant to the 4th hex of the grasshopper)
-     
-   (see shitty graphic below for proposed hex position names, 0th position would be on top)
-     
-       2. _
-     
-    1. /   \ 3.
-      
-    6. \    / 4.
-      
-         _ 5.
-      
-Design game loop
-
--start with commandline app
-
--commands like "place beetle, move ant, place queen"
+-Design game loop
+  -start with commandline app
+  -commands like "place beetle, move ant, place queen"

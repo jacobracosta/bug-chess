@@ -12,7 +12,6 @@ export function checkCrescentBreak(move, board) {
 }
 
 export function checkSingleHexMove(move) { //need to redo this potentially?
-
     const [x0,y0] = move.startCoord
     const [x1,y1] = move.destCoord
     const x = x1 - x0
