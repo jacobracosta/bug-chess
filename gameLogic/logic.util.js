@@ -1,12 +1,12 @@
 import Board from "../gameObjects/board.js"
 
 export function checkCrescentBreak(move, board) {
-    let bIsMoveGood = false
+    let bIsMoveGood = true
     let tempBoard = new Board(1)
     tempBoard = board
     const numberOfEmptyCells = tempBoard.getNumberOfEmptyCellsAroundCoord(move.destCoord)
-    if(numberOfEmptyCells >= 5){
-        bIsMoveGood = true
+    if(numberOfEmptyCells <= 1){
+        bIsMoveGood = false
     }
     return bIsMoveGood
 }
