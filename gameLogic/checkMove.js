@@ -90,7 +90,7 @@ export function checkMove(move, board) {  //main function for checking movement 
                     } else console.log("End State Not Legal")
                 } else console.log("Move Not Legal")
             } else console.log("Move Breaks Continuity")
-        } console.log("Dest Hex not Adjacent to Anything")
+        } else console.log("Dest Hex not Adjacent to Anything")
     } else console.log("Hex Occupied") //need to log these errors
 
     return bIsMoveGood
