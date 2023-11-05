@@ -1,9 +1,4 @@
 
-export function getSingleHexMoveLength(move) { //need better name
-
-    return(Math.abs(destIndex - staticBug.adjacentArray.indexOf(moveBug)))
-}
-
 export function isMoveOneHex(move) { //need to redo this potentially?
     const [x0,y0] = move.startCoord
     const [x1,y1] = move.destCoord
@@ -21,4 +16,4 @@ export function checkSingleHexMove(move) {
     return isMoveOneHex(move)
 }
 
-export default getSingleHexMoveLength;
+export default checkSingleHexMove
