@@ -44,5 +44,5 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         const check = checkMove(move, testBoard)
         expect(check).to.be.false;
     })
-
+    
 })

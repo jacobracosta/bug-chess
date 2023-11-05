@@ -34,7 +34,6 @@ export class Board {
     }
 
     clear() {
-      this.bugsInPlay.length = 0 //get rid of
       this.boardMatrix.length = 0
     }
 

@@ -4,7 +4,7 @@ import Move from "../../gameObjects/move.js"
 import checkMove from "../../gameLogic/checkMove.js"
 import Board from "../../gameObjects/board.js"
 
-describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
+describe("Basic Hopper Logic Tests: Hopper", function () {
 
     let testBoard;
     let moveHopper, staticHopper1;
