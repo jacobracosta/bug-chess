@@ -22,6 +22,12 @@ function isHexOpen(move,board) { //is the space where the player intends to move
     return isHexOpen
 }
 
+function isDestHexAdjacent(move,board) {
+    let currentBoard = new Board()
+    currentBoard = board
+    return currentBoard.checkIfAnyAdjacentCellsNonEmpty(move.destCoord)
+}
+
 function isMoveLegal(move,board) { //does the move follow the movement rules for that bug
     let bug = new Bug()
     bug = move.moveBug
@@ -36,7 +42,7 @@ function isMoveLegal(move,board) { //does the move follow the movement rules for
     } else if (bugType == "spider") {
         bIsMoveLegal = checkSpiderMove(move)
     } else {
-        bIsMoveLegal = checkAntMove(move)
+        bIsMoveLegal = checkAntMove(move,board)
     }
     return bIsMoveLegal
 }
@@ -76,13 +82,15 @@ export function checkMove(move, board) {  //main function for checking movement 
     let bIsMoveGood = false
     //check if the specified move is to the spot the moving bug is already in
     if(isHexOpen(move, board)) {
-        if(isMoveContinuous(move, board)) {
-            if(isMoveLegal(move, board)) {
-                if(isEndStateLegal(move, board)) {
-                    bIsMoveGood = true
-                } else console.log("End State Not Legal")
-            } else console.log("Move Not Legal")
-        } else console.log("Move Breaks Continuity")
+        if(isDestHexAdjacent(move,board)) {
+            if(isMoveContinuous(move, board)) {
+                if(isMoveLegal(move, board)) {
+                    if(isEndStateLegal(move, board)) {
+                        bIsMoveGood = true
+                    } else console.log("End State Not Legal")
+                } else console.log("Move Not Legal")
+            } else console.log("Move Breaks Continuity")
+        } console.log("Dest Hex not Adjacent to Anything")
     } else console.log("Hex Occupied") //need to log these errors
 
     return bIsMoveGood

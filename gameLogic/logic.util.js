@@ -1,5 +1,18 @@
+import Board from "../gameObjects/board.js"
 
-export function isMoveOneHex(move) { //need to redo this potentially?
+export function checkCrescentBreak(move, board) {
+    let bIsMoveGood = false
+    let tempBoard = new Board(1)
+    tempBoard = board
+    const numberOfEmptyCells = tempBoard.getNumberOfEmptyCellsAroundCoord(move.destCoord)
+    if(numberOfEmptyCells >= 5){
+        bIsMoveGood = true
+    }
+    return bIsMoveGood
+}
+
+export function checkSingleHexMove(move) { //need to redo this potentially?
+
     const [x0,y0] = move.startCoord
     const [x1,y1] = move.destCoord
     const x = x1 - x0
@@ -10,10 +23,6 @@ export function isMoveOneHex(move) { //need to redo this potentially?
     else if(distance == Math.sqrt(5)) isMoveOneHex = true
     else isMoveOneHex = false
     return isMoveOneHex
-}
-
-export function checkSingleHexMove(move) {
-    return isMoveOneHex(move)
 }
 
 export default checkSingleHexMove

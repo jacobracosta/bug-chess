@@ -40,16 +40,44 @@ export class Board {
 
     addToBoard(bug) {
       const [aX, aY] = translateRefCoordToArrayCoord(bug.coord)
-
       this.boardMatrix[aX][aY] = bug
     }
 
-    getAllAdjacentCells(coord){
-      //get row above and below
-      //get coords next to coord
-      //return list? how [0,1] top left right
-      // [2,3] left right
-      // [4,5] bottom left right
+    getNumberOfEmptyCellsAroundCoord(refCoord) {
+      let numberOfEmptyCells = 0
+      const allAdjacent = this.getAllAdjacentCells(refCoord)
+      for (let i=0; i<allAdjacent.length; i++){
+        if(allAdjacent[i].isEmpty) numberOfEmptyCells++
+      }
+      return numberOfEmptyCells
+    }
+
+    checkIfAnyAdjacentCellsNonEmpty(refCoord) {
+      let anyAdjacentNonEmpty = false
+      const allAdjacent = this.getAllAdjacentCells(refCoord)
+      for (let i=0; i<allAdjacent.length; i++){
+        if(!allAdjacent[i].isEmpty) {
+          anyAdjacentNonEmpty = true
+          break
+        } 
+      } return anyAdjacentNonEmpty
+    }
+
+    getAllAdjacentCells(refCoord){ //breaks down for coords near the edge, should we account for that?
+      const [x,y] = refCoord
+      const topLeft = [x-2,y-1]
+      const topRight = [x-2,y+1]
+      const left = [x,y-2]
+      const right = [x,y+2]
+      const bottomLeft = [x+2,y-1]
+      const bottomRight = [x+2,y+1]
+      const coords = [topLeft, topRight, left, right, bottomLeft, bottomRight]
+      let allAdjacent = new Array(6)
+      for (let i=0; i<allAdjacent.length; i++){
+        const [aX, aY] = translateRefCoordToArrayCoord(coords[i])
+        allAdjacent[i] = this.boardMatrix[aX][aY]
+      }
+      return allAdjacent
     }
 
     removeFromBoard(coord) {

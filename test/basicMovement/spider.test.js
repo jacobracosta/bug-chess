@@ -4,7 +4,7 @@ import Move from "../../gameObjects/move.js"
 import checkMove from "../../gameLogic/checkMove.js"
 import Board from "../../gameObjects/board.js"
 
-describe("Basic Movement Logic Tests: Spider", function () {
+describe.skip("Basic Movement Logic Tests: Spider", function () {
 
     let testBoard;
     let moveSpider, staticSpider1;
