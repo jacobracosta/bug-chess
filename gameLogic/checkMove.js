@@ -4,29 +4,7 @@ import checkBeetleMove from "./bugLogic/beetle.logic.js";
 import checkHopperMove from "./bugLogic/hopper.logic.js";
 import checkAntMove from "./bugLogic/ant.logic.js";
 import checkSpiderMove from "./bugLogic/spider.logic.js";
-import Board from "../gameObjects/board.js";
-import CellState from "../gameObjects/cellState.js";
-
-function isHexOpen(move,board) { //is the space where the player intends to move occupied already
-    let bug = new Bug()
-    bug = move.moveBug
-    const bugType = bug.type
-    let isHexOpen = false
-    if(bugType != "beetle") { //beetle doesn't care if a space is occupied
-        let currentBoard = new Board()
-        currentBoard = board
-        let destCellState = new CellState()
-        destCellState = currentBoard.getCellFromRefCoord(move.destCoord)
-        isHexOpen = destCellState.isEmpty
-    } else isHexOpen = true
-    return isHexOpen
-}
-
-function isDestHexAdjacent(move,board) {
-    let currentBoard = new Board()
-    currentBoard = board
-    return currentBoard.checkIfAnyAdjacentCellsNonEmpty(move.destCoord)
-}
+import { isHexOpen, isDestHexAdjacent, isEndStateLegal } from "./logic.util.js";
 
 function isMoveLegal(move,board) { //does the move follow the movement rules for that bug
     let bug = new Bug()
@@ -74,13 +52,8 @@ function isMoveContinuous(move, board) { //does the move break the board continu
     return isMoveContinuous
 }
 
-function isEndStateLegal (move, board) {
-    return true
-}
-
 export function checkMove(move, board) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
-    //check if the specified move is to the spot the moving bug is already in
     if(isHexOpen(move, board)) {
         if(isDestHexAdjacent(move,board)) {
             if(isMoveContinuous(move, board)) {
@@ -92,7 +65,6 @@ export function checkMove(move, board) {  //main function for checking movement 
             } else console.log("Move Breaks Continuity")
         } else console.log("Dest Hex not Adjacent to Anything")
     } else console.log("Hex Occupied") //need to log these errors
-
     return bIsMoveGood
 }
 
