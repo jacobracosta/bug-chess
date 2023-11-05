@@ -63,7 +63,7 @@ export class Board {
       } return anyAdjacentNonEmpty
     }
 
-    getAllAdjacentCells(refCoord){ //breaks down for coords near the edge, should we account for that?
+    getAllAdjacentCells(refCoord){  //does not account for right edge or bottom of boards
       const [x,y] = refCoord
       const topLeft = [x-2,y-1]
       const topRight = [x-2,y+1]
@@ -71,11 +71,19 @@ export class Board {
       const right = [x,y+2]
       const bottomLeft = [x+2,y-1]
       const bottomRight = [x+2,y+1]
-      const coords = [topLeft, topRight, left, right, bottomLeft, bottomRight]
-      let allAdjacent = new Array(6)
-      for (let i=0; i<allAdjacent.length; i++){
+
+      let allAdjacent = []
+      let coords = [right,bottomRight]
+      const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
+      const aXisEven = (aX % 2  == 0) ? true : false 
+      if(aX > 0) coords.push(topRight)
+      if(aX > 0 && aY >= 1) coords.push(topLeft)
+      if(aY > 0) coords.push(left)
+      if(aXisEven && aY > 0) coords.push(bottomLeft)
+
+      for (let i=0; i<coords.length; i++){
         const [aX, aY] = translateRefCoordToArrayCoord(coords[i])
-        allAdjacent[i] = this.boardMatrix[aX][aY]
+        allAdjacent.push(this.boardMatrix[aX][aY])
       }
       return allAdjacent
     }

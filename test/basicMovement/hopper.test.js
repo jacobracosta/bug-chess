@@ -9,7 +9,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () { //do hopper next
     let testBoard;
     let moveHopper, staticHopper1;
     beforeEach(function() {
-        testBoard = new Board(4)
+        testBoard = new Board(5)
         moveHopper = new hopper("white",[0,1])
         staticHopper1 = new hopper("black",[2,2])
 

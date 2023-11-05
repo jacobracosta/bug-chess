@@ -9,7 +9,7 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
     let testBoard;
     let moveBee, staticBee1;
     beforeEach(function() {
-        testBoard = new Board(3)
+        testBoard = new Board(4)
         moveBee = new queenBee("white",[0,1])
         staticBee1 = new queenBee("black",[2,2])
 
