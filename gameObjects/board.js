@@ -1,5 +1,6 @@
 import { CellState } from "./cellState.js";
-import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
+import { translateArrayCoordToRefCoord, translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
+import doesArrayContainObject from "../utils/array.utl.js";
 
 export class Board {
     constructor(size) {
@@ -14,7 +15,7 @@ export class Board {
     createBoard(size) {
       let boardArray = new Array(size)
       for(let i=0; i<size;i++){
-          boardArray[i] = this.createRow(size)
+          boardArray[i] = this.createRow(i,size)
       }
       return boardArray
     }
@@ -25,16 +26,15 @@ export class Board {
       return cell
     }
 
-    createRow(size) {
+    createRow(numRow,size) {
       let rowArray = new Array(size) //make dynamic later
       for(let i=0; i<size;i++){
-        rowArray[i] = new CellState();
+        rowArray[i] = new CellState(translateArrayCoordToRefCoord([numRow,i]));
       }
       return rowArray
     }
 
     clear() {
-      this.bugsInPlay.length = 0 //get rid of
       this.boardMatrix.length = 0
     }
 
@@ -52,11 +52,12 @@ export class Board {
       return numberOfEmptyCells
     }
 
-    checkIfAnyAdjacentCellsNonEmpty(refCoord) {
+    checkIfAnyAdjacentCellsNonEmpty(refCoord, ignore) {
       let anyAdjacentNonEmpty = false
       const allAdjacent = this.getAllAdjacentCells(refCoord)
-      console.log(allAdjacent)
+      //const allAdjacentCoords = this.getAllAdjacentCellCoords(refCoord)
       for (let i=0; i<allAdjacent.length; i++){
+        if(doesArrayContainObject(ignore, allAdjacent[i].refCoord)) continue
         if(!allAdjacent[i].isEmpty) {
           anyAdjacentNonEmpty = true
           break
@@ -87,7 +88,6 @@ export class Board {
     getAllAdjacentCells(refCoord) {  //does not account for right edge or bottom of boards
       const allAdjacentCoords = this.getAllAdjacentCellCoords(refCoord)
       let allAdjacentCells = []
-      console.log(allAdjacentCoords)
       for (let i=0; i<allAdjacentCoords.length; i++){
         const [aX, aY] = translateRefCoordToArrayCoord(allAdjacentCoords[i])
         allAdjacentCells.push(this.boardMatrix[aX][aY])

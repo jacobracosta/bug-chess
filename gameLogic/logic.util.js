@@ -45,23 +45,23 @@ export function isHexOpen(move,board) { //is the space where the player intends 
     return isHexOpen
 }
 
-export function isDestHexAdjacent(move,board) {
+export function isDestHexAdjacent(move,board,ignore=[]) {
     let currentBoard = new Board()
     currentBoard = board
-    return currentBoard.checkIfAnyAdjacentCellsNonEmpty(move.destCoord)
+    return currentBoard.checkIfAnyAdjacentCellsNonEmpty(move.destCoord,ignore)
 }
 
-export function checkMoveLite(move, board) {  
+export function checkMoveLite(move, board, ignore) {  
     let bIsMoveGood = false
     if(isHexOpen(move, board)) {
         if(checkSingleHexMove(move)) {
-            if(isDestHexAdjacent(move,board)) {
+            if(isDestHexAdjacent(move,board, ignore)) {
                 if(isEndStateLegal(move, board)) {
                     bIsMoveGood = true
-                } else console.log("Crescent Break")
-            } else console.log("Dest Hex not Adjacent to Anything 1")
-        } else console.log("Move not a single hex")
-    } else console.log("Hex Occupied 1")
+                } //else console.log("Crescent Break")
+            } //else console.log("Dest Hex not Adjacent to Anything 1")
+        } //else console.log("Move not a single hex")
+    } //else console.log("Hex Occupied 1")
     return bIsMoveGood
 }
 
