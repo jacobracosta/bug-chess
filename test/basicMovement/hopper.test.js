@@ -9,7 +9,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
     let testBoard;
     let moveHopper, staticHopper1;
     beforeEach(function() {
-        testBoard = new Board(5)
+        testBoard = new Board(6)
         moveHopper = new hopper("white",[0,1])
         staticHopper1 = new hopper("black",[2,2])
 
@@ -88,7 +88,10 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
     })
 
     it("tests hopper movement failure: gap underneath", function () {
-        const move = new Move(moveHopper,[6,4])
+        const staticHopper2 = new hopper("black",[6,4])
+        testBoard.addToBoard(staticHopper2)
+
+        const move = new Move(moveHopper,[8,5])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
         expect(message).to.eq("Move Not Legal")
