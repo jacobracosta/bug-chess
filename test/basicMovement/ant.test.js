@@ -23,8 +23,9 @@ describe("Basic Movement Logic Tests: Ant", function (){
 
     it("tests ant movement success: move on same bug", function () {
         const move = new Move(moveAnt,[2,4])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests ant movement success: move on different bug", function () {
@@ -32,8 +33,9 @@ describe("Basic Movement Logic Tests: Ant", function (){
         testBoard.addToBoard(staticAnt2)
 
         const move = new Move(moveAnt,[6,2])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it.skip("tests ant movement failure: discontinuity", function () {
@@ -41,8 +43,9 @@ describe("Basic Movement Logic Tests: Ant", function (){
         testBoard.addToBoard(staticAnt2)
 
         const move = new Move(staticAnt1,[3,1])
-        const check = checkMove(move,testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
+        expect(message).to.eq("Move Breaks Continuity")
     })
 
     it("tests ant movement failure: breaks crescent", function () {
@@ -57,8 +60,9 @@ describe("Basic Movement Logic Tests: Ant", function (){
 
         const move = new Move(moveAnt,[4,3])
 
-        const check = checkMove(move,testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
+        expect(message).to.eq("End State Not Legal")
     })
     
 })
