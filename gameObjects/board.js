@@ -1,6 +1,6 @@
 import { CellState } from "./cellState.js";
 import { translateArrayCoordToRefCoord, translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
-import doesArrayContainObject from "../utils/array.utl.js";
+import doesArrayContainObject from "../utils/array.util.js";
 
 export class Board {
     constructor(size) {

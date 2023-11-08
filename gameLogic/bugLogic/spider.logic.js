@@ -1,7 +1,7 @@
 import Move from "../../gameObjects/move.js"
 import { checkMoveLite } from "../logic.util.js"
 import Bug from "../../gameObjects/bugs.js"
-import doesArrayContainObject from "../../utils/array.utl.js"
+import doesArrayContainObject from "../../utils/array.util.js"
 
 function checkSpiderMove(move, board) {
     let bIsMoveGood = false
@@ -12,6 +12,7 @@ function checkSpiderMove(move, board) {
     // 5. check all final legal move possibilities against the move.destCoord
 
     let moveCoords = [move.moveBug.coord]
+    let allProposedMoveCoords = [move.moveBug.coord]
     for(let i=0; i<3; i++){
         let proposedMoveCoords = []
         for(let j=0; j<moveCoords.length; j++) {
@@ -20,11 +21,14 @@ function checkSpiderMove(move, board) {
                 const tempBug = new Bug("temp", moveCoords[j], "")
                 const proposedMove = new Move(tempBug, allAdjacentCoords[k])
                 if(doesArrayContainObject(moveCoords, allAdjacentCoords[k])) {
-                    //console.log("iii")
-                    //console.log(allAdjacentCoords[k])
                     continue
                 }
-                if(checkMoveLite(proposedMove,board,[moveCoords[j]])) proposedMoveCoords.push(allAdjacentCoords[k]) // add condition where we don't include previous entries in moveCoords
+                if(doesArrayContainObject(allProposedMoveCoords, allAdjacentCoords[k])) continue
+                if(checkMoveLite(proposedMove,board,[moveCoords[j]]))
+                {
+                    allProposedMoveCoords.push(allAdjacentCoords[k])
+                    proposedMoveCoords.push(allAdjacentCoords[k]) // add condition where we don't include previous entries in moveCoords
+                }
             }
         }
         moveCoords = proposedMoveCoords

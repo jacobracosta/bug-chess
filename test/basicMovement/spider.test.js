@@ -42,6 +42,8 @@ describe("Basic Movement Logic Tests: Spider", function () {
         expect(check).to.be.false;
     })
 
+    //add case for three options of movement
+
     //test for continuity
 
 })
