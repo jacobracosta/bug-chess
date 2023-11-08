@@ -1,5 +1,6 @@
 import { CellState } from "./cellState.js";
-import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
+import { translateArrayCoordToRefCoord, translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
+import doesArrayContainObject from "../utils/array.util.js";
 
 export class Board {
     constructor(size) {
@@ -14,7 +15,7 @@ export class Board {
     createBoard(size) {
       let boardArray = new Array(size)
       for(let i=0; i<size;i++){
-          boardArray[i] = this.createRow(size)
+          boardArray[i] = this.createRow(i,size)
       }
       return boardArray
     }
@@ -25,10 +26,10 @@ export class Board {
       return cell
     }
 
-    createRow(size) {
+    createRow(numRow,size) {
       let rowArray = new Array(size) //make dynamic later
       for(let i=0; i<size;i++){
-        rowArray[i] = new CellState();
+        rowArray[i] = new CellState(translateArrayCoordToRefCoord([numRow,i]));
       }
       return rowArray
     }
@@ -51,10 +52,12 @@ export class Board {
       return numberOfEmptyCells
     }
 
-    checkIfAnyAdjacentCellsNonEmpty(refCoord) {
+    checkIfAnyAdjacentCellsNonEmpty(refCoord, ignore) {
       let anyAdjacentNonEmpty = false
       const allAdjacent = this.getAllAdjacentCells(refCoord)
+      //const allAdjacentCoords = this.getAllAdjacentCellCoords(refCoord)
       for (let i=0; i<allAdjacent.length; i++){
+        if(doesArrayContainObject(ignore, allAdjacent[i].refCoord)) continue
         if(!allAdjacent[i].isEmpty) {
           anyAdjacentNonEmpty = true
           break
@@ -62,7 +65,7 @@ export class Board {
       } return anyAdjacentNonEmpty
     }
 
-    getAllAdjacentCells(refCoord){  //does not account for right edge or bottom of boards
+    getAllAdjacentCellCoords(refCoord) {
       const [x,y] = refCoord
       const topLeft = [x-2,y-1]
       const topRight = [x-2,y+1]
@@ -71,7 +74,6 @@ export class Board {
       const bottomLeft = [x+2,y-1]
       const bottomRight = [x+2,y+1]
 
-      let allAdjacent = []
       let coords = [right,bottomRight]
       const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
       const aXisEven = (aX % 2  == 0) ? true : false 
@@ -80,11 +82,17 @@ export class Board {
       if(aY > 0) coords.push(left)
       if(aXisEven && aY > 0) coords.push(bottomLeft)
 
-      for (let i=0; i<coords.length; i++){
-        const [aX, aY] = translateRefCoordToArrayCoord(coords[i])
-        allAdjacent.push(this.boardMatrix[aX][aY])
+      return coords
+    }
+
+    getAllAdjacentCells(refCoord) {  //does not account for right edge or bottom of boards
+      const allAdjacentCoords = this.getAllAdjacentCellCoords(refCoord)
+      let allAdjacentCells = []
+      for (let i=0; i<allAdjacentCoords.length; i++){
+        const [aX, aY] = translateRefCoordToArrayCoord(allAdjacentCoords[i])
+        allAdjacentCells.push(this.boardMatrix[aX][aY])
       }
-      return allAdjacent
+      return allAdjacentCells
     }
 
     removeFromBoard(coord) {

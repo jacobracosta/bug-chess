@@ -1,7 +1,8 @@
 export class CellState {
-    constructor() {
+    constructor(refCoord) {
         this.bug = null
         this.top = null
+        this.refCoord = refCoord
     }
 
     isEmpty() {
