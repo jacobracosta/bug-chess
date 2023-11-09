@@ -4,9 +4,6 @@ import doesArrayContainObject from "../utils/array.util.js";
 
 export class Board {
     constructor(size) {
-      this.bugsInPlay = []
-      this.length = this.bugsInPlay.length
-
       this.boardMatrix = this.createBoard(size) // boards will be large square arrays and the first bug will be placed in the middle, 
       //need function for the possibility of expanding the board? or just make it really large
     }
@@ -23,6 +20,7 @@ export class Board {
     getCellFromRefCoord(refCoord) { //need better name
       const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
       const cell = this.boardMatrix[aX][aY]
+      console.log(cell)
       return cell
     }
 
@@ -38,9 +36,12 @@ export class Board {
       this.boardMatrix.length = 0
     }
 
-    addToBoard(bug) {
-      const [aX, aY] = translateRefCoordToArrayCoord(bug.coord)
-      this.boardMatrix[aX][aY] = bug
+    addToBoard(newBug) { //far reaching consequences
+      const [aX, aY] = translateRefCoordToArrayCoord(newBug.coord)
+      let dummyCell = new CellState()
+      dummyCell = this.boardMatrix[aX][aY]
+      dummyCell.bug = newBug
+      console.log(dummyCell)
     }
 
     getNumberOfEmptyCellsAroundCoord(refCoord) {
