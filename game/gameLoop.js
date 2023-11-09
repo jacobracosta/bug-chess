@@ -4,10 +4,14 @@ import promptSync from 'prompt-sync';
 
 const prompt = promptSync({sigint:true});
 
-let condition = false;
+let queenSurrounded = false;
 
-while (!condition) {
+while (!queenSurrounded) {
   // Get user input
+  /*
+  "Red Player place a bug:"
+  "Blue Player place a bug:" (loop between these two until a queen is surrounded)
+  */
   let userInput = prompt('Type something: ');
 
   // Compare the guess to the secret answer and let the user know.
