@@ -1,7 +1,7 @@
 import { expect } from "chai"
 import { beetle } from "../../gameObjects/bugs.js"
 import Move from "../../gameObjects/move.js"
-import checkMove from "../../gameLogic/checkMove.js"
+import checkMove from "../../bugMoveLogic/checkMove.js"
 import Board from "../../gameObjects/board.js"
 
 describe("Basic Movement Logic Tests: Beetle", function () {
@@ -23,14 +23,16 @@ describe("Basic Movement Logic Tests: Beetle", function () {
 
     it("tests beetle movement success: move on same bug", function () {
         const move = new Move(moveBeetle,[0,3])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests beetle movement success: move on top of same bug", function () {
         const move = new Move(moveBeetle,[0,1])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests beetle movement success: move on top of different bug", function () {
@@ -38,8 +40,9 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         testBoard.addToBoard(staticBeetle2)
 
         const move = new Move(moveBeetle,[0,3])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     
@@ -47,9 +50,9 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         const staticBeetle2 = new beetle("black",[2,1])
         testBoard.addToBoard(staticBeetle2)
 
-        const move = new Move(moveBeetle,[2,1])
-        const check = checkMove(move,testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
+        expect(message).to.eq("Move Breaks Continuity")
     })
 
 })

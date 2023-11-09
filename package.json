@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "testBasicMovement": "mocha test/basicMovement/*.test.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:BasicMovement": "mocha test/basicMovement/*.test.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run:game": "node game/gameLoop.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +18,8 @@
   },
   "dependencies": {
     "chai": "^4.3.10",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "prompt-sync": "^4.2.0"
   },
   "type": "module"
 }

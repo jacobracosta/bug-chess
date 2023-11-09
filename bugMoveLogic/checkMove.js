@@ -54,18 +54,19 @@ function isMoveContinuous(move, board) { //does the move break the board continu
 
 export function checkMove(move, board) {  //main function for checking movement logic, calls all others
     let bIsMoveGood = false
+    let failureMessage = "Success"
     if(isHexOpen(move, board)) {
         if(isDestHexAdjacent(move,board)) {
             if(isMoveContinuous(move, board)) {
                 if(isMoveLegal(move, board)) {
                     if(isEndStateLegal(move, board)) {
                         bIsMoveGood = true
-                    } else console.log("End State Not Legal")
-                } else console.log("Move Not Legal")
-            } else console.log("Move Breaks Continuity")
-        } else console.log("Dest Hex not Adjacent to Anything")
-    } else console.log("Hex Occupied") //need to log these errors
-    return bIsMoveGood
+                    } else failureMessage = "End State Not Legal"
+                } else failureMessage = "Move Not Legal"
+            } else failureMessage = "Move Breaks Continuity"
+        } else failureMessage = "Dest Hex not Adjacent to Anything"
+    } else failureMessage = "Hex Occupied"
+    return [bIsMoveGood, failureMessage]
 }
 
 export default checkMove;

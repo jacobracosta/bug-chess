@@ -1,7 +1,7 @@
 import { expect } from "chai"
 import { hopper } from "../../gameObjects/bugs.js"
 import Move from "../../gameObjects/move.js"
-import checkMove from "../../gameLogic/checkMove.js"
+import checkMove from "../../bugMoveLogic/checkMove.js"
 import Board from "../../gameObjects/board.js"
 
 describe("Basic Hopper Logic Tests: Hopper", function () {
@@ -9,7 +9,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
     let testBoard;
     let moveHopper, staticHopper1;
     beforeEach(function() {
-        testBoard = new Board(5)
+        testBoard = new Board(6)
         moveHopper = new hopper("white",[0,1])
         staticHopper1 = new hopper("black",[2,2])
 
@@ -23,8 +23,9 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
 
     it("tests hopper movement success: diagonal down right", function () {
         const move = new Move(moveHopper,[4,3])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests hopper movement success: diagonal up left", function () {
@@ -32,8 +33,9 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(diagHopper)
 
         const move = new Move(diagHopper,[0,3])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests hopper movement success: diagonal down left", function () {
@@ -41,8 +43,9 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(diagHopper)
 
         const move = new Move(diagHopper,[4,1])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests hopper movement success: diagonal up right", function () {
@@ -52,8 +55,9 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(diagHopper)
 
         const move = new Move(diagHopper,[0,3])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests hopper movement success: same row jump", function () {
@@ -61,14 +65,16 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(staticHopper2)
 
         const move = new Move(moveHopper,[0,5])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests hopper movement failure: move on same bug", function () {
         const move = new Move(moveHopper,[4,1])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
+        expect(message).to.eq("Move Not Legal")
     })
 
     it("tests hopper movement success: move on different bug", function () {
@@ -76,14 +82,19 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(staticHopper2)
 
         const move = new Move(moveHopper,[6,4])
-        const check = checkMove(move, testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
+        expect(message).to.eq("Success")
     })
 
     it("tests hopper movement failure: gap underneath", function () {
-        const move = new Move(moveHopper,[6,4])
-        const check = checkMove(move, testBoard)
+        const staticHopper2 = new hopper("black",[6,4])
+        testBoard.addToBoard(staticHopper2)
+
+        const move = new Move(moveHopper,[8,5])
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
+        expect(message).to.eq("Move Not Legal")
     })
 
     it.skip("tests hopper movement failure: discontinuity", function () {
@@ -91,8 +102,9 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(staticHopper2)
 
         const move = new Move(moveHopper,3)
-        const check = checkMove(move,testBoard)
+        const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
+        expect(message).to.eq("Move Breaks Continuity")
     })
     
 })
