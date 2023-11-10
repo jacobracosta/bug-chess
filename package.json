@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test:BasicMovement": "mocha test/basicMovement/*.test.js",
+    "test:basicMovement": "mocha test/basicMovement/*.test.js",
     "test:basicGameLoop": "mocha test/basicGameLoop/*.test.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "run:game": "node game/gameLoop.js"

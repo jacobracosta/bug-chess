@@ -20,9 +20,18 @@ export class Board {
     getCellFromRefCoord(refCoord) { //need better name
       const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
       const cell = this.boardMatrix[aX][aY]
-      console.log(cell)
       return cell
     }
+
+    updateBugCoord(bug,newCoord) {
+      const oldCoord = bug.coord
+      const oldCell = this.getCellFromRefCoord(oldCoord)
+      oldCell.emptyCell()
+      bug.coord = newCoord
+      this.addToBoard(bug)
+      //remove bug from previous cell, set that cell to empty
+      //set bug in new cell
+  }
 
     createRow(numRow,size) {
       let rowArray = new Array(size) //make dynamic later
@@ -38,17 +47,16 @@ export class Board {
 
     addToBoard(newBug) { //far reaching consequences
       const [aX, aY] = translateRefCoordToArrayCoord(newBug.coord)
-      let dummyCell = new CellState()
-      dummyCell = this.boardMatrix[aX][aY]
+      let dummyCell = new CellState(newBug.coord)
       dummyCell.bug = newBug
-      console.log(dummyCell)
+      this.boardMatrix[aX][aY] = dummyCell
     }
 
     getNumberOfEmptyCellsAroundCoord(refCoord) {
       let numberOfEmptyCells = 0
       const allAdjacent = this.getAllAdjacentCells(refCoord)
       for (let i=0; i<allAdjacent.length; i++){
-        if(allAdjacent[i].isEmpty) numberOfEmptyCells++
+        if(allAdjacent[i].isEmpty()) numberOfEmptyCells++
       }
       return numberOfEmptyCells
     }
@@ -59,7 +67,7 @@ export class Board {
       //const allAdjacentCoords = this.getAllAdjacentCellCoords(refCoord)
       for (let i=0; i<allAdjacent.length; i++){
         if(doesArrayContainObject(ignore, allAdjacent[i].refCoord)) continue
-        if(!allAdjacent[i].isEmpty) {
+        if(!allAdjacent[i].isEmpty()) {
           anyAdjacentNonEmpty = true
           break
         } 

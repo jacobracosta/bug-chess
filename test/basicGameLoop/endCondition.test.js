@@ -5,11 +5,10 @@ import Move from "../../gameObjects/move.js"
 import { ant } from "../../gameObjects/bugs.js"
 import { expect } from "chai"
 import checkMove from "../../bugMoveLogic/checkMove.js"
-import { updateBugCoord } from "../../game/gameLogic.js"
 
 describe("Basic Game Loop Test: End Game", function (){
 
-    it("Tests end state", function() {
+    it("Tests game end state", function() {
         const red = new Player("red")
         const board = new Board(5)
 
@@ -34,7 +33,9 @@ describe("Basic Game Loop Test: End Game", function (){
         expect(firstCheck).to.be.false
 
         const move = new Move(moveAnt,[4,3])
-        if(checkMove(move,board)) updateBugCoord(moveAnt)
+
+        const [bIsMoveGood, failureMessage] = checkMove(move,board)
+        if(bIsMoveGood) board.updateBugCoord(moveAnt,[4,3])
 
         const secondCheck = red.isQueenSurrounded(board)
         expect(secondCheck).to.be.true

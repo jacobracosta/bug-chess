@@ -6,7 +6,7 @@ export class CellState {
     }
 
     isEmpty() {
-        return this.bug ? 1 : 0
+        return this.bug ? 0 : 1
     }
 
     emptyCell() {
