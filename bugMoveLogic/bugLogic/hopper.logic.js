@@ -23,7 +23,7 @@ function isMoveAStraightHop(move, board){
                 isMoveGood = true
                 for (let i=aYd; i < aYd; i++) {
                     const checkCell = underCells[i]
-                    if (checkCell.isEmpty) {
+                    if (checkCell.isEmpty()) {
                         isMoveGood = false
                         break
                     }
@@ -37,7 +37,7 @@ function isMoveAStraightHop(move, board){
                 if(y>0) [sX,sY] = [sX+2,sY+1] //diag down left and diag up right
                 else [sX,sY] = [sX+2,sY-1] //diag down right and diag diag up left
                 const checkCell = board.getCellFromRefCoord([sX,sY])
-                if (checkCell.isEmpty) {
+                if (checkCell.isEmpty()) {
                     isMoveGood = false
                     break
                 }

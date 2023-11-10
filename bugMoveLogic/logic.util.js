@@ -40,7 +40,7 @@ export function isHexOpen(move,board) { //is the space where the player intends 
         currentBoard = board
         let destCellState = new CellState()
         destCellState = currentBoard.getCellFromRefCoord(move.destCoord)
-        isHexOpen = destCellState.isEmpty
+        isHexOpen = destCellState.isEmpty()
     } else isHexOpen = true
     return isHexOpen
 }
