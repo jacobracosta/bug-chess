@@ -5,6 +5,10 @@ import checkHopperMove from "./bugLogic/hopper.logic.js";
 import checkAntMove from "./bugLogic/ant.logic.js";
 import checkSpiderMove from "./bugLogic/spider.logic.js";
 import { isHexOpen, isDestHexAdjacent, isEndStateLegal } from "./logic.util.js";
+import isBoardContinuous from "./continuity.util.js";
+import Board from "../gameObjects/board.js";
+import CellState from "../gameObjects/cellState.js";
+import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
 
 function isMoveLegal(move,board) { //does the move follow the movement rules for that bug
     let bug = new Bug()
@@ -25,30 +29,15 @@ function isMoveLegal(move,board) { //does the move follow the movement rules for
     return bIsMoveLegal
 }
 
-function isMoveContinuous(move, board) { //does the move break the board continuity, ie does it break the one hive rule
-    //iterate through adjacent list on moving bug and make sure each bug is attached to something else
-    //need to update adjacent lists before this check? because this implementation can break down in the base case
-    //need to account for size of board to appropriately handle base case
+function isMoveContinuous(move, board) {
+    //need to remove the moving bug from board before doing this check
 
-    let isMoveContinuous = true
-    /*
-    let moveBug = new Bug()
-    moveBug = move.moveBug
-    let adjacent = moveBug.adjacentArray
-    if(board.length == 2 && moveBug.isAdjacentToBug(move.destBug)) {
-        isMoveContinuous = true //better structure to this, redundant
-    } else {
-        for (let i = 0; i < adjacent.length; i++) {
-            if(adjacent[i]) {
-                let tempBug = new Bug()
-                tempBug = adjacent[i]
-                if (!tempBug.hasAnyAdjacents(moveBug)) {
-                    isMoveContinuous = false
-                    break
-                }
-            }
-        }
-    }*/
+    let boardWithoutMoveBug = {...board}
+    let cell = new CellState()
+    const [aX,aY] = translateRefCoordToArrayCoord(move.moveBug.coord)
+    cell = boardWithoutMoveBug.boardMatrix[aX][aY]
+    cell.emptyCell()
+    const isMoveContinuous = isBoardContinuous(boardWithoutMoveBug)
     return isMoveContinuous
 }
 
