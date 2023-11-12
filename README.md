@@ -4,11 +4,11 @@ A web app to play bug chess online.
 TODO
 
 -define game logic
-  -create solution for defining continuity and continuity breaks
-  -need to check continuity before, during, and after move
+  -continuity code implemented, but it is designed for a matrix with 8 neighbors, need to see if there are cases this 
+  doesn't work for
 
 -define bug movements
-  -spider pending
+  -spider in progress, have an alogirthm concept that needs debugging
 
 -document coordinate system
   
