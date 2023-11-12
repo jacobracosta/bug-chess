@@ -45,11 +45,11 @@ export class Board {
       this.boardMatrix.length = 0
     }
 
-    addToBoard(newBug) { //far reaching consequences
+    addToBoard(newBug) {
       const [aX, aY] = translateRefCoordToArrayCoord(newBug.coord)
-      let dummyCell = new CellState(newBug.coord)
-      dummyCell.bug = newBug
-      this.boardMatrix[aX][aY] = dummyCell
+      let newCell = new CellState(newBug.coord)
+      newCell.bug = newBug
+      this.boardMatrix[aX][aY] = newCell
     }
 
     getNumberOfEmptyCellsAroundCoord(refCoord) {
@@ -64,7 +64,6 @@ export class Board {
     checkIfAnyAdjacentCellsNonEmpty(refCoord, ignore) {
       let anyAdjacentNonEmpty = false
       const allAdjacent = this.getAllAdjacentCells(refCoord)
-      //const allAdjacentCoords = this.getAllAdjacentCellCoords(refCoord)
       for (let i=0; i<allAdjacent.length; i++){
         if(doesArrayContainObject(ignore, allAdjacent[i].refCoord)) continue
         if(!allAdjacent[i].isEmpty()) {
@@ -107,8 +106,6 @@ export class Board {
     removeFromBoard(coord) {
       this.bugsInPlay.splice(coord,1)
     }
-
-    //method to check for number of bugs of a type on board? this would break some tests
 }
 
 export default Board

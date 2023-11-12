@@ -49,6 +49,4 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         expect(message).to.eq("Hex Occupied")
     })
 
-    //continuity test
-    
 })

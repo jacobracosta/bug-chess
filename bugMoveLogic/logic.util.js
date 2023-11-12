@@ -1,6 +1,7 @@
 import Board from "../gameObjects/board.js"
 import Bug from "../gameObjects/bugs.js"
 import CellState from "../gameObjects/cellState.js"
+import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
 
 export function checkCrescentBreak(move, board) {
     let bIsMoveGood = true
@@ -49,6 +50,15 @@ export function isDestHexAdjacent(move,board,ignore=[]) {
     let currentBoard = new Board()
     currentBoard = board
     return currentBoard.checkIfAnyAdjacentCellsNonEmpty(move.destCoord,ignore)
+}
+
+export function createBoardWithoutMoveBug(move,board) {
+    let boardWithoutMoveBug = {...board} //shallow copy of current board
+    let cell = new CellState()
+    const [aX,aY] = translateRefCoordToArrayCoord(move.moveBug.coord)
+    cell = boardWithoutMoveBug.boardMatrix[aX][aY]
+    cell.emptyCell()
+    return boardWithoutMoveBug
 }
 
 export function checkMoveLite(move, board, ignore) {  

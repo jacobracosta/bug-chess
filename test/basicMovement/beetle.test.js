@@ -46,10 +46,11 @@ describe("Basic Movement Logic Tests: Beetle", function () {
     })
 
     
-    it.skip("tests beetle movement failure: discontinuity", function () {
-        const staticBeetle2 = new beetle("black",[2,1])
+    it("tests beetle movement failure: discontinuity", function () {
+        const staticBeetle2 = new beetle("black",[4,3])
         testBoard.addToBoard(staticBeetle2)
 
+        const move = new Move(moveBeetle,[0,3])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
         expect(message).to.eq("Move Breaks Continuity")

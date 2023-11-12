@@ -88,8 +88,12 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
     })
 
     it("tests hopper movement failure: gap underneath", function () {
+        const staticHopperA = new hopper("black",[2,4])
+        const staticHopperB = new hopper("black",[4,5])
         const staticHopper2 = new hopper("black",[6,4])
         testBoard.addToBoard(staticHopper2)
+        testBoard.addToBoard(staticHopperA)
+        testBoard.addToBoard(staticHopperB)
 
         const move = new Move(moveHopper,[8,5])
         const [check,message] = checkMove(move, testBoard)
@@ -97,11 +101,11 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         expect(message).to.eq("Move Not Legal")
     })
 
-    it.skip("tests hopper movement failure: discontinuity", function () {
-        const staticHopper2 = new hopper("black",0)
+    it("tests hopper movement failure: discontinuity", function () {
+        const staticHopper2 = new hopper("black",[4,3])
         testBoard.addToBoard(staticHopper2)
 
-        const move = new Move(moveHopper,3)
+        const move = new Move(staticHopper1,[6,4])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
         expect(message).to.eq("Move Breaks Continuity")
