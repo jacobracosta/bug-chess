@@ -38,11 +38,11 @@ describe("Basic Movement Logic Tests: Ant", function (){
         expect(message).to.eq("Success")
     })
 
-    it.skip("tests ant movement failure: discontinuity", function () {
-        const staticAnt2 = new ant("black",[2,1])
+    it("tests ant movement failure: discontinuity", function () {
+        const staticAnt2 = new ant("black",[4,3])
         testBoard.addToBoard(staticAnt2)
 
-        const move = new Move(staticAnt1,[3,1])
+        const move = new Move(staticAnt1,[2,4])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
         expect(message).to.eq("Move Breaks Continuity")
