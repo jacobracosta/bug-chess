@@ -4,11 +4,8 @@ import checkBeetleMove from "./bugLogic/beetle.logic.js";
 import checkHopperMove from "./bugLogic/hopper.logic.js";
 import checkAntMove from "./bugLogic/ant.logic.js";
 import checkSpiderMove from "./bugLogic/spider.logic.js";
-import { isHexOpen, isDestHexAdjacent, isEndStateLegal } from "./logic.util.js";
+import { isHexOpen, isDestHexAdjacent, isEndStateLegal, createBoardWithoutMoveBug } from "./logic.util.js";
 import isBoardContinuous from "./continuity.util.js";
-import Board from "../gameObjects/board.js";
-import CellState from "../gameObjects/cellState.js";
-import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
 
 function isMoveLegal(move,board) { //does the move follow the movement rules for that bug
     let bug = new Bug()
@@ -31,12 +28,7 @@ function isMoveLegal(move,board) { //does the move follow the movement rules for
 
 function isMoveContinuous(move, board) {
     //need to remove the moving bug from board before doing this check
-
-    let boardWithoutMoveBug = {...board}
-    let cell = new CellState()
-    const [aX,aY] = translateRefCoordToArrayCoord(move.moveBug.coord)
-    cell = boardWithoutMoveBug.boardMatrix[aX][aY]
-    cell.emptyCell()
+    let boardWithoutMoveBug = createBoardWithoutMoveBug(move,board)
     const isMoveContinuous = isBoardContinuous(boardWithoutMoveBug)
     return isMoveContinuous
 }
