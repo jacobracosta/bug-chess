@@ -2,10 +2,11 @@ export class Player {
     constructor(color) {
         this.color = color
         this.queenBee = null
-        this.antsInPlay = []
-        this.hoppersInPlay = []
-        this.beetlesInPlay = []
-        this.spidersInPlay = []
+        this.ants = []
+        this.hoppers = []
+        this.beetles = []
+        this.spiders = []
+        this.turn = 0
     }
 
     setQueen(bug) {
