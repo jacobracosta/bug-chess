@@ -26,6 +26,7 @@ export function addBugToGame(placement, board) {
     let tempBoard = new Board(1)
     tempBoard = board
     tempBoard.addToBoard(bug)
+    placement.player.turn = placement.player.turn++
     //need a return?
 }
 
@@ -33,7 +34,7 @@ function checkNumberOfBug(placement) {
     const player = placement.player
     const bugType = placement.type
     let success;
-    if(type == "queenBee" && !player.queenBee) success = true
+    if(bugType == "queenBee" && !player.queenBee) success = true
     else if (bugType == "beetle" && player.beetles.length < 2) success = true
     else if (bugType == "hopper" && player.hoppers.length < 3) success = true
     else if (bugType == "spider" && player.spiders.length < 2) success = true
@@ -55,7 +56,12 @@ function isHexOpen(placement,board) { //is the space where the player intends to
 function isDestHexAdjacent(placement,board) {
     let currentBoard = new Board()
     currentBoard = board
-    return currentBoard.checkIfAnyAdjacentCellsNonEmpty(placement.coord)
+    const turn = placement.player.turn
+    
+    let isDestHexAdjacent = false
+    if(turn == 0) isDestHexAdjacent = true //need to address for second player?
+    else isDestHexAdjacent = currentBoard.checkIfAnyAdjacentCellsNonEmpty(placement.coord)
+    return isDestHexAdjacent
 }
 
 function checkColorOfAdjacent(placement, board) {
@@ -64,7 +70,7 @@ function checkColorOfAdjacent(placement, board) {
 
 export function checkPlacement(placement, board) {
     let bIsPlacementGood = false
-    let failureMessage = "Success"
+    let failureMessage = "Placement Good."
     if(isHexOpen(placement, board)) {
         if(isDestHexAdjacent(placement, board)) {
             if(checkColorOfAdjacent(placement, board)) {
@@ -72,9 +78,9 @@ export function checkPlacement(placement, board) {
                     bIsPlacementGood = true
                 } else failureMessage = "Can't place next to a bug of opposite color."
             } else failureMessage = "Too many of this bug."
-        } else failureMessage = "Dest Hex not Adjacent to Anything"
-    } else failureMessage = "Hex Occupied"
-    return [bIsMoveGood, failureMessage]
+        } else failureMessage = "Dest Hex not Adjacent to Anything."
+    } else failureMessage = "Hex Occupied."
+    return [bIsPlacementGood, failureMessage]
 }
 
 export default addBugToGame

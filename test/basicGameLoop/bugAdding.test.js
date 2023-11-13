@@ -17,7 +17,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
 
         const [success,message] = checkPlacement(placement, board)
         expect(success).to.be.true
-        expect(message).to.eq("Bug added.")
+        expect(message).to.eq("Placement Good.")
 
         addBugToGame(placement,board)
     })
@@ -29,14 +29,14 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         const board = new Board(5)
         const firstPlacement = new Placement(red,[2,2],"spider")
         const [success,message] = checkPlacement(firstPlacement, board)
+        expect(message).to.eq("Placement Good.")
         expect(success).to.be.true
-        expect(message).to.eq("Bug added.")
         addBugToGame(firstPlacement,board)
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
         const [success2,message2] = checkPlacement(secondPlacement, board)
+        expect(message2).to.eq("Placement Good.")
         expect(success2).to.be.true
-        expect(message2).to.eq("Bug added.")
         addBugToGame(secondPlacement,board)
 
     })

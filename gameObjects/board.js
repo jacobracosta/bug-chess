@@ -65,7 +65,7 @@ export class Board {
       let anyAdjacentNonEmpty = false
       const allAdjacent = this.getAllAdjacentCells(refCoord)
       for (let i=0; i<allAdjacent.length; i++){
-        if(doesArrayContainObject(ignore, allAdjacent[i].refCoord)) continue
+        if(ignore && doesArrayContainObject(ignore, allAdjacent[i].refCoord)) continue
         if(!allAdjacent[i].isEmpty()) {
           anyAdjacentNonEmpty = true
           break
