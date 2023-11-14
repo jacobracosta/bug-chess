@@ -1,12 +1,12 @@
 export class Player {
-    constructor(color) {
+    constructor(color, isFirst) {
         this.color = color
         this.queenBee = null
         this.ants = []
         this.hoppers = []
         this.beetles = []
         this.spiders = []
-        this.turn = 0
+        this.isFirst = isFirst
     }
 
     setQueen(bug) {

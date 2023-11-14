@@ -5,6 +5,7 @@ import doesArrayContainObject from "../utils/array.util.js";
 export class Board {
     constructor(size) {
       this.boardMatrix = this.createBoard(size) // boards will be large square arrays and the first bug will be placed in the middle, 
+      this.turn = 1 //turns indexed from 1
       //need function for the possibility of expanding the board? or just make it really large
     }
 
@@ -15,6 +16,10 @@ export class Board {
           boardArray[i] = this.createRow(i,size)
       }
       return boardArray
+    }
+
+    incrementTurn(){
+      this.turn++
     }
 
     getCellFromRefCoord(refCoord) { //need better name
@@ -29,8 +34,6 @@ export class Board {
       oldCell.emptyCell()
       bug.coord = newCoord
       this.addToBoard(bug)
-      //remove bug from previous cell, set that cell to empty
-      //set bug in new cell
   }
 
     createRow(numRow,size) {
@@ -75,20 +78,25 @@ export class Board {
 
     getAllAdjacentCellCoords(refCoord) {
       const [x,y] = refCoord
+      console.log(x,y)
+      const bottomLeft = [x+2,y-1]
+      const bottomRight = [x+2,y+1]
       const topLeft = [x-2,y-1]
       const topRight = [x-2,y+1]
       const left = [x,y-2]
       const right = [x,y+2]
-      const bottomLeft = [x+2,y-1]
-      const bottomRight = [x+2,y+1]
+      console.log(topLeft,topRight,left,right,bottomLeft,bottomRight)
 
       let coords = [right,bottomRight]
       const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
+      if(x==2 && y==4) console.log("wahhhh",aX,aY, bottomLeft)
       const aXisEven = (aX % 2  == 0) ? true : false 
+      if(x==2 && y==4) console.log(aXisEven)
       if(aX > 0) coords.push(topRight)
       if(aX > 0 && aY >= 1) coords.push(topLeft)
       if(aY > 0) coords.push(left)
       if(aXisEven && aY > 0) coords.push(bottomLeft)
+
 
       return coords
     }
@@ -103,9 +111,25 @@ export class Board {
       return allAdjacentCells
     }
 
-    removeFromBoard(coord) {
-      this.bugsInPlay.splice(coord,1)
+    getAllAdjacentCellColors(refCoord) {
+      console.log(refCoord)
+      const allAdjacent = this.getAllAdjacentCells(refCoord)
+      console.log("scumps",allAdjacent)
+      let colors = []
+      for (let i=0; i<allAdjacent.length; i++){
+        if(!allAdjacent[i].isEmpty()) {
+          const cell = allAdjacent[i]
+          console.log(allAdjacent[i])
+          const bug = cell.bug
+          const top = cell.top
+          const topBug = top ? top[top.length - 1] : null
+          if(topBug) colors.push(topBug.player.color)
+          else colors.push(bug.player.color)
+        }
+      }
+      return colors
     }
+
 }
 
 export default Board

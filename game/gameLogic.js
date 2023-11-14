@@ -2,15 +2,13 @@ import Board from "../gameObjects/board.js"
 import Bug from "../gameObjects/bugs.js"
 import CellState from "../gameObjects/cellState.js"
 
-    //method to check for number of bugs of a type on board? this would break some tests
-
-
 export function addBugToGame(placement, board) {
     const player = placement.player
     const coord = placement.coord
-    const bugType = placement.bugType
-    const bug = new Bug(player, coord, bugType)//need to verify type info was good
+    const bugType = placement.type
+    const bug = new Bug(player, coord, bugType)
 
+    let addSuccess = true
     if(bugType == "queenBee") {
         player.queenBee = bug
     } else if (bugType == "beetle") {
@@ -19,15 +17,13 @@ export function addBugToGame(placement, board) {
         player.hoppers.push(bug)
     } else if (bugType == "spider") {
         player.spiders.push(bug)
-    } else {//if (bugType == "ant") {
+    } else if (bugType == "ant") {
         player.ants.push(bug) 
-    }
+    } else addSuccess = false
 
-    let tempBoard = new Board(1)
-    tempBoard = board
-    tempBoard.addToBoard(bug)
-    placement.player.turn = placement.player.turn++
-    //need a return?
+    board.addToBoard(bug)
+    board.incrementTurn()
+    return [addSuccess, board.turn]
 }
 
 function checkNumberOfBug(placement) {
@@ -56,16 +52,33 @@ function isHexOpen(placement,board) { //is the space where the player intends to
 function isDestHexAdjacent(placement,board) {
     let currentBoard = new Board()
     currentBoard = board
-    const turn = placement.player.turn
+    const turn = board.turn
     
     let isDestHexAdjacent = false
-    if(turn == 0) isDestHexAdjacent = true //need to address for second player?
+    if(turn == 1) isDestHexAdjacent = true
     else isDestHexAdjacent = currentBoard.checkIfAnyAdjacentCellsNonEmpty(placement.coord)
     return isDestHexAdjacent
 }
 
 function checkColorOfAdjacent(placement, board) {
-    return true
+    let currentBoard = new Board()
+    currentBoard = board
+
+    const player = placement.player
+    const coord = placement.coord
+    const bugType = placement.type
+
+    let allAdjacentSameColor = true
+    console.log(board.turn)
+
+    const allEqual = arr => arr.every(val => val === arr[0]);
+    if(board.turn >= 3) {
+        console.log("wuhh",coord)
+        const colors = board.getAllAdjacentCellColors(coord)
+        console.log(colors)
+        allAdjacentSameColor = allEqual(colors)
+    }
+    return allAdjacentSameColor
 }
 
 export function checkPlacement(placement, board) {
@@ -76,8 +89,8 @@ export function checkPlacement(placement, board) {
             if(checkColorOfAdjacent(placement, board)) {
                 if(checkNumberOfBug(placement)) {
                     bIsPlacementGood = true
-                } else failureMessage = "Can't place next to a bug of opposite color."
-            } else failureMessage = "Too many of this bug."
+                } else failureMessage =  "Too many of this bug."
+            } else failureMessage = "Can't place next to a bug of opposite color."
         } else failureMessage = "Dest Hex not Adjacent to Anything."
     } else failureMessage = "Hex Occupied."
     return [bIsPlacementGood, failureMessage]
