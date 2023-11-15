@@ -17,10 +17,6 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         testBoard.addToBoard(staticBeetle1)
     });
 
-    afterEach(function() {
-        testBoard.clear()
-    });
-
     it("tests beetle movement success: move on same bug", function () {
         const move = new Move(moveBeetle,[0,3])
         const [check,message] = checkMove(move, testBoard)

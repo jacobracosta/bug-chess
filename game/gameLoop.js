@@ -6,6 +6,11 @@ const prompt = promptSync({sigint:true});
 
 let queenSurrounded = false;
 
+//create players
+//when bug is placed, add to player
+//add to board, need logic to check if it's next to a piece of it's own color or not
+//need to check that there aren't more than the allowed number of bugs during each placement
+
 while (!queenSurrounded) {
   // Get user input
   /*
