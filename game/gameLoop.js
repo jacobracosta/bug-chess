@@ -16,6 +16,8 @@ while (!queenSurrounded) {
   /*
   "Red Player place a bug:"
   "Blue Player place a bug:" (loop between these two until a queen is surrounded)
+  can't move until queen placed
+  need to place queen by 4th turn
   */
   let userInput = prompt('Type something: ');
 
