@@ -17,10 +17,6 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         testBoard.addToBoard(staticBee1)
     });
 
-    afterEach(function() {
-        testBoard.clear()
-    });
-
     it("tests queen bee movement success: move on same bug", function () {
         const move = new Move(moveBee,[0,3])
         const [check,message] = checkMove(move, testBoard)

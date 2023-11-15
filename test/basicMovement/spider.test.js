@@ -17,10 +17,6 @@ describe("Basic Movement Logic Tests: Spider", function () {
         testBoard.addToBoard(staticSpider1)
     });
 
-    afterEach(function() {
-        testBoard.clear()
-    });
-
     it("tests spider movement success: move on same bug", function () {
         const move = new Move(moveSpider,[8,3])
         const [check,message] = checkMove(move, testBoard)

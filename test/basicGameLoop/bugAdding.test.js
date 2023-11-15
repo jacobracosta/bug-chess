@@ -2,7 +2,6 @@ import { Player } from "../../game/player.js"
 import Board from "../../gameObjects/board.js"
 import { queenBee } from "../../gameObjects/bugs.js"
 import Move from "../../gameObjects/move.js"
-import { ant } from "../../gameObjects/bugs.js"
 import { expect } from "chai"
 import checkMove from "../../bugMoveLogic/checkMove.js"
 import addBugToGame, { checkPlacement } from "../../game/gameLogic.js"
@@ -101,14 +100,4 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         expect(message3).to.eq("Can't place next to a bug of opposite color.")
         expect(success3).to.be.false
     })
-
-
-
-    //test one bug addition
-    //test first opposite color placement
-    //test successful third piece placement
-    //test failed third piece placement
-
-
-
 })

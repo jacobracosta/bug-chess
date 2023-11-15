@@ -17,10 +17,6 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         testBoard.addToBoard(staticHopper1)
     });
 
-    afterEach(function() {
-        testBoard.clear()
-    });
-
     it("tests hopper movement success: diagonal down right", function () {
         const move = new Move(moveHopper,[4,3])
         const [check,message] = checkMove(move, testBoard)

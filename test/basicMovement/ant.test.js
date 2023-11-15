@@ -17,10 +17,6 @@ describe("Basic Movement Logic Tests: Ant", function (){
         testBoard.addToBoard(staticAnt1)
     });
 
-    afterEach(function() {
-        testBoard.clear()
-    });
-
     it("tests ant movement success: move on same bug", function () {
         const move = new Move(moveAnt,[2,4])
         const [check,message] = checkMove(move, testBoard)
