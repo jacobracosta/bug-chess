@@ -7,10 +7,8 @@ import checkSpiderMove from "./bugLogic/spider.logic.js";
 import { isHexOpen, isDestHexAdjacent, isEndStateLegal, createBoardWithoutMoveBug } from "./logic.util.js";
 import isBoardContinuous from "./continuity.util.js";
 
-function isMoveLegal(move,board) { //does the move follow the movement rules for that bug
-    let bug = new Bug()
-    bug = move.moveBug
-    const bugType = bug.type
+function isMoveLegal(move,board) {
+    const bugType = move.moveBug.type
     let bIsMoveLegal = false
     if(bugType == "queenBee") {
         bIsMoveLegal = checkQueenBeeMove(move)
@@ -33,7 +31,7 @@ function isMoveContinuous(move, board) {
     return isMoveContinuous
 }
 
-export function checkMove(move, board) {  //main function for checking movement logic, calls all others
+export function checkMove(move, board) {
     let bIsMoveGood = false
     let failureMessage = "Success"
     if(isHexOpen(move, board)) {
