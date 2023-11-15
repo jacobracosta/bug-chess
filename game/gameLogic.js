@@ -69,13 +69,10 @@ function checkColorOfAdjacent(placement, board) {
     const bugType = placement.type
 
     let allAdjacentSameColor = true
-    console.log(board.turn)
 
     const allEqual = arr => arr.every(val => val === arr[0]);
     if(board.turn >= 3) {
-        console.log("wuhh",coord)
         const colors = board.getAllAdjacentCellColors(coord)
-        console.log(colors)
         allAdjacentSameColor = allEqual(colors)
     }
     return allAdjacentSameColor

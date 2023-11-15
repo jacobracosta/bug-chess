@@ -78,26 +78,20 @@ export class Board {
 
     getAllAdjacentCellCoords(refCoord) {
       const [x,y] = refCoord
-      console.log(x,y)
       const bottomLeft = [x+2,y-1]
       const bottomRight = [x+2,y+1]
       const topLeft = [x-2,y-1]
       const topRight = [x-2,y+1]
       const left = [x,y-2]
       const right = [x,y+2]
-      console.log(topLeft,topRight,left,right,bottomLeft,bottomRight)
 
       let coords = [right,bottomRight]
       const [aX, aY] = translateRefCoordToArrayCoord(refCoord)
-      if(x==2 && y==4) console.log("wahhhh",aX,aY, bottomLeft)
       const aXisEven = (aX % 2  == 0) ? true : false 
-      if(x==2 && y==4) console.log(aXisEven)
       if(aX > 0) coords.push(topRight)
       if(aX > 0 && aY >= 1) coords.push(topLeft)
       if(aY > 0) coords.push(left)
-      if(aXisEven && aY > 0) coords.push(bottomLeft)
-
-
+      if(aXisEven || !aXisEven && aY > 0) coords.push(bottomLeft)
       return coords
     }
 
@@ -112,14 +106,11 @@ export class Board {
     }
 
     getAllAdjacentCellColors(refCoord) {
-      console.log(refCoord)
       const allAdjacent = this.getAllAdjacentCells(refCoord)
-      console.log("scumps",allAdjacent)
       let colors = []
       for (let i=0; i<allAdjacent.length; i++){
         if(!allAdjacent[i].isEmpty()) {
           const cell = allAdjacent[i]
-          console.log(allAdjacent[i])
           const bug = cell.bug
           const top = cell.top
           const topBug = top ? top[top.length - 1] : null
