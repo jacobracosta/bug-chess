@@ -40,18 +40,12 @@ function checkNumberOfBug(placement) {
 }
 
 function isHexOpen(placement,board) { //is the space where the player intends to move occupied already
-    let isHexOpen = false
-    let destCellState = new CellState()
-    destCellState = board.getCellFromRefCoord(placement.coord)
-    isHexOpen = destCellState.isEmpty()
-    return isHexOpen
+    return board.getCellFromRefCoord(placement.coord).isEmpty()
 }
 
 function isDestHexAdjacent(placement,board) {
-    const turn = board.turn
-    
     let isDestHexAdjacent = false
-    if(turn == 1) isDestHexAdjacent = true
+    if(board.turn == 1) isDestHexAdjacent = true
     else isDestHexAdjacent = board.checkIfAnyAdjacentCellsNonEmpty(placement.coord)
     return isDestHexAdjacent
 }

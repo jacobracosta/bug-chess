@@ -33,9 +33,7 @@ export function isHexOpen(move,board) { //is the space where the player intends 
     const bugType = move.moveBug.type
     let isHexOpen = false
     if(bugType != "beetle") { //beetle doesn't care if a space is occupied
-        let destCellState = new CellState()
-        destCellState = board.getCellFromRefCoord(move.destCoord)
-        isHexOpen = destCellState.isEmpty()
+        isHexOpen = (board.getCellFromRefCoord(move.destCoord)).isEmpty()
     } else isHexOpen = true
     return isHexOpen
 }
@@ -46,9 +44,8 @@ export function isDestHexAdjacent(move,board,ignore=[]) {
 
 export function createBoardWithoutMoveBug(move,board) {
     let boardWithoutMoveBug = {...board} //shallow copy of current board
-    let cell = new CellState()
     const [aX,aY] = translateRefCoordToArrayCoord(move.moveBug.coord)
-    cell = boardWithoutMoveBug.boardMatrix[aX][aY]
+    let cell = boardWithoutMoveBug.boardMatrix[aX][aY]
     cell.emptyCell()
     return boardWithoutMoveBug
 }
