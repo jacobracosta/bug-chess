@@ -5,12 +5,10 @@ import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util
 
 export function checkCrescentBreak(move, board) {
     let bIsMoveGood = true
-    let tempBoard = new Board(1)
-    tempBoard = board
 
-    const adjacentCells = tempBoard.getAllAdjacentCells(move.destCoord)
+    const adjacentCells = board.getAllAdjacentCells(move.destCoord)
     if(adjacentCells.length > 5) { //crescent break scenario only relevant when 5 or more adjacent cells involved
-        const numberOfEmptyCells = tempBoard.getNumberOfEmptyCellsAroundCoord(move.destCoord) //can we use adjacent cells above to prevent redundant calc?
+        const numberOfEmptyCells = board.getNumberOfEmptyCellsAroundCoord(move.destCoord) //can we use adjacent cells above to prevent redundant calc?
         if(numberOfEmptyCells <= 1){
             bIsMoveGood = false
         }
@@ -32,24 +30,18 @@ export function checkSingleHexMove(move) { //need to redo this potentially?
 }
 
 export function isHexOpen(move,board) { //is the space where the player intends to move occupied already
-    let bug = new Bug()
-    bug = move.moveBug
-    const bugType = bug.type
+    const bugType = move.moveBug.type
     let isHexOpen = false
     if(bugType != "beetle") { //beetle doesn't care if a space is occupied
-        let currentBoard = new Board()
-        currentBoard = board
         let destCellState = new CellState()
-        destCellState = currentBoard.getCellFromRefCoord(move.destCoord)
+        destCellState = board.getCellFromRefCoord(move.destCoord)
         isHexOpen = destCellState.isEmpty()
     } else isHexOpen = true
     return isHexOpen
 }
 
 export function isDestHexAdjacent(move,board,ignore=[]) {
-    let currentBoard = new Board()
-    currentBoard = board
-    return currentBoard.checkIfAnyAdjacentCellsNonEmpty(move.destCoord,ignore)
+    return board.checkIfAnyAdjacentCellsNonEmpty(move.destCoord,ignore)
 }
 
 export function createBoardWithoutMoveBug(move,board) {
@@ -77,9 +69,7 @@ export function checkMoveLite(move, board, ignore) {
 
 export function isEndStateLegal (move, board) { //need to check anything besides crescent break?
     let isMoveGood = true
-    let bug = new Bug()
-    bug = move.moveBug
-    const bugType = bug.type
+    const bugType = move.moveBug.type
 
     if(bugType != "beetle" && bugType != "hopper")
         isMoveGood = checkCrescentBreak(move,board)

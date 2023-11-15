@@ -41,33 +41,23 @@ function checkNumberOfBug(placement) {
 
 function isHexOpen(placement,board) { //is the space where the player intends to move occupied already
     let isHexOpen = false
-    let currentBoard = new Board()
-    currentBoard = board
     let destCellState = new CellState()
-    destCellState = currentBoard.getCellFromRefCoord(placement.coord)
+    destCellState = board.getCellFromRefCoord(placement.coord)
     isHexOpen = destCellState.isEmpty()
     return isHexOpen
 }
 
 function isDestHexAdjacent(placement,board) {
-    let currentBoard = new Board()
-    currentBoard = board
     const turn = board.turn
     
     let isDestHexAdjacent = false
     if(turn == 1) isDestHexAdjacent = true
-    else isDestHexAdjacent = currentBoard.checkIfAnyAdjacentCellsNonEmpty(placement.coord)
+    else isDestHexAdjacent = board.checkIfAnyAdjacentCellsNonEmpty(placement.coord)
     return isDestHexAdjacent
 }
 
 function checkColorOfAdjacent(placement, board) {
-    let currentBoard = new Board()
-    currentBoard = board
-
-    const player = placement.player
     const coord = placement.coord
-    const bugType = placement.type
-
     let allAdjacentSameColor = true
 
     const allEqual = arr => arr.every(val => val === arr[0]);
