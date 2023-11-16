@@ -64,7 +64,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
         const move3 = new Move(moveSpider,[4,1]) //this is the hard case
         const move4 = new Move(moveSpider,[8,9])
 
-        const [check,message] = checkMove(move3, testBoard)
+        const [check,message] = checkMove(move4, testBoard)
         expect(check).to.be.true;
         expect(message).to.eq("Success")
 
