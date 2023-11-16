@@ -1,10 +1,10 @@
-import { Player } from "../../game/player.js"
-import Board from "../../gameObjects/board.js"
-import { queenBee } from "../../gameObjects/bugs.js"
-import Move from "../../gameObjects/move.js"
-import { ant } from "../../gameObjects/bugs.js"
+import { Player } from "../../gameCode/game/player.js"
+import Board from "../../gameCode/gameObjects/board.js"
+import { queenBee } from "../../gameCode/gameObjects/bugs.js"
+import Move from "../../gameCode/gameObjects/move.js"
+import { ant } from "../../gameCode/gameObjects/bugs.js"
 import { expect } from "chai"
-import checkMove from "../../bugMoveLogic/checkMove.js"
+import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
 
 describe("Basic Game Loop Test: End Game", function (){
 

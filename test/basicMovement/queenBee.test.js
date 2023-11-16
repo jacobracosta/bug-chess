@@ -1,8 +1,8 @@
 import { expect } from "chai"
-import { queenBee } from "../../gameObjects/bugs.js"
-import Move from "../../gameObjects/move.js"
-import checkMove from "../../bugMoveLogic/checkMove.js"
-import Board from "../../gameObjects/board.js"
+import { queenBee } from "../../gameCode/gameObjects/bugs.js"
+import Move from "../../gameCode/gameObjects/move.js"
+import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
+import Board from "../../gameCode/gameObjects/board.js"
 
 describe("Basic Movement Logic Tests: Queen Bee", function () {
 

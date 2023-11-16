@@ -1,8 +1,8 @@
 import { expect } from "chai"
-import { ant } from "../../gameObjects/bugs.js"
-import Move from "../../gameObjects/move.js"
-import checkMove from "../../bugMoveLogic/checkMove.js"
-import Board from "../../gameObjects/board.js"
+import { ant } from "../../gameCode/gameObjects/bugs.js"
+import Move from "../../gameCode/gameObjects/move.js"
+import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
+import Board from "../../gameCode/gameObjects/board.js"
 
 describe("Basic Movement Logic Tests: Ant", function (){
 
