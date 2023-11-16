@@ -4,13 +4,13 @@ import Bug from "../../gameObjects/bugs.js"
 import doesArrayContainObject from "../../utils/array.util.js"
 
 function checkSpiderMove(move, board) {
-    let bIsMoveGood = false
     // 1. get all adjacent cells to moving bug's starting cell
     // 2. loop through those cells to see if there are any legal move possibility (use checkMoveLite)
     // 3. gather all new legal move possibilities then loop through to see if those cells have legal moves next to them
     // 4. stop at 3 loops
     // 5. check all final legal move possibilities against the move.destCoord
 
+    let bIsMoveGood = false
     let moveCoords = [move.moveBug.coord]
     let allProposedMoveCoords = [move.moveBug.coord]
     for(let i=0; i<3; i++){
@@ -20,22 +20,17 @@ function checkSpiderMove(move, board) {
             for(let k=0; k <allAdjacentCoords.length; k++) {
                 const tempBug = new Bug("temp", moveCoords[j], "")
                 const proposedMove = new Move(tempBug, allAdjacentCoords[k])
-                if(doesArrayContainObject(moveCoords, allAdjacentCoords[k])) {
-                    continue
-                }
+                if(doesArrayContainObject(moveCoords, allAdjacentCoords[k])) continue
                 if(doesArrayContainObject(allProposedMoveCoords, allAdjacentCoords[k])) continue
-                if(checkMoveLite(proposedMove,board,[moveCoords[j]]))
-                {
+                if(checkMoveLite(proposedMove,board,[moveCoords[j]])) {
                     allProposedMoveCoords.push(allAdjacentCoords[k])
-                    proposedMoveCoords.push(allAdjacentCoords[k]) // add condition where we don't include previous entries in moveCoords
+                    proposedMoveCoords.push(allAdjacentCoords[k])
                 }
             }
         }
         moveCoords = proposedMoveCoords
-        console.log(moveCoords)
     }
     console.log(moveCoords)
-    console.log(move.destCoord)
     if(doesArrayContainObject(moveCoords, move.destCoord)) bIsMoveGood = true
     return bIsMoveGood
 }

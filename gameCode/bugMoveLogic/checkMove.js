@@ -1,5 +1,4 @@
-import Bug from "../gameObjects/bugs.js"
-import checkQueenBeeMove from "./bugLogic/queenBee.logic.js";
+import checkQueenBeeMove from "./bugLogic/queenBee.logic.js"
 import checkBeetleMove from "./bugLogic/beetle.logic.js";
 import checkHopperMove from "./bugLogic/hopper.logic.js";
 import checkAntMove from "./bugLogic/ant.logic.js";

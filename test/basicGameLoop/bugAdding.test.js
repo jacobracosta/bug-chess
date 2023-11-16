@@ -1,11 +1,8 @@
-import { Player } from "../../game/player.js"
-import Board from "../../gameObjects/board.js"
-import { queenBee } from "../../gameObjects/bugs.js"
-import Move from "../../gameObjects/move.js"
+import { Player } from "../../gameCode/game/player.js"
+import Board from "../../gameCode/gameObjects/board.js"
 import { expect } from "chai"
-import checkMove from "../../bugMoveLogic/checkMove.js"
-import addBugToGame, { checkPlacement } from "../../game/gameLogic.js"
-import Placement from "../../game/placement.js"
+import addBugToGame, { checkPlacement } from "../../gameCode/game/gameLogic.js"
+import Placement from "../../gameCode/game/placement.js"
 
 describe("Basic Game Loop Test: Add Bugs", function (){
 
