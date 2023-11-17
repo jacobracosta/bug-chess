@@ -1,4 +1,4 @@
-import { checkSingleHexMove } from "../logic.util.js";
+import { checkSingleHexMove } from "../singleHexMove.util.js";
 
 export function checkQueenBeeMove(move, board) {
     return checkSingleHexMove(move, board)
