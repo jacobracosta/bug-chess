@@ -9,7 +9,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
     let testBoard;
     let moveSpider, staticSpider1;
     beforeEach(function() {
-        testBoard = new Board(7)
+        testBoard = new Board(8)
         moveSpider = new spider("white",[4,5])
         staticSpider1 = new spider("black",[6,6])
 

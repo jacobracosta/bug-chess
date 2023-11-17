@@ -1,4 +1,5 @@
 import { translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
+import CellState from "../gameObjects/cellState.js";
 
 export function checkCrescentBreak(move, board) {
     let bIsMoveGood = true
@@ -13,16 +14,49 @@ export function checkCrescentBreak(move, board) {
     return bIsMoveGood
 }
 
-export function checkSingleHexMove(move) { //need to redo this potentially?
+export function checkSingleHexMove(move, board) {
+    let isMoveOneHex = false
     const [x0,y0] = move.startCoord
     const [x1,y1] = move.destCoord
     const x = x1 - x0
     const y = y1 - y0
-    const distance =  Math.sqrt(x * x + y * y)
-    let isMoveOneHex = false
-    if(distance == 2) isMoveOneHex = true
-    else if(distance == Math.sqrt(5)) isMoveOneHex = true
-    else isMoveOneHex = false
+    if( x == 0 && Math.abs(y) == 2) {
+        if(move.moveBug.type == "beetle") isMoveOneHex = true
+        else { //rolling case
+            if( y > 0) { // moving right
+                const topRightCoord = [x0-2,y0+1]
+                const bottomRightCoord = [x0+2,y0+1]
+                if(x0-2>0) {
+                    let tempCell = new CellState(topRightCoord)
+                    let topRightCell = tempCell
+                    topRightCell = board.getCellFromRefCoord(topRightCoord)
+                    if(!topRightCell.isEmpty()) isMoveOneHex = true
+                } else {
+                    let tempCell = new CellState(topRightCoord)
+                    let bottomRightCell = tempCell
+                    bottomRightCell = board.getCellFromRefCoord(bottomRightCoord)
+                    if(!bottomRightCell.isEmpty()) isMoveOneHex = true
+                }
+            } else { //left
+                const topLeftCoord = [x0-2,y0-1]
+                const bottomLeftCoord = [x0+2,y0-1]
+                if(y0-1 > 0) {
+                    if(x0-2>0) {
+                        let tempCell = new CellState(topLeftCoord)
+                        let topLeftCell = tempCell
+                        topLeftCell = board.getCellFromRefCoord(topLeftCoord)
+                        if(!topLeftCell.isEmpty()) isMoveOneHex = true
+                    } else {
+                        let tempCell = new CellState(topLeftCoord)
+                        let bottomLeftCell = tempCell
+                        bottomLeftCell = board.getCellFromRefCoord(bottomLeftCoord)
+                        if(!bottomLeftCell.isEmpty()) isMoveOneHex = true
+                    }
+                }
+            }
+        }
+    }
+    else if (Math.abs(x) == 2 && Math.abs(y) == 1) isMoveOneHex = true
     return isMoveOneHex
 }
 
@@ -50,7 +84,7 @@ export function createBoardWithoutMoveBug(move,board) {
 export function checkMoveLite(move, board, ignore) {  
     let bIsMoveGood = false
     if(isHexOpen(move, board)) {
-        if(checkSingleHexMove(move)) {
+        if(checkSingleHexMove(move, board)) {
             if(isDestHexAdjacent(move,board, ignore)) {
                 if(isEndStateLegal(move, board)) {
                     bIsMoveGood = true
