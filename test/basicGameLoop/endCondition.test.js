@@ -36,7 +36,7 @@ describe("Basic Game Loop Test: End Game", function (){
         const move = new Move(moveAnt,[4,3])
 
         const [bIsMoveGood, failureMessage] = checkMove(move,board)
-        if(bIsMoveGood) board.updateBugCoord(moveAnt,[4,3])
+        if(bIsMoveGood) board.updateBugCoord(move)
 
         const secondCheck = red.isQueenSurrounded(board)
         expect(secondCheck).to.be.true

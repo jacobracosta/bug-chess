@@ -13,84 +13,90 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         board = new Board(5)
     })
 
-    it("Adds one bug", function() { 
+    it("Adds one bug: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
         const [success,message] = checkPlacement(firstPlacement, board)
         expect(success).to.be.true
         expect(message).to.eq("Placement Good.")
 
-        const [addSuccess, turn] = addBugToGame(firstPlacement,board)
-        expect(addSuccess).to.be.true
-        expect(turn).to.eq(2)
+        const spider= addBugToGame(firstPlacement,board)
+        board.incrementTurn()
+        expect(spider).to.be.not.null
     })
 
-    it("Adds two bugs", function() { 
+    it("Adds two bugs: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
         const [success,message] = checkPlacement(firstPlacement, board)
         expect(message).to.eq("Placement Good.")
         expect(success).to.be.true
 
-        const [addSuccess, turn] = addBugToGame(firstPlacement, board)
-        expect(addSuccess).to.be.true
-        expect(turn).to.eq(2)
+        const spider = addBugToGame(firstPlacement, board)
+        board.incrementTurn()
+        expect(spider).to.be.not.null
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
         const [success2,message2] = checkPlacement(secondPlacement, board)
         expect(message2).to.eq("Placement Good.")
         expect(success2).to.be.true
         
-        const [addSuccess2, turn2] = addBugToGame(secondPlacement,board)
-        expect(addSuccess2).to.be.true
-        expect(turn2).to.eq(3)
+        const spider2 = addBugToGame(secondPlacement,board)
+        board.incrementTurn()
+        expect(spider2).to.be.not.null
+        expect(board.turn).to.eq(3)
+    })
+
+    it("Adds two bugs: failure, hex not adjacent", function() { 
+        const firstPlacement = new Placement(red,[2,2],"spider")
+        addBugToGame(firstPlacement, board)
+        board.incrementTurn()
+
+        const secondPlacement = new Placement(blue,[4,5],"spider")
+        const [success,message] = checkPlacement(secondPlacement, board)
+        expect(success).to.be.false
+        expect(message).to.be.eq("Dest Hex not Adjacent to Anything.")
+    })
+
+    it("Adds two bugs: failure, hex occupied", function() { 
+        const firstPlacement = new Placement(red,[2,2],"spider")
+        addBugToGame(firstPlacement, board)
+        board.incrementTurn()
+
+        const secondPlacement = new Placement(blue,[2,2],"spider")
+        const [success,message] = checkPlacement(secondPlacement, board)
+        expect(success).to.be.false
+        expect(message).to.be.eq("Hex Occupied.")
     })
 
     it("Adds three bugs: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
-        const [success,message] = checkPlacement(firstPlacement, board)
-        expect(message).to.eq("Placement Good.")
-        expect(success).to.be.true
-
-        const [addSuccess, turn] = addBugToGame(firstPlacement, board)
-        expect(addSuccess).to.be.true
-        expect(turn).to.eq(2)
+        addBugToGame(firstPlacement, board)
+        board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        const [success2,message2] = checkPlacement(secondPlacement, board)
-        expect(message2).to.eq("Placement Good.")
-        expect(success2).to.be.true
-        
-        const [addSuccess2, turn2] = addBugToGame(secondPlacement,board)
-        expect(addSuccess2).to.be.true
-        expect(turn2).to.eq(3)
+        addBugToGame(secondPlacement,board)
+        board.incrementTurn()
 
         const thirdPlacement = new Placement(red,[0,3],"spider")
         const [success3,message3] = checkPlacement(thirdPlacement, board)
         expect(message3).to.eq("Placement Good.")
         expect(success3).to.be.true
         
-        const [addSuccess3, turn3] = addBugToGame(thirdPlacement,board)
-        expect(addSuccess3).to.be.true
-        expect(turn3).to.eq(4)
+        const spider = addBugToGame(thirdPlacement,board)
+        board.incrementTurn()
+        expect(spider).to.be.not.null
+        expect(board.turn).to.eq(4)
     })
 
     it("Adds three bugs: failure", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
-        const [success,message] = checkPlacement(firstPlacement, board)
-        expect(message).to.eq("Placement Good.")
-        expect(success).to.be.true
-
-        const [addSuccess, turn] = addBugToGame(firstPlacement, board)
-        expect(addSuccess).to.be.true
-        expect(turn).to.eq(2)
+        addBugToGame(firstPlacement, board)
+        board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        const [success2,message2] = checkPlacement(secondPlacement, board)
-        expect(message2).to.eq("Placement Good.")
-        expect(success2).to.be.true
-        
-        const [addSuccess2, turn2] = addBugToGame(secondPlacement,board)
-        expect(addSuccess2).to.be.true
-        expect(turn2).to.eq(3)
+        const spider = addBugToGame(secondPlacement,board)
+        board.incrementTurn()
+        expect(spider).to.be.not.null
+        expect(board.turn).to.eq(3)
 
         const thirdPlacement = new Placement(red,[2,4],"spider")
         const [success3,message3] = checkPlacement(thirdPlacement, board)

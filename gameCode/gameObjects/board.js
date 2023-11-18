@@ -28,7 +28,9 @@ export class Board {
       return cell
     }
 
-    updateBugCoord(bug,newCoord) {
+    updateBugCoord(move) {
+      const bug = move.moveBug
+      const newCoord = move.destCoord
       const oldCoord = bug.coord
       const oldCell = this.getCellFromRefCoord(oldCoord)
       oldCell.emptyCell()

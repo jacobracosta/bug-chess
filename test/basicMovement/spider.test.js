@@ -17,14 +17,14 @@ describe("Basic Movement Logic Tests: Spider", function () {
         testBoard.addToBoard(staticSpider1)
     });
 
-    it("tests spider movement success: move on same bug", function () {
+    it("tests spider movement: success, move on same bug", function () {
         const move = new Move(moveSpider,[8,7])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
         expect(message).to.eq("Success")
     })
 
-    it("tests spider movement success: move on different bug", function () {
+    it("tests spider movement: success, move on different bug", function () {
         const staticSpider2 = new spider("black",[8,5])
         testBoard.addToBoard(staticSpider2)
 
@@ -34,14 +34,14 @@ describe("Basic Movement Logic Tests: Spider", function () {
         expect(message).to.eq("Success")
     })
 
-    it("tests spider movement failure", function () {
+    it("tests spider movement: failure", function () {
         const move = new Move(moveSpider,[8,5])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
         expect(message).to.eq("Move Not Legal")
     })
 
-    it("tests spider movement success: 4 options", function (){
+    it("tests spider movement: success, 4 options", function (){
         const staticSpider2 = new spider("black",[8,7])
         const staticSpider3 = new spider("black",[10,6])
         const staticSpider4 = new spider("black",[12,5])
