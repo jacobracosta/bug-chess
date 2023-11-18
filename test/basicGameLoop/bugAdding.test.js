@@ -13,7 +13,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         board = new Board(5)
     })
 
-    it("Adds one bug", function() { 
+    it("Adds one bug: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
         const [success,message] = checkPlacement(firstPlacement, board)
         expect(success).to.be.true
