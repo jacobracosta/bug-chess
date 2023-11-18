@@ -17,14 +17,14 @@ describe("Basic Movement Logic Tests: Ant", function (){
         testBoard.addToBoard(staticAnt1)
     });
 
-    it("tests ant movement success: move on same bug", function () {
+    it("tests ant movement: success, move on same bug", function () {
         const move = new Move(moveAnt,[2,4])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
         expect(message).to.eq("Success")
     })
 
-    it("tests ant movement success: move on different bug", function () {
+    it("tests ant movement: success, move on different bug", function () {
         const staticAnt2 = new ant("black",[4,3])
         testBoard.addToBoard(staticAnt2)
 
@@ -34,7 +34,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         expect(message).to.eq("Success")
     })
 
-    it("tests ant movement failure: discontinuity", function () {
+    it("tests ant movement: failure, discontinuity", function () {
         const staticAnt2 = new ant("black",[4,3])
         testBoard.addToBoard(staticAnt2)
 
@@ -44,7 +44,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         expect(message).to.eq("Move Breaks Continuity")
     })
 
-    it("tests ant movement failure: breaks crescent", function () {
+    it("tests ant movement: failure, breaks crescent", function () {
         const staticAnt2 = new ant("black",[2,4])
         testBoard.addToBoard(staticAnt2)
         const staticAnt3 = new ant("black",[4,5])

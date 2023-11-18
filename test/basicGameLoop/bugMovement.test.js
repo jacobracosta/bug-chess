@@ -18,7 +18,7 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         board = new Board(5)
     })
 
-    it("tests beetle movement", function() { 
+    it("tests beetle movement: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"beetle")
         const beetle = addBugToGame(firstPlacement,board)
         board.incrementTurn()

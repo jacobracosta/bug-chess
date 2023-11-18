@@ -17,21 +17,21 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         testBoard.addToBoard(staticBeetle1)
     });
 
-    it("tests beetle movement success: move on same bug", function () {
+    it("tests beetle movement: success, move on same bug", function () {
         const move = new Move(moveBeetle,[0,3])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
         expect(message).to.eq("Success")
     })
 
-    it("tests beetle movement success: move on top of same bug", function () {
+    it("tests beetle movement: success, move on top of same bug", function () {
         const move = new Move(moveBeetle,[0,1])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
         expect(message).to.eq("Success")
     })
 
-    it("tests beetle movement success: move on top of different bug", function () {
+    it("tests beetle movement: success, move on top of different bug", function () {
         const staticBeetle2 = new beetle("black",[0,3])
         testBoard.addToBoard(staticBeetle2)
 
@@ -42,7 +42,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
     })
 
     
-    it("tests beetle movement failure: discontinuity", function () {
+    it("tests beetle movement: failure, discontinuity", function () {
         const staticBeetle2 = new beetle("black",[4,3])
         testBoard.addToBoard(staticBeetle2)
 

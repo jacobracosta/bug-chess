@@ -59,6 +59,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
     it("Adds two bugs: failure, hex occupied", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
         addBugToGame(firstPlacement, board)
+        board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[2,2],"spider")
         const [success,message] = checkPlacement(secondPlacement, board)
