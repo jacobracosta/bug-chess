@@ -44,7 +44,7 @@ while (!queenSurrounded) {
   const inputArray = userInput.split(" ")
   const verb = inputArray[0].toLowerCase()
   const [bug,index] = inputArray[1].split("-")
-  const coord = inputArray[2]
+  const coord = (inputArray[2].split(",")).map(Number)
 
   if(index > 2) {
     console.log("Invalid index. Must be less than 2.")
