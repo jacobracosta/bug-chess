@@ -13,7 +13,8 @@ export function checkSingleHexMove(move, board) {
                 if(x0-2>0) {
                     const topRightCell = board.getCellFromRefCoord(topRightCoord)
                     if(!topRightCell.isEmpty()) isMoveOneHex = true
-                } else {
+                }
+                if (!isMoveOneHex) {
                     const bottomRightCell = board.getCellFromRefCoord(bottomRightCoord)
                     if(!bottomRightCell.isEmpty()) isMoveOneHex = true
                 }
@@ -24,7 +25,8 @@ export function checkSingleHexMove(move, board) {
                     if(x0-2>0) {
                         const topLeftCell = board.getCellFromRefCoord(topLeftCoord)
                         if(!topLeftCell.isEmpty()) isMoveOneHex = true
-                    } else {
+                    } 
+                    if (!isMoveOneHex) {
                         const bottomLeftCell = board.getCellFromRefCoord(bottomLeftCoord)
                         if(!bottomLeftCell.isEmpty()) isMoveOneHex = true
                     }
@@ -32,7 +34,7 @@ export function checkSingleHexMove(move, board) {
             }
         }
     }
-    else if (Math.abs(x) == 2 && Math.abs(y) == 1) isMoveOneHex = true
+    else if (Math.abs(x) == 2 && Math.abs(y) == 1) isMoveOneHex = true //may need more conditions
     return isMoveOneHex
 }
 

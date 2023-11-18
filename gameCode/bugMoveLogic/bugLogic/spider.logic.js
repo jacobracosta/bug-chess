@@ -30,7 +30,7 @@ function checkSpiderMove(move, board) {
         }
         moveCoords = proposedMoveCoords
     }
-    console.log(moveCoords)
+    //console.log(moveCoords)
     if(doesArrayContainObject(moveCoords, move.destCoord)) bIsMoveGood = true
     return bIsMoveGood
 }
