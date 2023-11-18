@@ -3,7 +3,6 @@ import Board from "../../gameCode/gameObjects/board.js"
 import { expect } from "chai"
 import addBugToGame, { checkPlacement } from "../../gameCode/game/gameLogic.js"
 import Placement from "../../gameCode/game/placement.js"
-import { beetle } from "../../gameCode/gameObjects/bugs.js"
 import Move from "../../gameCode/gameObjects/move.js"
 import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
 
