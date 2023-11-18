@@ -20,8 +20,7 @@ export function addBugToGame(placement, board) {
     } else addSuccess = false
 
     board.addToBoard(bug)
-    board.incrementTurn()
-    return [addSuccess, board.turn]
+    return bug
 }
 
 function checkNumberOfBug(placement) {
@@ -50,12 +49,13 @@ function isDestHexAdjacent(placement,board) {
 
 function checkColorOfAdjacent(placement, board) {
     const coord = placement.coord
+    const playerColor = placement.player.color
     let allAdjacentSameColor = true
 
     const allEqual = arr => arr.every(val => val === arr[0]);
     if(board.turn >= 3) {
         const colors = board.getAllAdjacentCellColors(coord)
-        allAdjacentSameColor = allEqual(colors)
+        allAdjacentSameColor = (allEqual(colors) && colors[0] == playerColor)
     }
     return allAdjacentSameColor
 }
