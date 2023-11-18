@@ -1,7 +1,7 @@
-import { checkSingleHexMove } from "../logic.util.js";
+import { checkSingleHexMove } from "../singleHexMove.util.js";
 
-export function checkBeetleMove(move) {
-    return checkSingleHexMove(move)
+export function checkBeetleMove(move, board) {
+    return checkSingleHexMove(move, board)
 }
 
 export default checkBeetleMove;

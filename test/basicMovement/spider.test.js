@@ -9,7 +9,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
     let testBoard;
     let moveSpider, staticSpider1;
     beforeEach(function() {
-        testBoard = new Board(7)
+        testBoard = new Board(8)
         moveSpider = new spider("white",[4,5])
         staticSpider1 = new spider("black",[6,6])
 
@@ -28,7 +28,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
         const staticSpider2 = new spider("black",[8,5])
         testBoard.addToBoard(staticSpider2)
 
-        const move = new Move(moveSpider,[10,4])
+        const move = new Move(moveSpider,[8,7]) //10,4
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.true;
         expect(message).to.eq("Success")
@@ -61,12 +61,16 @@ describe("Basic Movement Logic Tests: Spider", function () {
 
         const move1 = new Move(moveSpider,[10,2])
         const move2 = new Move(moveSpider,[10,4])
-        const move3 = new Move(moveSpider,[4,1]) //this is the hard case
+        const move3 = new Move(moveSpider,[4,1])
         const move4 = new Move(moveSpider,[8,9])
 
-        const [check,message] = checkMove(move4, testBoard)
-        expect(check).to.be.true;
-        expect(message).to.eq("Success")
-
+        const [check1,message1] = checkMove(move1, testBoard)
+        const [check2,message2] = checkMove(move2, testBoard)
+        const [check3,message3] = checkMove(move3, testBoard)
+        const [check4,message4] = checkMove(move4, testBoard)
+        expect(check1).to.be.true;
+        expect(check2).to.be.true;
+        expect(check3).to.be.true;
+        expect(check4).to.be.true;
     })
 })

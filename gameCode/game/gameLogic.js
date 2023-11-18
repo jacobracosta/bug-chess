@@ -1,6 +1,4 @@
-import Board from "../gameObjects/board.js"
 import Bug from "../gameObjects/bugs.js"
-import CellState from "../gameObjects/cellState.js"
 
 export function addBugToGame(placement, board) {
     const player = placement.player

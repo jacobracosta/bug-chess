@@ -10,9 +10,9 @@ function isMoveLegal(move,board) {
     const bugType = move.moveBug.type
     let bIsMoveLegal = false
     if(bugType == "queenBee") {
-        bIsMoveLegal = checkQueenBeeMove(move)
+        bIsMoveLegal = checkQueenBeeMove(move, board)
     } else if (bugType == "beetle") {
-        bIsMoveLegal = checkBeetleMove(move)
+        bIsMoveLegal = checkBeetleMove(move, board)
     } else if (bugType == "hopper") {
         bIsMoveLegal = checkHopperMove(move,board)
     } else if (bugType == "spider") {
