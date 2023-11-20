@@ -1,5 +1,5 @@
 #!/usr/bin/node
-import { Player } from "../../gameCode/game/player.js"
+import { Player } from "../gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 
 import promptSync from 'prompt-sync';
@@ -30,6 +30,7 @@ while (!queenSurrounded) {
   }
   
   //instructions of the form
+  //create function to parse input
   //verb bug location
   // move beetle-0 [coordinate] (work on temp relative placement)
   const inputArray = userInput.split(" ")

@@ -1,5 +1,5 @@
 import Move from "../gameObjects/move.js";
-import Placement from "./placement.js";
+import Placement from "../gameObjects/placement.js";
 import addBugToGame, { checkPlacement } from "./gameLogic.js";
 
 export function isWinConditionMet(player1, player2, board) {
@@ -51,11 +51,11 @@ export function processPlacement(player, bug, coord, board) {
     }
 
     const placement = new Placement(player, coord, bug)
-    const [bIsPlacementGood, failureMessage] = checkPlacement(placement,board)
+    const [bIsPlacementGood, failureMessage] = checkPlacement(placement,board) //issue placing an empty thing
     if(bIsPlacementGood) {
-    addBugToGame(placement, board)
-    board.incrementTurn()
-    processSuccess = true
+        addBugToGame(placement, board)
+        board.incrementTurn()
+        processSuccess = true
     } else message = failureMessage + " Re-input command."
     return [processSuccess, message]
 }
