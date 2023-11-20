@@ -1,31 +1,35 @@
-#!/usr/bin/node
+import {isWinConditionMet, processCommand, processMovement, processPlacement } from "./gameLoop.util.js";
 
-import promptSync from 'prompt-sync';
-
-const prompt = promptSync({sigint:true});
-
-let queenSurrounded = false;
-
-//create players
-//when bug is placed, add to player
-//add to board, need logic to check if it's next to a piece of it's own color or not
-//need to check that there aren't more than the allowed number of bugs during each placement
-
-while (!queenSurrounded) {
-  // Get user input
-  /*
-  "Red Player place a bug:"
-  "Blue Player place a bug:" (loop between these two until a queen is surrounded)
-  can't move until queen placed
-  need to place queen by 4th turn
-  */
-  let userInput = prompt('Type something: ');
-
-  // Compare the guess to the secret answer and let the user know.
-  if (userInput === 'something') {
-    console.log('Congrats, smartass');
-    condition = true;
-  } else {
-    console.log('Try again');
+export function processTurn(userInput, currentPlayer, otherPlayer, board) {
+  let message = "Move Good."
+  let turnSuccess = false
+  let moveSuccess, moveMessage, placeSuccess, placeMessage
+  const [verb,bug,index,coord] = processCommand(userInput)
+  
+  if(index > 2) {
+    message = "Invalid index. Must be less than 2."
   }
+
+  if(verb == "move") {
+    [moveSuccess, moveMessage] = processMovement(currentPlayer,bug,index,coord,board)
+    if(!processSuccess) {
+      message = moveMessage
+    }
+  } else if(verb == "place") {
+    [placeSuccess, placeMessage] = processPlacement(currentPlayer,bug,coord,board)
+    if(!placeSuccess) {
+      message = placeMessage
+    }
+  } else {
+    console.log ("Invalid verb. Start with 'move' or 'place'.")
+  }
+
+  if(placeSuccess || moveSuccess) {
+    turnSuccess = true
+    const [winConditionMet, winMessage] = isWinConditionMet(currentPlayer,otherPlayer,board)
+    if(winConditionMet) {
+      message = winMessage
+    }
+  }
+  return [turnSuccess, message]
 }

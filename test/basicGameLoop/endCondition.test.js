@@ -1,4 +1,4 @@
-import { Player } from "../../gameCode/game/player.js"
+import { Player } from "../../gameCode/gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 import { queenBee } from "../../gameCode/gameObjects/bugs.js"
 import Move from "../../gameCode/gameObjects/move.js"
