@@ -1,3 +1,6 @@
+import { Player } from "../gameObjects/player.js"
+import Board from "../../gameCode/gameObjects/board.js"
+
 import {isWinConditionMet, processCommand, processMovement, processPlacement } from "./gameLoop.util.js";
 
 export function processTurn(userInput, currentPlayer, otherPlayer, board) {
@@ -21,7 +24,7 @@ export function processTurn(userInput, currentPlayer, otherPlayer, board) {
       message = placeMessage
     }
   } else {
-    console.log ("Invalid verb. Start with 'move' or 'place'.")
+    message = "Invalid verb. Start with 'move' or 'place'."
   }
 
   if(placeSuccess || moveSuccess) {
@@ -32,4 +35,40 @@ export function processTurn(userInput, currentPlayer, otherPlayer, board) {
     }
   }
   return [turnSuccess, message]
+}
+
+export function gameLoopTestHandle(commandsJson) {
+  let queenSurrounded = false;
+  const red = new Player("red", true)
+  const blue = new Player("blue", false)
+  const board = new Board(16)
+
+  let errors = [] //make json obj later
+  let gameOverMessage = "Did Not Reach."
+  let commandNum = 0;
+  while (!queenSurrounded) {
+
+    let userInput, currentPlayer, otherPlayer
+    if(board.turn % 2 != 0) { 
+      userInput = commandsJson[commandNum]['command']
+      currentPlayer = red
+      otherPlayer = blue
+    } else {
+      userInput = commandsJson[commandNum]['command']
+      currentPlayer = blue
+      otherPlayer = red
+    }
+
+    const [turnSuccess, message] = processTurn(userInput,currentPlayer,otherPlayer,board)
+    if(turnSuccess) {
+      if(message.indexOf("Game Over!") != -1) {
+          gameOverMessage = message
+          queenSurrounded = true
+      }
+    } else {
+      errors.push(message)
+    }
+    commandNum++ //increment no matter what so we can test handling of bad commands
+  }
+  return [gameOverMessage, errors]
 }
