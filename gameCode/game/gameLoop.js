@@ -3,7 +3,7 @@ import { Player } from "../gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 
 import promptSync from 'prompt-sync';
-import {isWinConditionMet, processMovement, processPlacement } from "./gameLoop.util.js";
+import {isWinConditionMet, processCommand, processMovement, processPlacement } from "./gameLoop.util.js";
 const prompt = promptSync({sigint:true});
 
 let queenSurrounded = false;
@@ -28,16 +28,9 @@ while (!queenSurrounded) {
     userInput = prompt("Player 2's Turn: ")
     currentPlayer = blue
   }
-  
-  //instructions of the form
-  //create function to parse input
-  //verb bug location
-  // move beetle-0 [coordinate] (work on temp relative placement)
-  const inputArray = userInput.split(" ")
-  const verb = inputArray[0].toLowerCase()
-  const [bug,index] = inputArray[1].split("-")
-  const coord = (inputArray[2].split(",")).map(Number)
 
+  const [verb,bug,index,coord] = processCommand(userInput)
+  
   if(index > 2) {
     console.log("Invalid index. Must be less than 2.")
     continue

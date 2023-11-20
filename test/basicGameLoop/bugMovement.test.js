@@ -4,8 +4,6 @@ import { expect } from "chai"
 import addBugToGame, { checkPlacement } from "../../gameCode/game/gameLogic.js"
 import Placement from "../../gameCode/gameObjects/placement.js"
 import Move from "../../gameCode/gameObjects/move.js"
-import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
-
 
 describe("Basic Game Loop Test: Move Bugs", function (){
 //test where move beetle on top, check that can't place opposite piece next to it

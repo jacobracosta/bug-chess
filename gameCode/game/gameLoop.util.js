@@ -16,6 +16,14 @@ export function isWinConditionMet(player1, player2, board) {
     return [conditionMet, message]
 }
 
+export function processCommand(userInput) {
+  const inputArray = userInput.split(" ")
+  const verb = inputArray[0].toLowerCase()
+  const [bug,index] = inputArray[1].split("-")
+  const coord = (inputArray[2].split(",")).map(Number)
+  return [verb,bug,index,coord]
+}
+
 export function processMovement(player, bug, index, coord, board){
     let message = "None"
     let processSuccess = false
