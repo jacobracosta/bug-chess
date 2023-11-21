@@ -2,67 +2,67 @@
     "commands": [
         {
             "player": 1,
-            "command":""
+            "command":"place beetle 14,16"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place beetle 14,18"
         },
         {
             "player": 1,
-            "command":""
+            "command":"place spider 12,15"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place spider 16,19"
         },
         {
             "player": 1,
-            "command":""
+            "command":"place queenBee 14,14"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place queenBee 14,20"
         },
         {
             "player": 1,
-            "command":""
+            "command":"move spider-0 12,21"
         },
         {
             "player": 2,
-            "command":""
+            "command":"move spider-0 16,13"
         },
         {
             "player": 1,
-            "command":""
+            "command":"place beetle 10,22"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place beetle 18,14"
         },
         {
             "player": 1,
-            "command":""
+            "command":"move beetle-1 12,21"
         },
         {
             "player": 2,
-            "command":""
+            "command":"move beetle-1 16,13"
         },
         {
             "player": 1,
-            "command":""
+            "command":"move beetle-1 14,20"
         },
         {
             "player": 2,
-            "command":""
+            "command":"move beetle-1 14,14"
         },
         {
             "player": 1,
-            "command":""
+            "command":"place spider 12,19"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place spider 12,13"
         },
         {
             "player": 1,

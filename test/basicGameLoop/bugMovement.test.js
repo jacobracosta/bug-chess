@@ -33,5 +33,7 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         const [success,message] = checkPlacement(thirdPlacement, board)
         expect(success).to.be.false
         expect(message).to.be.eq("Can't place next to a bug of opposite color.")
+
+        //should be able to place red here and have it work
     })
 })

@@ -1,7 +1,7 @@
 export class CellState {
     constructor(refCoord) {
         this.bug = null
-        this.top = null
+        this.top = []
         this.refCoord = refCoord
     }
 
@@ -11,6 +11,10 @@ export class CellState {
 
     emptyCell() {
         this.bug = null
+        this.top.length = 0
+    }
+
+    emptyTop() {
         this.top = null
     }
 }

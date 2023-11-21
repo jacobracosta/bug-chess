@@ -33,10 +33,17 @@ export class Board {
       const newCoord = move.destCoord
       const oldCoord = bug.coord
       const oldCell = this.getCellFromRefCoord(oldCoord)
-      oldCell.emptyCell()
-      bug.coord = newCoord
-      this.addToBoard(bug)
-  }
+      const newCell = this.getCellFromRefCoord(newCoord)
+      if(bug.type== "beetle" && !newCell.isEmpty()) {//only call when beetle makes a top move, can check this by seeing if new ccell is not empty
+        bug.coord = newCoord
+        this.addToTop(bug)
+      }
+      else {
+        oldCell.emptyCell()
+        bug.coord = newCoord
+        this.addToBoard(bug)
+      }
+    }
 
     createRow(numRow,size) {
       let rowArray = new Array(size) //make dynamic later
@@ -55,6 +62,12 @@ export class Board {
       let newCell = new CellState(newBug.coord)
       newCell.bug = newBug
       this.boardMatrix[aX][aY] = newCell
+    }
+
+    addToTop(newBug) {
+      const [aX, aY] = translateRefCoordToArrayCoord(newBug.coord)
+      const top = (this.boardMatrix[aX][aY].top)
+      top.push(newBug)
     }
 
     getNumberOfEmptyCellsAroundCoord(refCoord) {

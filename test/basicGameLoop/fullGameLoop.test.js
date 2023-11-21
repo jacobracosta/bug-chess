@@ -2,7 +2,6 @@ import { expect } from "chai";
 import { gameLoopTestHandle } from "../../gameCode/game/gameLoop.js"
 import loopTestJson from "../testData/loopTest.json" assert { type: 'json' };; 
 
-
 describe("Basic Game Loop Test: Full Game Loop", function (){
     it("Tests Full Loop: Success", function (){
         const [gameOverMessage, errors] = gameLoopTestHandle(loopTestJson["commands"])

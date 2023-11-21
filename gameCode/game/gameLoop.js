@@ -7,7 +7,7 @@ export function processTurn(userInput, currentPlayer, otherPlayer, board) {
   let message = "Move Good."
   let turnSuccess = false
   let moveSuccess, moveMessage, placeSuccess, placeMessage
-  const [verb,bug,index,coord] = processCommand(userInput)
+  const [verb,bug,index,coord] = processCommand(userInput) //need to handle bad coordinates
   
   if(index > 2) {
     message = "Invalid index. Must be less than 2."
@@ -15,7 +15,7 @@ export function processTurn(userInput, currentPlayer, otherPlayer, board) {
 
   if(verb == "move") {
     [moveSuccess, moveMessage] = processMovement(currentPlayer,bug,index,coord,board)
-    if(!processSuccess) {
+    if(!moveSuccess) {
       message = moveMessage
     }
   } else if(verb == "place") {
