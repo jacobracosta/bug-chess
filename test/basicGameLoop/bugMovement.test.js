@@ -29,10 +29,15 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         board.updateBugCoord(move)
         board.incrementTurn()
 
-        const thirdPlacement = new Placement(blue,[4,5],"spider")
-        const [success,message] = checkPlacement(thirdPlacement, board)
-        expect(success).to.be.false
-        expect(message).to.be.eq("Can't place next to a bug of opposite color.")
+        const thirdPlacementFail = new Placement(blue,[4,5],"spider")
+        const [successBlue,messageBlue] = checkPlacement(thirdPlacementFail, board)
+        expect(messageBlue).to.be.eq("Can't place next to a bug of opposite color.")
+        expect(successBlue).to.be.false
+
+        const thirdPlacementSuccess = new Placement(red,[4,5],"spider")
+        const [successRed,messageRed] = checkPlacement(thirdPlacementSuccess, board)
+        expect(messageRed).to.eq("Placement Good.")
+        expect(successRed).to.be.true
 
         //should be able to place red here and have it work
     })

@@ -11,7 +11,7 @@
     "test:basicGameLoop": "mocha test/basicGameLoop/*.test.js",
     "test:all": "mocha test/*/*.test.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run:game": "node gameCode/game/runGameLoop.js"
+    "game": "node gameCode/game/runGameLoop.js"
   },
   "author": "",
   "license": "ISC",

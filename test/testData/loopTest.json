@@ -58,63 +58,39 @@
         },
         {
             "player": 1,
-            "command":"place spider 12,19"
+            "command":"place spider 16,21"
         },
         {
             "player": 2,
-            "command":"place spider 12,13"
+            "command":"place spider 14,12"
         },
         {
             "player": 1,
-            "command":""
+            "command":"place ant 14,22"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place hopper 12,13"
         },
         {
             "player": 1,
-            "command":""
+            "command":"move ant-0 12,19"
         },
         {
             "player": 2,
-            "command":""
+            "command":"move hopper-0 16,15"
         },
         {
             "player": 1,
-            "command":""
+            "command":"place ant 14,22"
         },
         {
             "player": 2,
-            "command":""
+            "command":"place hopper 12,13"
         },
         {
             "player": 1,
-            "command":""
-        },
-        {
-            "player": 2,
-            "command":""
-        },
-        {
-            "player": 1,
-            "command":""
-        },
-        {
-            "player": 2,
-            "command":""
-        },
-        {
-            "player": 1,
-            "command":""
-        },
-        {
-            "player": 2,
-            "command":""
-        },
-        {
-            "player": 1,
-            "command":""
+            "command":"move beetle-1 16,19"
         }
     ]
 }
