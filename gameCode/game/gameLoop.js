@@ -46,6 +46,7 @@ export function gameLoopTestHandle(commandsJson) {
   let errors = [] //make json obj later
   let gameOverMessage = "Did Not Reach."
   let commandNum = 0;
+  const numCommands = commandsJson.length
   while (!queenSurrounded) {
 
     let userInput, currentPlayer, otherPlayer
@@ -69,6 +70,10 @@ export function gameLoopTestHandle(commandsJson) {
       errors.push(message)
     }
     commandNum++ //increment no matter what so we can test handling of bad commands
+    if(commandNum == numCommands) {
+      gameOverMessage = "End of Test Input."
+      break
+    }
   }
   return [gameOverMessage, errors]
 }

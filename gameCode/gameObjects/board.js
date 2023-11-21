@@ -34,9 +34,10 @@ export class Board {
       const oldCoord = bug.coord
       const oldCell = this.getCellFromRefCoord(oldCoord)
       const newCell = this.getCellFromRefCoord(newCoord)
-      if(bug.type== "beetle" && !newCell.isEmpty()) {//only call when beetle makes a top move, can check this by seeing if new ccell is not empty
+      if(bug.type == "beetle") {
         bug.coord = newCoord
-        this.addToTop(bug)
+        if(newCell.isEmpty()) this.addToBoard(bug) //only call when beetle makes a top move, can check this by seeing if new cell is not empty
+        else this.addToTop(bug)
       }
       else {
         oldCell.emptyCell()
