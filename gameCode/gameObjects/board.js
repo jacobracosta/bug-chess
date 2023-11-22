@@ -1,6 +1,6 @@
 import { CellState } from "./cellState.js";
 import { translateArrayCoordToRefCoord, translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
-import doesArrayContainObject from "../utils/array.util.js";
+import doesArrayContainObject, { doesArrayContainBug } from "../utils/array.util.js";
 
 export class Board {
     constructor(size) {
@@ -35,11 +35,24 @@ export class Board {
       const oldCell = this.getCellFromRefCoord(oldCoord)
       const newCell = this.getCellFromRefCoord(newCoord)
       if(bug.type == "beetle") {
+        if(doesArrayContainBug(oldCell.top,bug)) {
+          oldCell.removeFromTop(bug)
+          bug.coord = newCoord
+          if(newCell.isEmpty()) { //hopping down
+            this.addToBoard(bug) 
+          } else { //moving on top
+            this.addToTop(bug)
+          }
+        } else {
+          oldCell.emptyCell()
         bug.coord = newCoord
-        if(newCell.isEmpty()) this.addToBoard(bug) //only call when beetle makes a top move, can check this by seeing if new cell is not empty
-        else this.addToTop(bug)
+          if(newCell.isEmpty()) { //moving normally
+            this.addToBoard(bug)
+          } else { //hopping up from ground
+            this.addToTop(bug)
       }
-      else {
+        }
+      } else {
         oldCell.emptyCell()
         bug.coord = newCoord
         this.addToBoard(bug)

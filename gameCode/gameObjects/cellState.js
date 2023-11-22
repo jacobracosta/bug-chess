@@ -14,8 +14,13 @@ export class CellState {
         this.top.length = 0
     }
 
-    emptyTop() {
-        this.top = null
+    //emptyTop() {
+      //  this.top = null
+    //}
+
+    removeFromTop(bug) {
+        const topIndex = this.top.indexOf(bug)
+        if(topIndex != -1) this.top.splice(topIndex,1)
     }
 }
 
