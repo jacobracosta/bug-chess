@@ -35,8 +35,8 @@ export class Board {
       const oldCell = this.getCellFromRefCoord(oldCoord)
       const newCell = this.getCellFromRefCoord(newCoord)
       if(bug.type == "beetle") {
-        if(doesArrayContainBug(oldCell.top,bug)) {
-          oldCell.removeFromTop(bug)
+        if(doesArrayContainBug(oldCell.top,bug)) { //its not actually getting in here
+          this.removeFromTop(bug)
           bug.coord = newCoord
           if(newCell.isEmpty()) { //hopping down
             this.addToBoard(bug) 
@@ -80,8 +80,15 @@ export class Board {
 
     addToTop(newBug) {
       const [aX, aY] = translateRefCoordToArrayCoord(newBug.coord)
+      let topA = (this.boardMatrix[aX][aY].top)
+      topA.push(newBug)
+      this.boardMatrix[aX][aY].top = topA
+    }
+
+    removeFromTop(bug) { //only call if removing last bug
+      const [aX, aY] = translateRefCoordToArrayCoord(bug.coord)
       const top = (this.boardMatrix[aX][aY].top)
-      top.push(newBug)
+      top.pop()
     }
 
     getNumberOfEmptyCellsAroundCoord(refCoord) {
@@ -142,7 +149,7 @@ export class Board {
           const cell = allAdjacent[i]
           const bug = cell.bug
           const top = cell.top
-          const topBug = top ? top[top.length - 1] : null
+          const topBug = (top.length > 0) ? top[top.length - 1] : null
           if(topBug) colors.push(topBug.player.color)
           else colors.push(bug.player.color)
         }
