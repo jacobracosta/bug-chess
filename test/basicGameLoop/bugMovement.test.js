@@ -79,6 +79,32 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         const [successRed,messageRed] = checkPlacement(fourthPlacementSuccess, board)
         expect(messageRed).to.eq("Placement Good.")
         expect(successRed).to.be.true
+    })
 
+    it("tests beetle movement updates: hop down, place after success", function() { 
+        const firstPlacement = new Placement(red,[2,2],"beetle")
+        const beetle = addBugToGame(firstPlacement,board)
+        board.incrementTurn()
+
+        const secondPlacement = new Placement(blue,[4,3],"spider")
+        addBugToGame(secondPlacement,board)
+        board.incrementTurn()
+
+        const moveUp = new Move(beetle,[4,3])
+
+        board.updateBugCoord(moveUp)
+        board.incrementTurn()
+
+        const thirdPlacement = new Placement(red,[4,5],"spider")
+        addBugToGame(thirdPlacement,board)
+        board.incrementTurn()
+
+        const moveAcross = new Move(beetle, [4,5])
+        board.updateBugCoord(moveAcross)
+        board.incrementTurn()
+
+        const cell = board.getCellFromRefCoord([4,3])
+        //console.log(cell)
+        expect(cell.isEmpty()).to.eq(0)
     })
 })

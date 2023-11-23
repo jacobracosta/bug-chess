@@ -5,6 +5,7 @@ import loopTestJson from "../testData/loopTest.json" assert { type: 'json' };;
 describe("Basic Game Loop Test: Full Game Loop", function (){
     it("Tests Full Loop: Success", function (){
         const [gameOverMessage, errors] = gameLoopTestHandle(loopTestJson["commands"])
+        console.log("errors",errors)
         expect(gameOverMessage).to.eq("Game Over! Player 1 Wins!")
         errors.to.be.an("array").that.is.empty
     })

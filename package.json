@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test:basicMovement": "mocha test/basicMovement/*.test.js",
-    "test:basicGameLoop": "mocha test/basicGameLoop/*.test.js",
+    "test:basicGameLoop": "mocha test/basicGameLoop/bugMovement.test.js",
+    "test:fullGameLoop": "mocha test/fullGameLoop/fullGameLoop.test.js",
     "test:all": "mocha test/*/*.test.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "game": "node gameCode/game/runGameLoop.js"
