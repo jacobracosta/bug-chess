@@ -90,7 +90,7 @@
         },
         {
             "player": 1,
-            "command":"move ant-1 14,22"
+            "command":"move ant-2 14,22"
         }
     ]
 }
