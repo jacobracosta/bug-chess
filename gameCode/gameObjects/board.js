@@ -1,6 +1,6 @@
 import { CellState } from "./cellState.js";
 import { translateArrayCoordToRefCoord, translateRefCoordToArrayCoord } from "../utils/coordinateTranslate.util.js";
-import doesArrayContainObject from "../utils/array.util.js";
+import doesArrayContainObject, { doesArrayContainBug } from "../utils/array.util.js";
 
 export class Board {
     constructor(size) {
@@ -33,10 +33,31 @@ export class Board {
       const newCoord = move.destCoord
       const oldCoord = bug.coord
       const oldCell = this.getCellFromRefCoord(oldCoord)
-      oldCell.emptyCell()
-      bug.coord = newCoord
-      this.addToBoard(bug)
-  }
+      const newCell = this.getCellFromRefCoord(newCoord)
+      if(bug.type == "beetle") {
+        if(doesArrayContainBug(oldCell.top,bug)) { //its not actually getting in here
+          this.removeFromTop(bug)
+          bug.coord = newCoord
+          if(newCell.isEmpty()) { //hopping down
+            this.addToBoard(bug) 
+          } else { //moving on top
+            this.addToTop(bug)
+          }
+        } else {
+          oldCell.emptyCell()
+        bug.coord = newCoord
+          if(newCell.isEmpty()) { //moving normally
+            this.addToBoard(bug)
+          } else { //hopping up from ground
+            this.addToTop(bug)
+      }
+        }
+      } else {
+        oldCell.emptyCell()
+        bug.coord = newCoord
+        this.addToBoard(bug)
+      }
+    }
 
     createRow(numRow,size) {
       let rowArray = new Array(size) //make dynamic later
@@ -55,6 +76,19 @@ export class Board {
       let newCell = new CellState(newBug.coord)
       newCell.bug = newBug
       this.boardMatrix[aX][aY] = newCell
+    }
+
+    addToTop(newBug) {
+      const [aX, aY] = translateRefCoordToArrayCoord(newBug.coord)
+      let topA = (this.boardMatrix[aX][aY].top)
+      topA.push(newBug)
+      this.boardMatrix[aX][aY].top = topA
+    }
+
+    removeFromTop(bug) { //only call if removing last bug
+      const [aX, aY] = translateRefCoordToArrayCoord(bug.coord)
+      const top = (this.boardMatrix[aX][aY].top)
+      top.pop()
     }
 
     getNumberOfEmptyCellsAroundCoord(refCoord) {
@@ -115,7 +149,7 @@ export class Board {
           const cell = allAdjacent[i]
           const bug = cell.bug
           const top = cell.top
-          const topBug = top ? top[top.length - 1] : null
+          const topBug = (top.length > 0) ? top[top.length - 1] : null
           if(topBug) colors.push(topBug.player.color)
           else colors.push(bug.player.color)
         }

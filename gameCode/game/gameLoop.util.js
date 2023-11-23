@@ -1,6 +1,7 @@
 import Move from "../gameObjects/move.js";
 import Placement from "../gameObjects/placement.js";
 import addBugToGame, { checkPlacement } from "./gameLogic.js";
+import checkMove from "../bugMoveLogic/checkMove.js"
 
 export function isWinConditionMet(player1, player2, board) {
     let message = "None"
@@ -21,21 +22,23 @@ export function processCommand(userInput) {
   const verb = inputArray[0].toLowerCase()
   const [bug,index] = inputArray[1].split("-")
   const coord = (inputArray[2].split(",")).map(Number)
+  //process coords here by calling translate function to see if legit coord
   return [verb,bug,index,coord]
 }
 
-export function processMovement(player, bug, index, coord, board){
+export function processMovement(player, bugType, index, coord, board){
     let message = "None"
     let processSuccess = false
+    let bug;
     if(!player.queenBee){
         message = "Cannot move until your queen is placed."
       } else {
-        if(bug == "queenBee") bug = player.queenBee
-        else if (bug == "beetle") bug = player.beetles[index]
-        else if (bug == "hopper") bug = player.hoppers[index]
-        else if (bug == "spider") bug = player.spiders[index]
-        else if (bug == "ant") bug = player.ants[index]
-        else console.log("Invalid bug. Re-input command.")
+        if(bugType == "queenBee") bug = player.queenBee
+        else if (bugType == "beetle") bug = player.beetles[index]
+        else if (bugType == "hopper") bug = player.hoppers[index]
+        else if (bugType == "spider") bug = player.spiders[index]
+        else if (bugType == "ant") bug = player.ants[index]
+        else message = "Invalid bug. Re-input command."
         const move = new Move(bug, coord)
         const [bIsMoveGood, failureMessage] = checkMove(move, board)
         if(bIsMoveGood) {
