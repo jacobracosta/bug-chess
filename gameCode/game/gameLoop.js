@@ -65,6 +65,7 @@ export function gameLoopTestHandle(commandsJson) {
       if(message.indexOf("Game Over!") != -1) {
           gameOverMessage = message
           queenSurrounded = true
+          break //questionable, should be using queenSurrounded to break loop
       }
     } else {
       errors.push(message)
