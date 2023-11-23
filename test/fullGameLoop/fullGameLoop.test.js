@@ -1,10 +1,19 @@
 import { expect } from "chai";
 import { gameLoopTestHandle } from "../../gameCode/game/gameLoop.js"
-import loopTestJson from "../testData/loopTest.json" assert { type: 'json' };; 
+import loopTestBeetleJson from "../testData/loopTest.beetle.json" assert { type: 'json' };; 
+import loopTestSimpleJson from "../testData/loopTest.simple.json" assert { type: 'json' };; 
+
 
 describe("Basic Game Loop Test: Full Game Loop", function (){
-    it("Tests Full Loop: Success", function (){
-        const [gameOverMessage, errors] = gameLoopTestHandle(loopTestJson["commands"])
+    it("Tests Full Loop: Success, Simple Test", function (){
+        const [gameOverMessage, errors] = gameLoopTestHandle(loopTestSimpleJson["commands"])
+        console.log("errors",errors)
+        expect(gameOverMessage).to.eq("Game Over! Player 1 Wins!")
+        errors.to.be.an("array").that.is.empty
+    })
+
+    it("Tests Full Loop: Success, Beetle Traversal Test", function (){
+        const [gameOverMessage, errors] = gameLoopTestHandle(loopTestBeetleJson["commands"])
         console.log("errors",errors)
         expect(gameOverMessage).to.eq("Game Over! Player 1 Wins!")
         errors.to.be.an("array").that.is.empty

@@ -1,0 +1,96 @@
+{
+    "commands": [
+        {
+            "player": 1,
+            "command":"place beetle 14,16"
+        },
+        {
+            "player": 2,
+            "command":"place beetle 14,18"
+        },
+        {
+            "player": 1,
+            "command":"place spider 12,15"
+        },
+        {
+            "player": 2,
+            "command":"place spider 16,19"
+        },
+        {
+            "player": 1,
+            "command":"place queenBee 14,14"
+        },
+        {
+            "player": 2,
+            "command":"place queenBee 14,20"
+        },
+        {
+            "player": 1,
+            "command":"move spider-0 12,21"
+        },
+        {
+            "player": 2,
+            "command":"move spider-0 16,13"
+        },
+        {
+            "player": 1,
+            "command":"place ant 10,22"
+        },
+        {
+            "player": 2,
+            "command":"place ant 18,14"
+        },
+        {
+            "player": 1,
+            "command":"move ant-0 12,19"
+        },
+        {
+            "player": 2,
+            "command":"move ant-0 16,15"
+        },
+        {
+            "player": 1,
+            "command":"place ant 10,22"
+        },
+        {
+            "player": 2,
+            "command":"place ant 18,14"
+        },
+        {
+            "player": 1,
+            "command":"move ant-1 16,21"
+        },
+        {
+            "player": 2,
+            "command":"move ant-1 12,13"
+        },
+        {
+            "player": 1,
+            "command":"place hopper 10,22"
+        },
+        {
+            "player": 2,
+            "command":"place hopper 18,14"
+        },
+        {
+            "player": 1,
+            "command":"move hopper-0 16,19"
+        },
+        {
+            "player": 2,
+            "command":"move hopper-0 12,15"
+        },
+        {
+            "player": 1,
+            "command":"place ant 10,22"
+        },
+        {
+            "player": 2,
+            "command":"place ant 18,14"
+        },
+        {
+            "player": 1,
+            "command":"move ant-1 14,22"
+        }
+    ]
+}
