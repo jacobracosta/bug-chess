@@ -1,6 +1,6 @@
 import Move from "../gameObjects/move.js";
 import Placement from "../gameObjects/placement.js";
-import {addBugToGame, checkPlacement} from "./checkPlacement.js";
+import {checkPlacement} from "./checkPlacement.js";
 import checkMove from "../bugMoveLogic/checkMove.js"
 
 export function isWinConditionMet(player1, player2, board) {
@@ -64,7 +64,7 @@ export function processPlacement(player, bug, coord, board) {
     const placement = new Placement(player, coord, bug)
     const [bIsPlacementGood, failureMessage] = checkPlacement(placement,board) //issue placing an empty thing
     if(bIsPlacementGood) {
-        addBugToGame(placement, board)
+        placement.addBugToGame(board)
         board.incrementTurn()
         processSuccess = true
     } else message = failureMessage + " Re-input command."

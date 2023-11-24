@@ -1,28 +1,3 @@
-import Bug from "../gameObjects/bugs.js"
-
-export function addBugToGame(placement, board) {
-    const player = placement.player
-    const coord = placement.coord
-    const bugType = placement.type
-    const bug = new Bug(player, coord, bugType)
-
-    let addSuccess = true
-    if(bugType == "queenBee") {
-        player.queenBee = bug
-    } else if (bugType == "beetle") {
-        player.beetles.push(bug)
-    } else if (bugType == "hopper") {
-        player.hoppers.push(bug)
-    } else if (bugType == "spider") {
-        player.spiders.push(bug)
-    } else if (bugType == "ant") {
-        player.ants.push(bug) 
-    } else addSuccess = false
-
-    board.addToBoard(bug)
-    return bug
-}
-
 function checkNumberOfBug(placement) {
     const player = placement.player
     const bugType = placement.type
@@ -75,4 +50,4 @@ export function checkPlacement(placement, board) {
     return [bIsPlacementGood, failureMessage]
 }
 
-export default addBugToGame
+export default checkPlacement

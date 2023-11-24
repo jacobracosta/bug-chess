@@ -1,7 +1,7 @@
 import { Player } from "../../gameCode/gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 import { expect } from "chai"
-import {addBugToGame, checkPlacement } from "../../gameCode/game/checkPlacement.js"
+import {checkPlacement } from "../../gameCode/game/checkPlacement.js"
 import Placement from "../../gameCode/gameObjects/placement.js"
 import Move from "../../gameCode/gameObjects/move.js"
 
@@ -17,11 +17,11 @@ describe("Basic Game Loop Test: Move Bugs", function (){
 
     it("tests beetle movement updates: failure", function() { 
         const firstPlacement = new Placement(red,[2,2],"beetle")
-        const beetle = addBugToGame(firstPlacement,board)
+        const beetle = firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        addBugToGame(secondPlacement,board)
+        secondPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const move = new Move(beetle,[4,3])
@@ -37,11 +37,11 @@ describe("Basic Game Loop Test: Move Bugs", function (){
 
     it("tests beetle movement updates: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"beetle")
-        const beetle = addBugToGame(firstPlacement,board)
+        const beetle = firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        addBugToGame(secondPlacement,board)
+        secondPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const move = new Move(beetle,[4,3])
@@ -57,11 +57,11 @@ describe("Basic Game Loop Test: Move Bugs", function (){
 
     it("tests beetle movement updates: hop down, success", function() { 
         const firstPlacement = new Placement(red,[2,2],"beetle")
-        const beetle = addBugToGame(firstPlacement,board)
+        const beetle = firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        addBugToGame(secondPlacement,board)
+        secondPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const moveUp = new Move(beetle,[4,3])
@@ -70,6 +70,7 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         board.incrementTurn()
 
         const thirdPlacementSuccess = new Placement(red,[4,5],"spider")
+        thirdPlacementSuccess.addBugToGame(board)
 
         const moveDown = new Move(beetle, [6,4])
         board.updateBugCoord(moveDown)
@@ -83,11 +84,11 @@ describe("Basic Game Loop Test: Move Bugs", function (){
 
     it("tests beetle movement updates: hop down, place after success", function() { 
         const firstPlacement = new Placement(red,[2,2],"beetle")
-        const beetle = addBugToGame(firstPlacement,board)
+        const beetle = firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        addBugToGame(secondPlacement,board)
+        secondPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const moveUp = new Move(beetle,[4,3])
@@ -96,7 +97,7 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         board.incrementTurn()
 
         const thirdPlacement = new Placement(red,[4,5],"spider")
-        addBugToGame(thirdPlacement,board)
+        thirdPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const moveAcross = new Move(beetle, [4,5])
