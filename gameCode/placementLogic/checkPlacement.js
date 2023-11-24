@@ -1,28 +1,3 @@
-import Bug from "../gameObjects/bugs.js"
-
-export function addBugToGame(placement, board) {
-    const player = placement.player
-    const coord = placement.coord
-    const bugType = placement.type
-    const bug = new Bug(player, coord, bugType)
-
-    let addSuccess = true
-    if(bugType == "queenBee") {
-        player.queenBee = bug
-    } else if (bugType == "beetle") {
-        player.beetles.push(bug)
-    } else if (bugType == "hopper") {
-        player.hoppers.push(bug)
-    } else if (bugType == "spider") {
-        player.spiders.push(bug)
-    } else if (bugType == "ant") {
-        player.ants.push(bug) 
-    } else addSuccess = false
-
-    board.addToBoard(bug)
-    return bug
-}
-
 function checkNumberOfBug(placement) {
     const player = placement.player
     const bugType = placement.type
@@ -36,7 +11,7 @@ function checkNumberOfBug(placement) {
     return success
 }
 
-function isHexOpen(placement,board) { //is the space where the player intends to move occupied already
+function isHexOpen(placement,board) {
     return board.getCellFromRefCoord(placement.coord).isEmpty()
 }
 
@@ -68,11 +43,11 @@ export function checkPlacement(placement, board) {
             if(checkColorOfAdjacent(placement, board)) {
                 if(checkNumberOfBug(placement)) {
                     bIsPlacementGood = true
-                } else failureMessage =  "Too many of this bug."
-            } else failureMessage = "Can't place next to a bug of opposite color."
-        } else failureMessage = "Dest Hex not Adjacent to Anything."
-    } else failureMessage = "Hex Occupied."
+                } else failureMessage =  "Too many of this bug." //
+            } else failureMessage = "Can't place next to a bug of opposite color." //
+        } else failureMessage = "Dest Hex not Adjacent to Anything." //
+    } else failureMessage = "Hex Occupied." //
     return [bIsPlacementGood, failureMessage]
 }
 
-export default addBugToGame
+export default checkPlacement

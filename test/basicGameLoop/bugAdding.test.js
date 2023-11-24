@@ -1,7 +1,7 @@
 import { Player } from "../../gameCode/gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 import { expect } from "chai"
-import addBugToGame, { checkPlacement } from "../../gameCode/game/gameLogic.js"
+import {checkPlacement} from "../../gameCode/placementLogic/checkPlacement.js";
 import Placement from "../../gameCode/gameObjects/placement.js"
 
 describe("Basic Game Loop Test: Add Bugs", function (){
@@ -19,7 +19,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         expect(success).to.be.true
         expect(message).to.eq("Placement Good.")
 
-        const spider= addBugToGame(firstPlacement,board)
+        const spider = firstPlacement.addBugToGame(board)
         board.incrementTurn()
         expect(spider).to.be.not.null
     })
@@ -30,7 +30,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         expect(message).to.eq("Placement Good.")
         expect(success).to.be.true
 
-        const spider = addBugToGame(firstPlacement, board)
+        const spider = firstPlacement.addBugToGame(board)
         board.incrementTurn()
         expect(spider).to.be.not.null
 
@@ -39,7 +39,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         expect(message2).to.eq("Placement Good.")
         expect(success2).to.be.true
         
-        const spider2 = addBugToGame(secondPlacement,board)
+        const spider2 = secondPlacement.addBugToGame(board)
         board.incrementTurn()
         expect(spider2).to.be.not.null
         expect(board.turn).to.eq(3)
@@ -47,7 +47,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
 
     it("Adds two bugs: failure, hex not adjacent", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
-        addBugToGame(firstPlacement, board)
+        firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,5],"spider")
@@ -58,7 +58,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
 
     it("Adds two bugs: failure, hex occupied", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
-        addBugToGame(firstPlacement, board)
+        firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[2,2],"spider")
@@ -69,11 +69,11 @@ describe("Basic Game Loop Test: Add Bugs", function (){
 
     it("Adds three bugs: success", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
-        addBugToGame(firstPlacement, board)
+        firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        addBugToGame(secondPlacement,board)
+        secondPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const thirdPlacement = new Placement(red,[0,3],"spider")
@@ -81,7 +81,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
         expect(message3).to.eq("Placement Good.")
         expect(success3).to.be.true
         
-        const spider = addBugToGame(thirdPlacement,board)
+        const spider = thirdPlacement.addBugToGame(board)
         board.incrementTurn()
         expect(spider).to.be.not.null
         expect(board.turn).to.eq(4)
@@ -89,11 +89,11 @@ describe("Basic Game Loop Test: Add Bugs", function (){
 
     it("Adds three bugs: failure", function() { 
         const firstPlacement = new Placement(red,[2,2],"spider")
-        addBugToGame(firstPlacement, board)
+        firstPlacement.addBugToGame(board)
         board.incrementTurn()
 
         const secondPlacement = new Placement(blue,[4,3],"spider")
-        const spider = addBugToGame(secondPlacement,board)
+        const spider = secondPlacement.addBugToGame(board)
         board.incrementTurn()
         expect(spider).to.be.not.null
         expect(board.turn).to.eq(3)

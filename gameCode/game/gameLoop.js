@@ -1,6 +1,5 @@
 import { Player } from "../gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
-
 import {isWinConditionMet, processCommand, processMovement, processPlacement } from "./gameLoop.util.js";
 
 export function processTurn(userInput, currentPlayer, otherPlayer, board) {

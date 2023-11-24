@@ -1,96 +1,119 @@
 {
     "commands": [
         {
+            "commandNumber":0,
             "player": 1,
             "command":"place beetle 14,16"
         },
         {
+            "commandNumber":1,
             "player": 2,
             "command":"place beetle 14,18"
         },
         {
+            "commandNumber":2,
             "player": 1,
             "command":"place spider 12,15"
         },
         {
+            "commandNumber":3,
             "player": 2,
             "command":"place spider 16,19"
         },
         {
+            "commandNumber":4,
             "player": 1,
             "command":"place queenBee 14,14"
         },
         {
+            "commandNumber":5,
             "player": 2,
             "command":"place queenBee 14,20"
         },
         {
+            "commandNumber":6,
             "player": 1,
             "command":"move spider-0 12,21"
         },
         {
+            "commandNumber":7,
             "player": 2,
             "command":"move spider-0 16,13"
         },
         {
+            "commandNumber":8,
             "player": 1,
-            "command":"place ant 10,22"
+            "command":"place beetle 10,22"
         },
         {
+            "commandNumber":9,
             "player": 2,
-            "command":"place ant 18,14"
+            "command":"place beetle 18,14"
         },
         {
+            "commandNumber":10,
+            "player": 1,
+            "command":"move beetle-1 12,21"
+        },
+        {
+            "commandNumber":11,
+            "player": 2,
+            "command":"move beetle-1 16,13"
+        },
+        {
+            "commandNumber":12,
+            "player": 1,
+            "command":"move beetle-1 14,20"
+        },
+        {
+            "commandNumber":13,
+            "player": 2,
+            "command":"move beetle-1 14,14"
+        },
+        {
+            "commandNumber":14,
+            "player": 1,
+            "command":"place spider 16,21"
+        },
+        {
+            "commandNumber":15,
+            "player": 2,
+            "command":"place spider 14,12"
+        },
+        {
+            "commandNumber":16,
+            "player": 1,
+            "command":"place ant 14,22"
+        },
+        {
+            "commandNumber":17,
+            "player": 2,
+            "command":"place hopper 12,13"
+        },
+        {
+            "commandNumber":18,
             "player": 1,
             "command":"move ant-0 12,19"
         },
         {
+            "commandNumber":19,
             "player": 2,
-            "command":"move ant-0 16,15"
+            "command":"move hopper-0 16,15"
         },
         {
+            "commandNumber":20,
             "player": 1,
-            "command":"place ant 10,22"
+            "command":"place ant 14,22"
         },
         {
+            "commandNumber":21,
             "player": 2,
-            "command":"place ant 18,14"
+            "command":"place hopper 12,13"
         },
         {
+            "commandNumber":22,
             "player": 1,
-            "command":"move ant-1 16,21"
-        },
-        {
-            "player": 2,
-            "command":"move ant-1 12,13"
-        },
-        {
-            "player": 1,
-            "command":"place hopper 10,22"
-        },
-        {
-            "player": 2,
-            "command":"place hopper 18,14"
-        },
-        {
-            "player": 1,
-            "command":"move hopper-0 16,19"
-        },
-        {
-            "player": 2,
-            "command":"move hopper-0 12,15"
-        },
-        {
-            "player": 1,
-            "command":"place ant 10,22"
-        },
-        {
-            "player": 2,
-            "command":"place ant 18,14"
-        },
-        {
-            "player": 1,
-            "command":"move ant-2 14,22"
+            "command":"move beetle-1 16,19"
         }
     ]
 }
