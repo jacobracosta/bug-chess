@@ -17,10 +17,7 @@ TODO
   -continuity code implemented, but it is designed for a matrix with 8 neighbors, need to see if there are cases this 
   doesn't work for
 
--address "jump" case
-
 -document coordinate system
   
 -Design game loop
-  -start with commandline app
-  -commands like "place beetle, move ant, place queen"
+  -got basic game loops working, running into issues with beetle movement and updating cells beetles move from
