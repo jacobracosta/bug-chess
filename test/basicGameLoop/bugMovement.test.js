@@ -105,7 +105,6 @@ describe("Basic Game Loop Test: Move Bugs", function (){
         board.incrementTurn()
 
         const cell = board.getCellFromRefCoord([4,3])
-        //console.log(cell)
         expect(cell.isEmpty()).to.eq(0)
     })
 })

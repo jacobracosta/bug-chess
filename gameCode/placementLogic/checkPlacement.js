@@ -11,7 +11,7 @@ function checkNumberOfBug(placement) {
     return success
 }
 
-function isHexOpen(placement,board) { //is the space where the player intends to move occupied already
+function isHexOpen(placement,board) {
     return board.getCellFromRefCoord(placement.coord).isEmpty()
 }
 
