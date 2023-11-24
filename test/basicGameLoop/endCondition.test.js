@@ -4,7 +4,7 @@ import { queenBee } from "../../gameCode/gameObjects/bugs.js"
 import Move from "../../gameCode/gameObjects/move.js"
 import { ant } from "../../gameCode/gameObjects/bugs.js"
 import { expect } from "chai"
-import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
+import checkMove from "../../gameCode/moveLogic/checkMove.js"
 
 describe("Basic Game Loop Test: End Game", function (){
 

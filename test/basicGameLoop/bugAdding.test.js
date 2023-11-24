@@ -1,7 +1,7 @@
 import { Player } from "../../gameCode/gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 import { expect } from "chai"
-import { checkPlacement } from "../../gameCode/game/checkPlacement.js"
+import {checkPlacement} from "../../gameCode/placementLogic/checkPlacement.js";
 import Placement from "../../gameCode/gameObjects/placement.js"
 
 describe("Basic Game Loop Test: Add Bugs", function (){

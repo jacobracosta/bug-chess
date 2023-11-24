@@ -1,7 +1,7 @@
 import Move from "../gameObjects/move.js";
 import Placement from "../gameObjects/placement.js";
-import {checkPlacement} from "./checkPlacement.js";
-import checkMove from "../bugMoveLogic/checkMove.js"
+import {checkPlacement} from "../../gameCode/placementLogic/checkPlacement.js";
+import checkMove from "../moveLogic/checkMove.js"
 
 export function isWinConditionMet(player1, player2, board) {
     let message = "None"

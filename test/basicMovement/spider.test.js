@@ -1,7 +1,7 @@
 import { expect } from "chai"
 import { spider } from "../../gameCode/gameObjects/bugs.js"
 import Move from "../../gameCode/gameObjects/move.js"
-import checkMove from "../../gameCode/bugMoveLogic/checkMove.js"
+import checkMove from "../../gameCode/moveLogic/checkMove.js"
 import Board from "../../gameCode/gameObjects/board.js"
 
 describe("Basic Movement Logic Tests: Spider", function () {
