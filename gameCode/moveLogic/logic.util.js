@@ -16,6 +16,7 @@ export function checkCrescentBreak(move, board) {
 
 export function isHexOpen(move,board) {
     let isHexOpen = false
+    const bugType = move.moveBug.type
     if(bugType != "beetle") {
         isHexOpen = (board.getCellFromRefCoord(move.destCoord)).isEmpty()
     } else isHexOpen = true
