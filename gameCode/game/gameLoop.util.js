@@ -1,6 +1,6 @@
 import Move from "../gameObjects/move.js";
 import Placement from "../gameObjects/placement.js";
-import addBugToGame, { checkPlacement } from "./gameLogic.js";
+import {addBugToGame, checkPlacement} from "./checkPlacement.js";
 import checkMove from "../bugMoveLogic/checkMove.js"
 
 export function isWinConditionMet(player1, player2, board) {
@@ -31,7 +31,7 @@ export function processMovement(player, bugType, index, coord, board){
     let processSuccess = false
     let bug;
     if(!player.queenBee){
-        message = "Cannot move until your queen is placed."
+        message = "Cannot move until your queen is placed." //
       } else {
         if(bugType == "queenBee") bug = player.queenBee
         else if (bugType == "beetle") bug = player.beetles[index]
@@ -56,9 +56,9 @@ export function processPlacement(player, bug, coord, board) {
     let message = "None"
     let processSuccess = false
     if(player.isFirst) {
-        if(board.turn >= 7 && !player.queenBee) message = "You must place your queen by your 4th turn."
+        if(board.turn >= 7 && !player.queenBee) message = "You must place your queen by your 4th turn." //
     } else {
-        if(board.turn >= 8 && !player.queenBee) message = "You must place your queen by your 4th turn."
+        if(board.turn >= 8 && !player.queenBee) message = "You must place your queen by your 4th turn." //
     }
 
     const placement = new Placement(player, coord, bug)

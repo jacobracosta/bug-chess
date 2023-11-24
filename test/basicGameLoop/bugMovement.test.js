@@ -1,7 +1,7 @@
 import { Player } from "../../gameCode/gameObjects/player.js"
 import Board from "../../gameCode/gameObjects/board.js"
 import { expect } from "chai"
-import addBugToGame, { checkPlacement } from "../../gameCode/game/gameLogic.js"
+import {addBugToGame, checkPlacement } from "../../gameCode/game/checkPlacement.js"
 import Placement from "../../gameCode/gameObjects/placement.js"
 import Move from "../../gameCode/gameObjects/move.js"
 
