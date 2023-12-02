@@ -22,14 +22,14 @@ function isDestHexAdjacent(placement,board) {
     return isDestHexAdjacent
 }
 
-function checkColorOfAdjacent(placement, board) {
+function checkColorOfAdjacent(placement, board) { //just checks player order instead of color
     const coord = placement.coord
     const playerNum = placement.player.isFirst
     let allAdjacentSameColor = true
 
     const allEqual = arr => arr.every(val => val === arr[0]);
     if(board.turn >= 3) {
-        const colors = board.getAllAdjacentCellColors(coord)
+        const colors = board.getAllAdjacentCellPlayers(coord)
         allAdjacentSameColor = (allEqual(colors) && colors[0] == playerNum)
     }
     return allAdjacentSameColor

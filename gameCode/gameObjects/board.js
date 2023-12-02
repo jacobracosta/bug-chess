@@ -141,20 +141,20 @@ export class Board {
       return allAdjacentCells
     }
 
-    getAllAdjacentCellColors(refCoord) {
+    getAllAdjacentCellPlayers(refCoord) {
       const allAdjacent = this.getAllAdjacentCells(refCoord)
-      let colors = []
+      let players = []
       for (let i=0; i<allAdjacent.length; i++){
         if(!allAdjacent[i].isEmpty()) {
           const cell = allAdjacent[i]
           const bug = cell.bug
           const top = cell.top
           const topBug = (top.length > 0) ? top[top.length - 1] : null
-          if(topBug) colors.push(topBug.bFirstPlayer)
-          else colors.push(bug.bFirstPlayer)
+          if(topBug) players.push(topBug.bFirstPlayer)
+          else players.push(bug.bFirstPlayer)
         }
       }
-      return colors
+      return players
     }
 
 }

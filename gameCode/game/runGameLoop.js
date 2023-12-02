@@ -8,8 +8,8 @@ const prompt = promptSync({sigint:true});
 
 let queenSurrounded = false;
 
-const red = new Player("red", true)
-const blue = new Player("blue", false)
+const red = new Player(true)
+const blue = new Player(false)
 const board = new Board(15)
 
 while (!queenSurrounded) {
