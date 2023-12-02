@@ -8,10 +8,12 @@ describe("Basic Movement Logic Tests: Spider", function () {
 
     let testBoard;
     let moveSpider, staticSpider1;
+    const firstPlayer = true
+    const secondPlayer = false
     beforeEach(function() {
         testBoard = new Board(8)
-        moveSpider = new spider("white",[4,5])
-        staticSpider1 = new spider("black",[6,6])
+        moveSpider = new spider(firstPlayer,[4,5])
+        staticSpider1 = new spider(secondPlayer,[6,6])
 
         testBoard.addToBoard(moveSpider)
         testBoard.addToBoard(staticSpider1)
@@ -25,7 +27,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
     })
 
     it("tests spider movement: success, move on different bug", function () {
-        const staticSpider2 = new spider("black",[8,5])
+        const staticSpider2 = new spider(secondPlayer,[8,5])
         testBoard.addToBoard(staticSpider2)
 
         const move = new Move(moveSpider,[8,7]) //10,4
@@ -42,14 +44,14 @@ describe("Basic Movement Logic Tests: Spider", function () {
     })
 
     it("tests spider movement: success, 4 options", function (){
-        const staticSpider2 = new spider("black",[8,7])
-        const staticSpider3 = new spider("black",[10,6])
-        const staticSpider4 = new spider("black",[12,5])
-        const staticSpider5 = new spider("black",[12,3])
-        const staticSpider6 = new spider("black",[12,1])
-        const staticSpider7 = new spider("black",[10,0])
-        const staticSpider8 = new spider("black",[8,1])
-        const staticSpider9 = new spider("black",[6,2])
+        const staticSpider2 = new spider(secondPlayer,[8,7])
+        const staticSpider3 = new spider(secondPlayer,[10,6])
+        const staticSpider4 = new spider(secondPlayer,[12,5])
+        const staticSpider5 = new spider(secondPlayer,[12,3])
+        const staticSpider6 = new spider(secondPlayer,[12,1])
+        const staticSpider7 = new spider(secondPlayer,[10,0])
+        const staticSpider8 = new spider(secondPlayer,[8,1])
+        const staticSpider9 = new spider(secondPlayer,[6,2])
         testBoard.addToBoard(staticSpider2)
         testBoard.addToBoard(staticSpider3)
         testBoard.addToBoard(staticSpider4)

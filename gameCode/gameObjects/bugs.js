@@ -1,6 +1,6 @@
 export class Bug {
-    constructor(player, coord, type) {
-      this.player = player;
+    constructor(bFirstPlayer, coord, type) {
+      this.bFirstPlayer = bFirstPlayer;
       this.coord = coord;
       this.type = type;
     }
@@ -9,36 +9,36 @@ export class Bug {
 export default Bug;
 
 export class queenBee extends Bug {
-  constructor(player, coord, type) {
-    super(player, coord, type)
+  constructor(bFirstPlayer, coord, type) {
+    super(bFirstPlayer, coord, type)
     this.type = "queenBee"
   }
 }
 
 export class ant extends Bug {
-  constructor(player, coord, type) {
-    super(player, coord, type)
+  constructor(bFirstPlayer, coord, type) {
+    super(bFirstPlayer, coord, type)
     this.type = "ant"
   }
 }
 
 export class hopper extends Bug {
-  constructor(player, coord, type) {
-    super(player, coord, type)
+  constructor(bFirstPlayer, coord, type) {
+    super(bFirstPlayer, coord, type)
     this.type = "hopper"
   }
 }
 
 export class beetle extends Bug {
-  constructor(player, coord, type) {
-    super(player, coord, type)
+  constructor(bFirstPlayer, coord, type) {
+    super(bFirstPlayer, coord, type)
     this.type = "beetle"
   }
 }
 
 export class spider extends Bug {
-  constructor(player, coord, type) {
-    super(player, coord, type)
+  constructor(bFirstPlayer, coord, type) {
+    super(bFirstPlayer, coord, type)
     this.type = "spider"
   }
 }

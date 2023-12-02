@@ -11,7 +11,7 @@ export class Placement {
         const player = this.player
         const coord = this.coord
         const bugType = this.type
-        const bug = new Bug(player, coord, bugType)
+        const bug = new Bug(player.isFirst, coord, bugType)
     
         let addSuccess = true
         if(bugType == "queenBee") {

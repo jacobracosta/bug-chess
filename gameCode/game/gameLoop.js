@@ -38,8 +38,8 @@ export function processTurn(userInput, currentPlayer, otherPlayer, board) {
 
 export function gameLoopTestHandle(commandsJson) {
   let queenSurrounded = false;
-  const red = new Player("red", true)
-  const blue = new Player("blue", false)
+  const red = new Player(true)
+  const blue = new Player(false)
   const board = new Board(16)
 
   let errors = [] //make json obj later

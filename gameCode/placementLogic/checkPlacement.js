@@ -22,17 +22,17 @@ function isDestHexAdjacent(placement,board) {
     return isDestHexAdjacent
 }
 
-function checkColorOfAdjacent(placement, board) {
+function checkPlayerOfAdjacent(placement, board) {
     const coord = placement.coord
-    const playerColor = placement.player.color
-    let allAdjacentSameColor = true
+    const playerNum = placement.player.isFirst
+    let allAdjacentSamePlayer = true
 
     const allEqual = arr => arr.every(val => val === arr[0]);
     if(board.turn >= 3) {
-        const colors = board.getAllAdjacentCellColors(coord)
-        allAdjacentSameColor = (allEqual(colors) && colors[0] == playerColor)
+        const players = board.getAllAdjacentCellPlayers(coord)
+        allAdjacentSamePlayer = (allEqual(players) && players[0] == playerNum)
     }
-    return allAdjacentSameColor
+    return allAdjacentSamePlayer
 }
 
 export function checkPlacement(placement, board) {
@@ -40,11 +40,11 @@ export function checkPlacement(placement, board) {
     let failureMessage = "Placement Good."
     if(isHexOpen(placement, board)) {
         if(isDestHexAdjacent(placement, board)) {
-            if(checkColorOfAdjacent(placement, board)) {
+            if(checkPlayerOfAdjacent(placement, board)) {
                 if(checkNumberOfBug(placement)) {
                     bIsPlacementGood = true
                 } else failureMessage =  "Too many of this bug." //
-            } else failureMessage = "Can't place next to a bug of opposite color." //
+            } else failureMessage = "Can't place next to a bug of other player." //
         } else failureMessage = "Dest Hex not Adjacent to Anything." //
     } else failureMessage = "Hex Occupied." //
     return [bIsPlacementGood, failureMessage]

@@ -8,10 +8,12 @@ describe("Basic Movement Logic Tests: Beetle", function () {
 
     let testBoard;
     let moveBeetle, staticBeetle1;
+    const firstPlayer = true
+    const secondPlayer = false
     beforeEach(function() {
         testBoard = new Board(3)
-        moveBeetle = new beetle("white",[2,2])
-        staticBeetle1 = new beetle("black",[0,1])
+        moveBeetle = new beetle(firstPlayer,[2,2])
+        staticBeetle1 = new beetle(secondPlayer,[0,1])
 
         testBoard.addToBoard(moveBeetle)
         testBoard.addToBoard(staticBeetle1)
@@ -32,7 +34,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
     })
 
     it("tests beetle movement: success, move on top of different bug", function () {
-        const staticBeetle2 = new beetle("black",[0,3])
+        const staticBeetle2 = new beetle(secondPlayer,[0,3])
         testBoard.addToBoard(staticBeetle2)
 
         const move = new Move(moveBeetle,[0,3])
@@ -43,7 +45,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
 
     
     it("tests beetle movement: failure, discontinuity", function () {
-        const staticBeetle2 = new beetle("black",[4,3])
+        const staticBeetle2 = new beetle(secondPlayer,[4,3])
         testBoard.addToBoard(staticBeetle2)
 
         const move = new Move(moveBeetle,[0,3])
