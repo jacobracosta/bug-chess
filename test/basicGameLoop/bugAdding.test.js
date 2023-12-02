@@ -100,7 +100,7 @@ describe("Basic Game Loop Test: Add Bugs", function (){
 
         const thirdPlacement = new Placement(red,[2,4],"spider")
         const [success3,message3] = checkPlacement(thirdPlacement, board)
-        expect(message3).to.eq("Can't place next to a bug of opposite color.")
+        expect(message3).to.eq("Can't place next to a bug of other player.")
         expect(success3).to.be.false
     })
 })
