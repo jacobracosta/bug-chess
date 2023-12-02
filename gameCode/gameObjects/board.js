@@ -150,8 +150,8 @@ export class Board {
           const bug = cell.bug
           const top = cell.top
           const topBug = (top.length > 0) ? top[top.length - 1] : null
-          if(topBug) colors.push(topBug.player.color)
-          else colors.push(bug.player.color)
+          if(topBug) colors.push(topBug.bFirstPlayer)
+          else colors.push(bug.bFirstPlayer)
         }
       }
       return colors

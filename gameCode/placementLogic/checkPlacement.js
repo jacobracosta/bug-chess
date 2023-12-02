@@ -24,13 +24,13 @@ function isDestHexAdjacent(placement,board) {
 
 function checkColorOfAdjacent(placement, board) {
     const coord = placement.coord
-    const playerColor = placement.player.color
+    const playerNum = placement.player.isFirst
     let allAdjacentSameColor = true
 
     const allEqual = arr => arr.every(val => val === arr[0]);
     if(board.turn >= 3) {
         const colors = board.getAllAdjacentCellColors(coord)
-        allAdjacentSameColor = (allEqual(colors) && colors[0] == playerColor)
+        allAdjacentSameColor = (allEqual(colors) && colors[0] == playerNum)
     }
     return allAdjacentSameColor
 }
