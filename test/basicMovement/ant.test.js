@@ -8,10 +8,12 @@ describe("Basic Movement Logic Tests: Ant", function (){
 
     let testBoard;
     let moveAnt, staticAnt1;
+    const firstPlayer = true
+    const secondPlayer = false
     beforeEach(function() {
         testBoard = new Board(5)
-        moveAnt = new ant("white",[0,1])
-        staticAnt1 = new ant("black",[2,2])
+        moveAnt = new ant(firstPlayer,[0,1])
+        staticAnt1 = new ant(secondPlayer,[2,2])
 
         testBoard.addToBoard(moveAnt)
         testBoard.addToBoard(staticAnt1)
@@ -25,7 +27,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
     })
 
     it("tests ant movement: success, move on different bug", function () {
-        const staticAnt2 = new ant("black",[4,3])
+        const staticAnt2 = new ant(secondPlayer,[4,3])
         testBoard.addToBoard(staticAnt2)
 
         const move = new Move(moveAnt,[6,2])
@@ -35,7 +37,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
     })
 
     it("tests ant movement: failure, discontinuity", function () {
-        const staticAnt2 = new ant("black",[4,3])
+        const staticAnt2 = new ant(secondPlayer,[4,3])
         testBoard.addToBoard(staticAnt2)
 
         const move = new Move(staticAnt1,[2,4])
@@ -45,13 +47,13 @@ describe("Basic Movement Logic Tests: Ant", function (){
     })
 
     it("tests ant movement: failure, breaks crescent", function () {
-        const staticAnt2 = new ant("black",[2,4])
+        const staticAnt2 = new ant(secondPlayer,[2,4])
         testBoard.addToBoard(staticAnt2)
-        const staticAnt3 = new ant("black",[4,5])
+        const staticAnt3 = new ant(secondPlayer,[4,5])
         testBoard.addToBoard(staticAnt3)
-        const staticAnt4 = new ant("black",[6,4])
+        const staticAnt4 = new ant(secondPlayer,[6,4])
         testBoard.addToBoard(staticAnt4)
-        const staticAnt5 = new ant("black",[6,2])
+        const staticAnt5 = new ant(secondPlayer,[6,2])
         testBoard.addToBoard(staticAnt5)
 
         const move = new Move(moveAnt,[4,3])

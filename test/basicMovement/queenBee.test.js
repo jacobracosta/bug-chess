@@ -8,10 +8,12 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
 
     let testBoard;
     let moveBee, staticBee1;
+    const firstPlayer = true
+    const secondPlayer = false
     beforeEach(function() {
         testBoard = new Board(4)
-        moveBee = new queenBee("white",[0,1])
-        staticBee1 = new queenBee("black",[2,2])
+        moveBee = new queenBee(firstPlayer,[0,1])
+        staticBee1 = new queenBee(secondPlayer,[2,2])
 
         testBoard.addToBoard(moveBee)
         testBoard.addToBoard(staticBee1)
