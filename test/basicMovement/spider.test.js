@@ -40,7 +40,7 @@ describe("Basic Movement Logic Tests: Spider", function () {
         const move = new Move(moveSpider,[8,5])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Not Legal")
+        expect(message).to.eq("Move Not Legal.")
     })
 
     it("tests spider movement: success, 4 options", function (){

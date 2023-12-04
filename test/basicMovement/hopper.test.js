@@ -72,7 +72,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         const move = new Move(moveHopper,[4,1])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Not Legal")
+        expect(message).to.eq("Move Not Legal.")
     })
 
     it("tests hopper movement: success, move on different bug", function () {
@@ -96,7 +96,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         const move = new Move(moveHopper,[8,5])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Not Legal")
+        expect(message).to.eq("Move Not Legal.")
     })
 
     it("tests hopper movement: failure, discontinuity", function () {
@@ -106,7 +106,7 @@ describe("Basic Hopper Logic Tests: Hopper", function () {
         const move = new Move(staticHopper1,[6,4])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Breaks Continuity")
+        expect(message).to.eq("Move Breaks Continuity.")
     })
     
 })

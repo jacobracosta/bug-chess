@@ -51,7 +51,7 @@ describe("Basic Movement Logic Tests: Beetle", function () {
         const move = new Move(moveBeetle,[0,3])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Breaks Continuity")
+        expect(message).to.eq("Move Breaks Continuity.")
     })
 
 })

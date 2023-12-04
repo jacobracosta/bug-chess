@@ -37,14 +37,14 @@ describe("Basic Movement Logic Tests: Queen Bee", function () {
         const move = new Move(moveBee,[4,3])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Not Legal")
+        expect(message).to.eq("Move Not Legal.")
     })
 
     it("tests queen bee movement: failure, hex occupied", function () {
         const move = new Move(moveBee,[2,2])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Hex Occupied")
+        expect(message).to.eq("Hex Occupied.")
     })
 
 })

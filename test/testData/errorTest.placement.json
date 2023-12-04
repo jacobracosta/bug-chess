@@ -8,7 +8,37 @@
         {
             "commandNumber":1,
             "player": 2,
+            "command":"place beetle 14,20"
+        },
+        {
+            "commandNumber":2,
+            "player": 2,
+            "command":"place beetle 14,16"
+        },
+        {
+            "commandNumber":3,
+            "player": 2,
             "command":"place beetle 14,18"
+        },
+        {
+            "commandNumber":4,
+            "player": 1,
+            "command":"place beetle 14,20"
+        },
+        {
+            "commandNumber":5,
+            "player": 1,
+            "command":"place beetle 14,14"
+        },
+        {
+            "commandNumber":6,
+            "player": 2,
+            "command":"place beetle 14,20"
+        },
+        {
+            "commandNumber":7,
+            "player": 1,
+            "command":"place beetle 14,12"
         }
     ]
 }

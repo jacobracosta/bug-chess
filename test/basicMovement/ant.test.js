@@ -43,7 +43,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
         const move = new Move(staticAnt1,[2,4])
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("Move Breaks Continuity")
+        expect(message).to.eq("Move Breaks Continuity.")
     })
 
     it("tests ant movement: failure, breaks crescent", function () {
@@ -60,7 +60,7 @@ describe("Basic Movement Logic Tests: Ant", function (){
 
         const [check,message] = checkMove(move, testBoard)
         expect(check).to.be.false;
-        expect(message).to.eq("End State Not Legal")
+        expect(message).to.eq("End State Not Legal.")
     })
     
 })
