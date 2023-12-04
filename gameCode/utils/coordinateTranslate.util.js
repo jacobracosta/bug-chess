@@ -17,4 +17,12 @@ export function translateArrayCoordToRefCoord(arrayCoord) {
     return [rX,rY]
 }
 
+export function verifyRefCoord(refCoord) {
+    const [rX,rY] = refCoord
+    let coordGood = true
+    if(!Number.isInteger(rX) && rX < 0) coordGood = false
+    if(!Number.isInteger(rY) && rY < 0) coordGood = false
+    return coordGood //may need to do more checks, doing lazy version now.
+}
+
 export default translateRefCoordToArrayCoord

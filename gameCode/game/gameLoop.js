@@ -6,33 +6,32 @@ export function processTurn(userInput, currentPlayer, otherPlayer, board) {
   let message = "Move Good."
   let turnSuccess = false
   let moveSuccess, moveMessage, placeSuccess, placeMessage
-  const [verb,bug,index,coord] = processCommand(userInput) //need to handle bad coordinates
-  
-  if(index > 2) {
-    message = "Invalid index. Must be less than 2."
-  }
+  const [processSuccess, processMessage, processResults] = processCommand(userInput)
 
-  if(verb == "move") {
-    [moveSuccess, moveMessage] = processMovement(currentPlayer,bug,index,coord,board)
-    if(!moveSuccess) {
-      message = moveMessage
-    }
-  } else if(verb == "place") {
-    [placeSuccess, placeMessage] = processPlacement(currentPlayer,bug,coord,board)
-    if(!placeSuccess) {
-      message = placeMessage
-    }
-  } else {
-    message = "Invalid verb. Start with 'move' or 'place'."
-  }
+  if(processSuccess) {
+    const [verb, bug, index, coord] = processResults
 
-  if(placeSuccess || moveSuccess) {
-    turnSuccess = true
-    const [winConditionMet, winMessage] = isWinConditionMet(currentPlayer,otherPlayer,board)
-    if(winConditionMet) {
-      message = winMessage
+    if(verb == "move") {
+      [moveSuccess, moveMessage] = processMovement(currentPlayer,bug,index,coord,board)
+      if(!moveSuccess) {
+        message = moveMessage
+      }
+    } else if(verb == "place") {
+      [placeSuccess, placeMessage] = processPlacement(currentPlayer,bug,coord,board)
+      if(!placeSuccess) {
+        message = placeMessage
+      }
+    } 
+
+    if(placeSuccess || moveSuccess) {
+      turnSuccess = true
+      const [winConditionMet, winMessage] = isWinConditionMet(currentPlayer,otherPlayer,board)
+      if(winConditionMet) {
+        message = winMessage
+      }
     }
   }
+  else message = processMessage
   return [turnSuccess, message]
 }
 

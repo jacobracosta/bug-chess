@@ -39,11 +39,11 @@ export function checkMove(move, board) {
                 if(isMoveLegal(move, board)) {
                     if(isEndStateLegal(move, board)) {
                         bIsMoveGood = true
-                    } else failureMessage = "End State Not Legal" //
-                } else failureMessage = "Move Not Legal" //
-            } else failureMessage = "Move Breaks Continuity" //
-        } else failureMessage = "Dest Hex not Adjacent to Anything" //
-    } else failureMessage = "Hex Occupied" //
+                    } else failureMessage = "End State Not Legal." //
+                } else failureMessage = "Move Not Legal." //
+            } else failureMessage = "Move Breaks Continuity." //
+        } else failureMessage = "Dest Hex not Adjacent to Anything." //
+    } else failureMessage = "Hex Occupied." //
     return [bIsMoveGood, failureMessage]
 }
 

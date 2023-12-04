@@ -43,10 +43,10 @@ export function checkPlacement(placement, board) {
             if(checkPlayerOfAdjacent(placement, board)) {
                 if(checkNumberOfBug(placement)) {
                     bIsPlacementGood = true
-                } else failureMessage =  "Too many of this bug." //
-            } else failureMessage = "Can't place next to a bug of other player." //
-        } else failureMessage = "Dest Hex not Adjacent to Anything." //
-    } else failureMessage = "Hex Occupied." //
+                } else failureMessage =  "Too many of this bug."
+            } else failureMessage = "Can't place next to a bug of other player."
+        } else failureMessage = "Dest Hex not Adjacent to Anything."
+    } else failureMessage = "Hex Occupied."
     return [bIsPlacementGood, failureMessage]
 }
 

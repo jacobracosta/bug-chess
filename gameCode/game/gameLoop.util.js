@@ -2,6 +2,7 @@ import Move from "../gameObjects/move.js";
 import Placement from "../gameObjects/placement.js";
 import {checkPlacement} from "../../gameCode/placementLogic/checkPlacement.js";
 import checkMove from "../moveLogic/checkMove.js"
+import { verifyRefCoord } from "../utils/coordinateTranslate.util.js";
 
 export function isWinConditionMet(player1, player2, board) {
     let message = "None"
@@ -22,8 +23,31 @@ export function processCommand(userInput) {
   const verb = inputArray[0].toLowerCase()
   const [bug,index] = inputArray[1].split("-")
   const coord = (inputArray[2].split(",")).map(Number)
-  //process coords here by calling translate function to see if legit coord
-  return [verb,bug,index,coord]
+  let processSuccess, processMessage
+  const validBugs = ["queenBee", "ant", "hopper", "spider", "beetle"]
+
+  if (verb != 'move' && verb != 'place') {
+    processMessage = "Invalid verb. Start with 'move' or 'place'."
+    processSuccess = false
+  }
+  else if(!validBugs.includes(bug)) {
+    processMessage = "Invalid bug. Must be 'queenBee', 'ant', 'hopper', 'spider', or 'beetle'."
+    processSuccess = false
+  }
+  else if(index > 2) {
+    processMessage = "Index cannot be greater than 2."
+    processSuccess = false
+  }
+  else if(!verifyRefCoord(coord)) {
+    processMessage = "Coordinate not good."
+    processSuccess = false
+  }
+  else {
+    processMessage = "Success."
+    processSuccess = true
+  }
+
+  return [processSuccess, processMessage, [verb, bug, index, coord]]
 }
 
 export function processMovement(player, bugType, index, coord, board){
