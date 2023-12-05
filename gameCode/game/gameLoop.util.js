@@ -62,8 +62,7 @@ export function processMovement(player, bugType, index, coord, board){
         else if (bugType == "hopper") bug = player.hoppers[index]
         else if (bugType == "spider") bug = player.spiders[index]
         else if (bugType == "ant") bug = player.ants[index]
-        else message = "Invalid bug. Re-input command."
-        console.log(coord)
+        else message = "Invalid bug."
         const move = new Move(bug, coord)
         const [bIsMoveGood, failureMessage] = checkMove(move, board)
         if(bIsMoveGood) {
@@ -71,10 +70,10 @@ export function processMovement(player, bugType, index, coord, board){
           board.incrementTurn()
           processSuccess = true
         } else {
-          message = failureMessage + " Re-input command."
+          message = failureMessage
         }
     }
-    return [processSuccess, message]
+    return [processSuccess, message + "Re-input command."]
 }
 
 export function processPlacement(player, bug, coord, board) {
@@ -92,8 +91,8 @@ export function processPlacement(player, bug, coord, board) {
         placement.addBugToGame(board)
         board.incrementTurn()
         processSuccess = true
-    } else message = failureMessage + " Re-input command."
-    return [processSuccess, message]
+    } else message = failureMessage
+    return [processSuccess, message + " Re-input command."]
 }
 
 export default isWinConditionMet
