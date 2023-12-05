@@ -18,11 +18,11 @@ describe("Basic Game Loop Test: Full Game Loop", function (){
     it("Tests Errors: Movement Errors", function (){ 
         const [gameOverMessage, errors] = gameLoopTestHandle(errorTestMovementJson["commands"])
         expect(gameOverMessage).to.eq("End of Test Input.")
-        expect(errors).to.be.an("array").that.includes("End State Not Legal.")
-        expect(errors).to.be.an("array").that.includes("Move Not Legal.")
-        expect(errors).to.be.an("array").that.includes("Move Breaks Continuity.")
-        expect(errors).to.be.an("array").that.includes("Dest Hex not Adjacent to Anything.")
-        expect(errors).to.be.an("array").that.includes("Hex Occupied.")
+        expect(errors).to.be.an("array").that.includes("Hex Occupied. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("Dest Hex not Adjacent to Anything. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("Move Breaks Continuity. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("Move Not Legal. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("End State Not Legal. Re-input command.")
     })
 
     it("Tests Errors: Loop Errors", function (){ 

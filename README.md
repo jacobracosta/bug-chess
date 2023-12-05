@@ -23,3 +23,5 @@ TODO
 -Design game loop
 
   -got basic game loops working, running into issues with beetle movement and updating cells beetles move from
+  -need to account for case where one player can't move or place anything
+

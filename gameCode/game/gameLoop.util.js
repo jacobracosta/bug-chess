@@ -63,6 +63,7 @@ export function processMovement(player, bugType, index, coord, board){
         else if (bugType == "spider") bug = player.spiders[index]
         else if (bugType == "ant") bug = player.ants[index]
         else message = "Invalid bug. Re-input command."
+        console.log(coord)
         const move = new Move(bug, coord)
         const [bIsMoveGood, failureMessage] = checkMove(move, board)
         if(bIsMoveGood) {
