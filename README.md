@@ -17,6 +17,7 @@ TODO
 
   -continuity code implemented, but it is designed for a matrix with 8 neighbors, need to see if there are cases this 
   doesn't work for
+    -case in errorTest.movement may be one such instance
 
 -document coordinate system
   

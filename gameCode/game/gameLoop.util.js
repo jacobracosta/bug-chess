@@ -73,7 +73,7 @@ export function processMovement(player, bugType, index, coord, board){
           message = failureMessage
         }
     }
-    return [processSuccess, message + "Re-input command."]
+    return [processSuccess, message + " Re-input command."]
 }
 
 export function processPlacement(player, bug, coord, board) {
