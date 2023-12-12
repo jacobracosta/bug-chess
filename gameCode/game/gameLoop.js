@@ -67,7 +67,7 @@ export function gameLoopTestHandle(commandsJson) {
           break //questionable, should be using queenSurrounded to break loop
       }
     } else {
-      errors.push(message)
+      errors.push([commandNum, message])
     }
     commandNum++ //increment no matter what so we can test handling of bad commands
     if(commandNum == numCommands) {

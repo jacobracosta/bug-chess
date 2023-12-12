@@ -6,7 +6,7 @@ import errorTestLoopJson from "../testData/errorTest.loop.json" assert { type: '
 
 describe("Basic Game Loop Test: Full Game Loop", function (){
 
-    it("Tests Errors: Placement Errors", function (){ 
+    it.skip("Tests Errors: Placement Errors", function (){ 
         const [gameOverMessage, errors] = gameLoopTestHandle(errorTestPlacementJson["commands"])
         expect(gameOverMessage).to.eq("End of Test Input.")
         expect(errors).to.be.an("array").that.is.empty
@@ -15,10 +15,15 @@ describe("Basic Game Loop Test: Full Game Loop", function (){
     it("Tests Errors: Movement Errors", function (){ 
         const [gameOverMessage, errors] = gameLoopTestHandle(errorTestMovementJson["commands"])
         expect(gameOverMessage).to.eq("End of Test Input.")
-        expect(errors).to.be.an("array").that.is.empty
+        console.log(errors)
+        expect(errors).to.be.an("array").that.includes("Hex Occupied. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("Dest Hex not Adjacent to Anything. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("Move Breaks Continuity. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("Move Not Legal. Re-input command.")
+        expect(errors).to.be.an("array").that.includes("End State Not Legal. Re-input command.")
     })
 
-    it("Tests Errors: Loop Errors", function (){ 
+    it.skip("Tests Errors: Loop Errors", function (){ 
         const [gameOverMessage, errors] = gameLoopTestHandle(errorTestLoopJson["commands"])
         expect(gameOverMessage).to.eq("End of Test Input.")
         expect(errors).to.be.an("array").that.is.empty

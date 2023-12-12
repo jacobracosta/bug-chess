@@ -6,7 +6,22 @@ const r = 50;
 
 function init(canvas) {
     const ctx = canvas.getContext('2d');
-    drawGrid(ctx, canvas.width, canvas.height);
+    for(let i = 0; i < 10; i++) {
+      ctx.resetTransform()
+      const height =  r* i*10// * Math.sin(a)
+      if(i % 2 === 0) ctx.translate(r, height)
+      else ctx.translate(0,height)
+      drawGrid(ctx, canvas.width, canvas.height);
+    }
+  }
+
+  function fitToContainer(canvas){
+    // Make it visually fill the positioned parent
+    canvas.style.width ='100%';
+    canvas.style.height='100%';
+    // ...then set the internal size to match
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
 
 function drawGrid(ctx, width, height) {
@@ -32,6 +47,7 @@ const Canvas = props => {
   
   useEffect(() => {
     const canvas = canvasRef.current
+    fitToContainer(canvas)
     init(canvas);
   }, [])
   
