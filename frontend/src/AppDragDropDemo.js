@@ -4,9 +4,9 @@ import './App.css';
 export default class AppDragDropDemo extends Component {
     state = {
         tasks: [
-            {name:"queenBee",category:"wip", bgcolor: "yellow"},
-            {name:"ant", category:"wip", bgcolor:"pink"},
-            {name:"hopper", category:"complete", bgcolor:"skyblue"}
+            {name:"queenBee",category:"player1", bgcolor: "yellow"},
+            {name:"ant", category:"player1", bgcolor:"pink"},
+            {name:"hopper", category:"player2", bgcolor:"skyblue"}
           ]
     }
 
@@ -37,8 +37,8 @@ export default class AppDragDropDemo extends Component {
 
     render() {
         var tasks = {
-            wip: [],
-            complete: []
+            player1: [],
+            player2: []
         }
 
         this.state.tasks.forEach ((t) => {
@@ -56,18 +56,18 @@ export default class AppDragDropDemo extends Component {
 
         return (
             <div className="container-drag">
-                <h2 className="header">DRAG & DROP DEMO</h2>
-                <div className="wip"
+                <h2 className="header">Bug Chess</h2>
+                <div className="player1"
                     onDragOver={(e)=>this.onDragOver(e)}
-                    onDrop={(e)=>{this.onDrop(e, "wip")}}>
-                    <span className="task-header">WIP</span>
-                    {tasks.wip}
+                    onDrop={(e)=>{this.onDrop(e, "player1")}}>
+                    <span className="task-header">Player 1</span>
+                    {tasks.player1}
                 </div>
                 <div className="droppable" 
                     onDragOver={(e)=>this.onDragOver(e)}
-                    onDrop={(e)=>this.onDrop(e, "complete")}>
-                     <span className="task-header">COMPLETED</span>
-                     {tasks.complete}
+                    onDrop={(e)=>this.onDrop(e, "player2")}>
+                     <span className="task-header">Player 2</span>
+                     {tasks.player2}
                 </div>
 
 
