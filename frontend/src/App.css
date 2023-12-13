@@ -32,7 +32,7 @@
   width:100%;
 }
 
-.droppable {
+.player2 {
   position: absolute;
   width: 150px;
   height: 100vh;
@@ -42,12 +42,39 @@
   border-left: 1px dotted;
 }
 
-.draggable {
+.playArea {
+  margin: auto;
+  width: 75%;
+  height: 100vh;
+  border: 3px solid green;
+  background-color: lightcyan;
+  padding: 10px;
+}
+
+.bug {
   width: 100px;
   height: 100px;
   background-color: yellow;
   margin: 5px auto;
-  line-height: 5em;
+  content: "\2B22";
+}
+
+.main {
+  display:flex;
+  --s: 300px;  /* size  */
+  --m: 100px;    /* margin */
+  --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
+}
+
+.hex {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*10); 
+  display: inline-block;
+  font-size:initial;
+  background-color: yellow;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) - var(--s)*0.2885);
 }
 
 

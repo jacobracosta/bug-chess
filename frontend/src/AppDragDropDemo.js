@@ -38,15 +38,16 @@ export default class AppDragDropDemo extends Component {
     render() {
         var tasks = {
             player1: [],
-            player2: []
+            player2: [],
+            playArea: []
         }
 
         this.state.tasks.forEach ((t) => {
             tasks[t.category].push(
-                <div key={t.name} 
+                <div class="hex"
+                    key={t.name} 
                     onDragStart = {(e) => this.onDragStart(e, t.name)}
                     draggable
-                    className="draggable"
                     style = {{backgroundColor: t.bgcolor}}
                 >
                     {t.name}
@@ -63,14 +64,18 @@ export default class AppDragDropDemo extends Component {
                     <span className="task-header">Player 1</span>
                     {tasks.player1}
                 </div>
-                <div className="droppable" 
+                <div className="player2" 
                     onDragOver={(e)=>this.onDragOver(e)}
                     onDrop={(e)=>this.onDrop(e, "player2")}>
                      <span className="task-header">Player 2</span>
                      {tasks.player2}
                 </div>
-
-
+                <div className="playArea" 
+                    onDragOver={(e)=>this.onDragOver(e)}
+                    onDrop={(e)=>this.onDrop(e, "playArea")}>
+                     <span className="task-header">Play Area</span>
+                     {tasks.playArea}
+                </div>
             </div>
         );
     }
